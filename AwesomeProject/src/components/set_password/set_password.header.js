@@ -1,0 +1,9 @@
+import { View, Text } from "react-native";
+import loginStyle from "../../styles/login.style";
+
+export default SetPasswordHeaderComponent = ()=>{
+    return <View style={loginStyle.login_header_section}>
+                <Text style={loginStyle.login_header_text}>Set Password</Text>
+                <Text style={loginStyle.login_header_sub}>An email was sent to fatokunfemi03@gmail.com, please use it to continue.</Text>
+            </View>;
+}
