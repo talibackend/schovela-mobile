@@ -28,12 +28,12 @@ export default SetBasicsMainComponent = ({
     }) => {
     
     return <View style={loginStyle.input_wrapper}>
-        <TextInput style={loginStyle.input_field} value={phoneNumber} placeholder={messages.PHONE_NUMBER} onChangeText={(value) => { return setPhoneNumber(value); }} autoComplete='name' autoCorrect={true} />
-        <TextInput style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={date} onPressIn={() => { return setDateModalOpened(true); }} placeholder={messages.DOB} readonly={true} />
-        <TextInput style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={categoryLabel ? categoryLabel : ""} placeholder={messages.SELECT_CATEGORY} onPressIn={() => { return setCategoryOpen(true); }} readonly={true} />
-        <TextInput style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
-        <TextInput style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
-        <TextInput style={loginStyle.input_field} value={dept} placeholder={messages.DEPT} onChangeText={(value) => { return setDept(value); }} autoComplete='name' autoCorrect={true} />
+        <TextInput  placeholderTextColor="grey" style={loginStyle.input_field} value={phoneNumber} placeholder={messages.PHONE_NUMBER} onChangeText={(value) => { return setPhoneNumber(value); }} autoComplete='name' autoCorrect={true} />
+        <TextInput placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={date} onPressIn={() => { return setDateModalOpened(true); }} placeholder={messages.DOB} readonly={true} />
+        <TextInput placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={categoryLabel ? categoryLabel : ""} placeholder={messages.SELECT_CATEGORY} onPressIn={() => { return setCategoryOpen(true); }} readonly={true} />
+        <TextInput placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
+        <TextInput placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
+        <TextInput placeholderTextColor="grey" style={loginStyle.input_field} value={dept} placeholder={messages.DEPT} onChangeText={(value) => { return setDept(value); }} autoComplete='name' autoCorrect={true} />
         {
             dateModalOpened ?
                 <DateTimePicker mode="date" maximumDate={maxDate} value={maxDate} onChange={(e, date) => { setDateModalOpened(false); return setDate((new Date(date)).toDateString()); }} /> : null

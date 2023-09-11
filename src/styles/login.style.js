@@ -12,10 +12,12 @@ export default StyleSheet.create({
     login_header_text: {
         fontSize: 40,
         fontWeight: 'bold',
-        marginBottom: 10
+        marginBottom: 10,
+        color : 'black'
     },
     login_header_sub: {
-        fontSize: 20
+        fontSize: 20,
+        color : 'black'
     },
     input_wrapper: {
         borderRadius: 10,
@@ -29,6 +31,7 @@ export default StyleSheet.create({
         fontSize: 15,
         backgroundColor: 'white',
         borderRadius: 10,
+        color : 'black'
     },
     button: {
         padding: 20,
@@ -50,6 +53,7 @@ export default StyleSheet.create({
         textAlign: 'right',
         fontSize: 15,
         paddingBottom: 10,
+        color : 'black'
     },
     dont_have_account: {
         textAlign: "center",
@@ -57,15 +61,18 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
+        color : 'black'
     },
     login_footer_text: { 
         flex: 4.5,
         textAlign : 'right', 
         width: 10, 
-        fontSize: 15 
+        fontSize: 15,
+        color : 'black'
     },
     login_signup_button: {
         fontWeight: 'bold',
-        fontSize: 15
+        fontSize: 15,
+        color : 'black'
     }
 })

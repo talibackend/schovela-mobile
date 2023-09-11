@@ -27,7 +27,8 @@ export default StyleSheet.create({
 
     },
     scroll_pressable_text : {
-        fontSize : 15
+        fontSize : 15,
+        color : 'black'
     },
     selected_style : {
         color : 'grey'

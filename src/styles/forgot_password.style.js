@@ -5,7 +5,8 @@ export default StyleSheet.create({
     forgot_success_container : {
         flex : 1,
         justifyContent : 'center',
-        alignItems : 'center'
+        alignItems : 'center',
+        color : 'black'
     },
     iconStyle : {
         fontSize : 200,

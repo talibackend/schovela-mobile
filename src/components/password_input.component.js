@@ -27,6 +27,7 @@ const PasswordInput = ({ stateUpdater, style, placeholder }) => {
     return <TextInput
                 autoCapitalize="none"
                 style={style}
+                placeholderTextColor="grey"
                 onChangeText={(value) => { return handlePasswordInput(value) }}
                 value={asterisks}
                 placeholder={!placeholder ? messages.PASSWORD_PLACEHOLDER : placeholder}

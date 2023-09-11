@@ -5,7 +5,8 @@ export default StyleSheet.create({
     app_container : {
         flex : 1,
         paddingTop : '10%',
-        backgroundColor : colors.global_screen_bg
+        backgroundColor : colors.global_screen_bg,
+        color : 'black'
     },
     modal_view_container : {
         flex : 1,

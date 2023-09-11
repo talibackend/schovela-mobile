@@ -18,7 +18,7 @@ export default LoginMainComponent = ({
 })=>{
 
     return  <View style={loginStyle.input_wrapper}>
-                <TextInput value={email} style={loginStyle.input_field} placeholder={messages.EMAIL_PLACEHOLDER} onChangeText={(value)=>{ return setEmail(value); }} autoComplete='email' autoCorrect={false} />
+                <TextInput value={email} style={loginStyle.input_field} placeholderTextColor="grey" placeholder={messages.EMAIL_PLACEHOLDER} onChangeText={(value)=>{ return setEmail(value); }} autoComplete='email' autoCorrect={false} />
                 <PasswordInput style={loginStyle.input_field} stateUpdater={setPassword} />
                 <ForgotPasswordLink navigation={navigation} />
                 <LoginButton loading={loading} name={messages.LOGIN} action={ ()=>{ btnHandler(); } } />

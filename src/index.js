@@ -10,7 +10,7 @@ import AdminDashboardScreen from './pages/admin_dashboard.page';
 import AdminDashboardUsersScreen from './pages/admin_dashboard_users.page';
 import AdminDashboardUserInfoScreen from './pages/admin_dashboard_user_info.page';
 // import ForgotPasswordSuccessScreen from './pages/forgot_password_success.page';
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { screenNames } from "./utils/consts";
 import { Text } from "react-native";
@@ -22,9 +22,17 @@ const DummyComponent = ()=>{
     return <Text style={{ fontSize : 50 }}>This is a dummy page....</Text>
 }
 
+const MyTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background : 'white'
+    },
+  };
+
 const Scafffold = ()=>{
     return  <>
-                <NavigationContainer>
+                <NavigationContainer theme={MyTheme}>
                     <Stack.Navigator>
                         <Stack.Screen name={screenNames.splashscreen} options={{ headerShown : false }} component={SplashScreen} />
                         <Stack.Screen name={screenNames.home} options={{ headerShown : false }} component={HomeScreen} />
