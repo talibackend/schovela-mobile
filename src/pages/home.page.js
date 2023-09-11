@@ -1,23 +1,26 @@
 import { getItem } from "../utils/asyncStorage";
 import { useState, useEffect } from "react";
 import { useToast } from "react-native-toast-notifications";
-import { errorToastOptions, messages, storageKeyNames, screenNames } from "../utils/consts";
+import { errorToastOptions, messages, storageKeyNames, screenNames, user_roles } from "../utils/consts";
 import { Text } from "react-native";
 
 export default HomeScreen = ({navigation})=>{
-    const [loggedin, setLoggedIn] = useState(false);
-    const [token, setToken] = useState(null);
+    // const [loggedin, setLoggedIn] = useState(false);
+    // const [token, setToken] = useState(null);
     const toast = useToast();
     
     useEffect(()=>{
         (async ()=>{
             try{
                 let localToken = await getItem(storageKeyNames.accessToken);
-                if(localToken == null){
-                    setLoggedIn(false);
+                let localUser = JSON.parse(await getItem(storageKeyNames.user));
+                
+                if(!localToken){
+                    navigation.navigate(screenNames.login)
                 }else{
-                    setLoggedIn(true);
-                    setToken(localToken);
+                    if(localUser.role == user_roles.admin){
+                        navigation.navigate(screenNames.admin_dashboard);
+                    }
                 }
             }catch(error){
                 toast.show(messages.APP_ERROR, errorToastOptions);
@@ -26,11 +29,11 @@ export default HomeScreen = ({navigation})=>{
         })()
     }, []);
 
-    useEffect(()=>{
-        if (!loggedin) {
-            navigation.navigate(screenNames.login)
-        }
-    }, [loggedin])
+    // useEffect(()=>{
+    //     if (!loggedin) {
+    //         navigation.navigate(screenNames.login)
+    //     }
+    // }, [loggedin])
 
     return <Text>Hello world this is the homepage.</Text>
 }

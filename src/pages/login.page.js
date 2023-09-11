@@ -1,5 +1,5 @@
 import LoginComponent from '../components/login.component';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { messages, api_routes, request_methods, screenNames, toast_types, storageKeyNames } from '../utils/consts';
 import { openRequest } from '../utils/network';
 import { setItem } from '../utils/asyncStorage';
