@@ -54,7 +54,8 @@ export const screenNames = {
     set_basics : 'set_basics',
     admin_dashboard : 'admin',
     admin_dashboard_users : 'admin/users',
-    admin_dashboard_user_info : 'admin/user_info'
+    admin_dashboard_user_info : 'admin/user_info',
+    user_auth : 'hgfyr893y4t954y8749y57846'
 }
 
 export const api_routes = {
