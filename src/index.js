@@ -15,6 +15,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { screenNames } from "./utils/consts";
 import { Text } from "react-native";
 import Toast from 'react-native-toast-message';
+import { navigationRef } from "./utils/navigate";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,7 +33,7 @@ const MyTheme = {
 
 const Scafffold = ()=>{
     return  <>
-                <NavigationContainer theme={MyTheme}>
+                <NavigationContainer ref={navigationRef} theme={MyTheme}>
                     <Stack.Navigator>
                         <Stack.Screen name={screenNames.splashscreen} options={{ headerShown : false }} component={SplashScreen} />
                         <Stack.Screen name={screenNames.home} options={{ headerShown : false }} component={HomeScreen} />

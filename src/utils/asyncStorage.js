@@ -18,3 +18,7 @@ export const getItem = async (key)=>{
         throw error;
     }
 }
+
+export const deleteItem = async (key)=>{
+    await AsyncStorage.removeItem(key);
+}

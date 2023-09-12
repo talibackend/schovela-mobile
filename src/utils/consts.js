@@ -63,7 +63,10 @@ export const api_routes = {
     update_user_info : '/user/data',
     login : '/auth/login',
     forgot_password : '/auth/forgot',
-    reset_password : '/auth/change/password'
+    reset_password : '/auth/change/password',
+    admin : {
+        dashboard_info : '/admin/total/users'
+    }
 }
 
 export const errorToastOptions = {

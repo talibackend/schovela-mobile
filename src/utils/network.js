@@ -1,7 +1,8 @@
 // import fetch from "node-fetch";
-import { messages, storageKeyNames } from "./consts";
-import { getItem } from "./asyncStorage";
+import { messages, screenNames, storageKeyNames } from "./consts";
+import { deleteItem, getItem } from "./asyncStorage";
 import {API_BASEURL} from "@env";
+import { navigate } from "./navigate";
 
 export const openRequest = async (method, url, body=false, additionalHeaders=false) => {
     const controller = new AbortController();
@@ -27,7 +28,12 @@ export const openRequest = async (method, url, body=false, additionalHeaders=fal
         const response = await request.json();
         console.log(response);
         clearTimeout(timeout);
-        if(response.ok !== true){
+        if(response.ok != true){
+            if(response.status == 401 || response.status == 403){
+                await deleteItem(storageKeyNames.user);
+                await deleteItem(storageKeyNames.accessToken);
+                navigate(screenNames.login);
+            }
             return response.message;
         }
         return response.body;
