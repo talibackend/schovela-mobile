@@ -70,6 +70,7 @@ export default AdminDashboardUsersScreen = ({navigation})=>{
                 setRole={setRole} 
                 users={users} 
                 navigation={navigation}
+                loading={loading}
                 handleScroll={handleScroll}
             />
 }

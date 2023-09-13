@@ -1,4 +1,4 @@
-import { View, TextInput, ScrollView, Keyboard, Text } from 'react-native';
+import { View, TextInput, ScrollView, Keyboard, Text, ActivityIndicator } from 'react-native';
 import adminStyle from "../../../styles/admin.style";
 import loginStyle from '../../../styles/login.style';
 import AdminUserEachCard from './admin_users.each_card';
@@ -8,15 +8,15 @@ import { useState } from 'react';
 import { messages } from '../../../utils/consts';
 
 
-export default AdminUsersComponent = ({ navigation, handleScroll, filterLabel, role, setRole, users }) => {
+export default AdminUsersComponent = ({ navigation, loading, handleScroll, filterLabel, role, setRole, users }) => {
     const [filterOpen, setFilterOpen] = useState(false);
-    const data = users.map((user)=>{
+    const data = users.map((user) => {
         return {
-            id : user.id,
-            name : user.fullname,
+            id: user.id,
+            name: user.fullname,
             image: require('../../../../assets/static/user.png'),
-            date_joined : (new Date(`${user.createdAt}`)).toDateString(),
-            email : user.email
+            date_joined: (new Date(`${user.createdAt}`)).toDateString(),
+            email: user.email
         }
     })
 
@@ -26,12 +26,19 @@ export default AdminUsersComponent = ({ navigation, handleScroll, filterLabel, r
             opened={filterOpen}
             selected={role}
             selectHandler={setRole}
-            closeHandler={()=>{ setFilterOpen(false); }}
+            closeHandler={() => { setFilterOpen(false); }}
         />
         <TextInput style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={filterLabel ? filterLabel : ""} placeholder={messages.FILTER_USERS} onPressIn={() => { return setFilterOpen(true); }} readonly={true} />
-        <ScrollView scrollEventThrottle={100} onScroll={({nativeEvent})=>{ handleScroll(nativeEvent); }}>
+        <ScrollView scrollEventThrottle={100} onScroll={({ nativeEvent }) => { handleScroll(nativeEvent); }}>
             {
-                data.length == 0 ? <Text>No records found.</Text> : null
+                loading ? <View style={{ paddingTop: 20 }}>
+                    <ActivityIndicator color='black' />
+                </View> : null
+            }
+            {
+                data.length == 0 && !loading ? <View style={{ paddingTop: 20 }}>
+                    <Text style={{ textAlign : 'center' }}>{messages.NO_RECORDS}</Text>
+                </View> : null
             }
             {data.map((datum, index) => { return <AdminUserEachCard key={`admin_user_card-${index}`} id={datum.id} name={datum.name} image={datum.image} date_joined={datum.date_joined} email={datum.email} navigation={navigation} link={screenNames.admin_dashboard_user_info} /> })}
         </ScrollView>
