@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 import { messages } from '../../../utils/consts';
 
 
-export default AdminUsersComponent = ({ navigation, filterLabel, role, setRole, users }) => {
+export default AdminUsersComponent = ({ navigation, handleScroll, filterLabel, role, setRole, users }) => {
     const [filterOpen, setFilterOpen] = useState(false);
     const data = users.map((user)=>{
         return {
@@ -28,7 +28,7 @@ export default AdminUsersComponent = ({ navigation, filterLabel, role, setRole, 
             closeHandler={()=>{ setFilterOpen(false); }}
         />
         <TextInput style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={filterLabel ? filterLabel : ""} placeholder={messages.FILTER_USERS} onPressIn={() => { return setFilterOpen(true); }} readonly={true} />
-        <ScrollView>
+        <ScrollView scrollEventThrottle={100} onScroll={({nativeEvent})=>{ handleScroll(nativeEvent); }}>
             {
                 data.length == 0 ? <Text>No records found.</Text> : null
             }

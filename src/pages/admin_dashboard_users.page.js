@@ -3,25 +3,48 @@ import { useState, useEffect } from 'react';
 import { api_routes, messages, request_methods, user_filters } from '../utils/consts';
 import { showToast } from '../utils/toast';
 import { authRequest } from '../utils/network';
+import { isCloseToBottom } from '../utils/scroll';
 
 export default AdminDashboardUsersScreen = ({navigation})=>{
     const [users, setUsers] = useState([]);
     const [role, setRole] = useState(null);
     const [filterLabel, setFilterLabel] = useState(role != null ? role : "All");
+    const [allLoaded, setAllLoaded] = useState(false);
+    const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+    // const [retryCount, setRetryCount] = useState(1);
 
-    const loadInfos = async ()=>{
-        setUsers([]);
-        try {
-            let url = api_routes.admin.users;
-            if(role !== null){
-                url = `${url}?role=${role}`;
+    const loadInfos = async (page = 0)=>{
+        if(!allLoaded){
+            try {
+                let url = `${api_routes.admin.users}?page=${page}`;
+                if(role !== null){
+                    url = `${url}&role=${role}`;
+                }
+                setLoading(true);
+                let request = await authRequest(request_methods.GET, url);
+                setUsers([...users, ...request.users]);
+                setLoading(false);
+                if(request.users.length < 2){
+                    setAllLoaded(true);
+                }
+            } catch (error) {
+                console.log(error);
+                showToast('error', messages.NETWORK_ERROR);
+                // await loadInfos();
             }
-            let request = await authRequest(request_methods.GET, url);
-            setUsers(request.users);
-        } catch (error) {
-            console.log(error);
-            showToast('error', messages.NETWORK_ERROR);
-            await loadInfos();
+        }
+    }
+
+    const handleScroll = (nativeEvent)=>{
+        if(!loading){
+            console.log('Scrolled');
+            if(isCloseToBottom(nativeEvent)){
+                console.log('At bottom...');
+                loadInfos(page + 20);
+                setPage(page => page + 20);
+                // setRetryCount(1);
+            }
         }
     }
 
@@ -31,8 +54,19 @@ export default AdminDashboardUsersScreen = ({navigation})=>{
                 setFilterLabel( user_filters[i].label);
             }
         }
+        setPage(0);
+        setAllLoaded(false);
+        setUsers([]);
+        // setRetryCount(1);
         loadInfos();
     }, [role])
 
-    return <AdminDashboardUsersComponent filterLabel={filterLabel} role={role} setRole={setRole} users={users} navigation={navigation} />
+    return <AdminDashboardUsersComponent 
+                filterLabel={filterLabel} 
+                role={role} 
+                setRole={setRole} 
+                users={users} 
+                navigation={navigation}
+                handleScroll={handleScroll}
+            />
 }

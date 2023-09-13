@@ -7,6 +7,7 @@ import { api_routes, request_methods, messages } from '../utils/consts';
 export default AdminDashboardScreen = ({ navigation }) => {
     const [userCount, updateUserCount] = useState(0);
     const [contentCount, updateContentCount] = useState(0);
+    // const [retryCount, setRetryCount] = useState(1);
 
     const loadInfos = async () => {
         try {
@@ -16,12 +17,13 @@ export default AdminDashboardScreen = ({ navigation }) => {
         } catch (error) {
             console.log(error);
             showToast('error', messages.NETWORK_ERROR);
-            await loadInfos();
+            // await loadInfos();
+            // setRetryCount(count => ++count);
         }
     }
 
-    useEffect(() => {
-        loadInfos();
+    useEffect(async () => {
+        await loadInfos();
     }, []);
 
     return <AdminDashboardComponent userCount={userCount} contentCount={contentCount} navigation={navigation} />;
