@@ -32,7 +32,7 @@ export default AdminUsersComponent = ({ navigation, handleScroll, filterLabel, r
             {
                 data.length == 0 ? <Text>No records found.</Text> : null
             }
-            {data.map((datum, index) => { return <AdminUserEachCard key={`admin_user_card-${index}`} name={datum.name} image={datum.image} date_joined={datum.date_joined} email={datum.email} navigation={navigation} link={screenNames.admin_dashboard_user_info} /> })}
+            {data.map((datum, index) => { return <AdminUserEachCard key={`admin_user_card-${index}`} id={datum.id} name={datum.name} image={datum.image} date_joined={datum.date_joined} email={datum.email} navigation={navigation} link={screenNames.admin_dashboard_user_info} /> })}
         </ScrollView>
     </View>
 }

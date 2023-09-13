@@ -1,8 +1,8 @@
 import adminStyle from "../../../styles/admin.style";
 import { Text, View, Image, Pressable } from 'react-native';
 
-export default AdminUserEachCard = ({image, name, email, date_joined, link, navigation})=>{
-    return <Pressable onPress={() => { navigation.navigate(link); }}>
+export default AdminUserEachCard = ({ id, image, name, email, date_joined, link, navigation})=>{
+    return <Pressable onPress={() => { navigation.navigate(link, { id }); }}>
                 <View style={[adminStyle.each_dashboard_card, adminStyle.each_user_card]}>
                     <View style={adminStyle.each_user_card_icon}>
                         <Image style={adminStyle.each_user_logo} source={image} />
