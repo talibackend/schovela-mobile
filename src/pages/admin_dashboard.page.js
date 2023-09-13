@@ -22,8 +22,8 @@ export default AdminDashboardScreen = ({ navigation }) => {
         }
     }
 
-    useEffect(async () => {
-        await loadInfos();
+    useEffect(() => {
+        loadInfos();
     }, []);
 
     return <AdminDashboardComponent userCount={userCount} contentCount={contentCount} navigation={navigation} />;

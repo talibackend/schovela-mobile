@@ -14,10 +14,10 @@ export default AdminDashboardUsersScreen = ({navigation})=>{
     const [loading, setLoading] = useState(false);
     // const [retryCount, setRetryCount] = useState(1);
 
-    const loadInfos = async (page = 0)=>{
+    const loadInfos = async (page2 = 0)=>{
         if(!allLoaded){
             try {
-                let url = `${api_routes.admin.users}?page=${page}`;
+                let url = `${api_routes.admin.users}?page=${page2}`;
                 if(role !== null){
                     url = `${url}&role=${role}`;
                 }
@@ -25,7 +25,7 @@ export default AdminDashboardUsersScreen = ({navigation})=>{
                 let request = await authRequest(request_methods.GET, url);
                 setUsers([...users, ...request.users]);
                 setLoading(false);
-                if(request.users.length < 2){
+                if(request.users.length < 20){
                     setAllLoaded(true);
                 }
             } catch (error) {
@@ -38,11 +38,11 @@ export default AdminDashboardUsersScreen = ({navigation})=>{
 
     const handleScroll = (nativeEvent)=>{
         if(!loading){
-            console.log('Scrolled');
             if(isCloseToBottom(nativeEvent)){
-                console.log('At bottom...');
-                loadInfos(page + 20);
-                setPage(page => page + 20);
+                if(!allLoaded){
+                    loadInfos(page + 20);
+                    setPage(page => page + 20);
+                }
                 // setRetryCount(1);
             }
         }
@@ -58,8 +58,11 @@ export default AdminDashboardUsersScreen = ({navigation})=>{
         setAllLoaded(false);
         setUsers([]);
         // setRetryCount(1);
-        loadInfos();
     }, [role])
+
+    useEffect(()=>{
+        loadInfos(page);
+    }, [allLoaded, page])
 
     return <AdminDashboardUsersComponent 
                 filterLabel={filterLabel} 
