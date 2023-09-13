@@ -66,7 +66,8 @@ export const api_routes = {
     forgot_password : '/auth/forgot',
     reset_password : '/auth/change/password',
     admin : {
-        dashboard_info : '/admin/total/users'
+        dashboard_info : '/admin/total/users',
+        users : '/admin/users'
     }
 }
 
@@ -106,9 +107,10 @@ export const user_levels = [
 ]
 
 export const user_filters = [
-    { label : 'All', value : 'all' },
-    { label : 'Moderators', value : 'mods' },
-    { label : 'Normal Users', value : 'users' }
+    { label : 'All', value : null },
+    { label : 'Normal Users', value : 'user' },
+    { label : 'Moderators', value : 'moderator' },
+    { label : 'Admins', value : 'admin' },
 ]
 
 export const request_methods = {
