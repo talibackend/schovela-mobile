@@ -20,7 +20,7 @@ export default AdminUserInfoMainComponent = ({loading, user, navigation})=>{
             {
                 data.role && data.role !== user_roles.admin ?
                 <Pressable style={adminStyle.elevate_btn} onPress={()=>{ console.log('User Elevated'); }}>
-                    <Text style={adminStyle.elevate_btn_txt}>{ data.role == user_roles.user ? 'Elevate' : 'Demote' }</Text>
+                    <Text style={adminStyle.elevate_btn_txt}>{ data.role == user_roles.user ? 'Promote' : 'Demote' }</Text>
                 </Pressable>
                  : null
             }
