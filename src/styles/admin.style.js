@@ -132,6 +132,7 @@ export default StyleSheet.create({
         flex : 2,
         fontSize : 15,
         paddingHorizontal : 10,
-        paddingVertical : 5
+        paddingVertical : 5,
+        color : 'black'
     }
 });
