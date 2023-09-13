@@ -1,8 +1,8 @@
-import { Pressable, ScrollView, Text, View, Image } from 'react-native';
+import { Pressable, ScrollView, Text, View, Image, ActivityIndicator } from 'react-native';
 import adminStyle from '../../../styles/admin.style';
 import { user_roles } from '../../../utils/consts';
 
-export default AdminUserInfoMainComponent = ({loading, user, navigation})=>{
+export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, user, navigation})=>{
     const data = {
         name : user?.fullname,
         email : user?.email,
@@ -19,8 +19,13 @@ export default AdminUserInfoMainComponent = ({loading, user, navigation})=>{
             <View style={adminStyle.elevate_btn_container}>
             {
                 data.role && data.role !== user_roles.admin ?
-                <Pressable style={adminStyle.elevate_btn} onPress={()=>{ console.log('User Elevated'); }}>
-                    <Text style={adminStyle.elevate_btn_txt}>{ data.role == user_roles.user ? 'Promote' : 'Demote' }</Text>
+                <Pressable style={adminStyle.elevate_btn} onPress={()=>{ handleRoleChange(); }}>
+                    {
+                        updatingRole ? <ActivityIndicator color='white' /> :
+                        <Text style={adminStyle.elevate_btn_txt}>
+                            { data.role == user_roles.user ? 'Promote' : 'Demote' }
+                        </Text>
+                    }
                 </Pressable>
                  : null
             }

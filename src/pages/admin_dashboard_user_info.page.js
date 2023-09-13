@@ -1,13 +1,45 @@
 import AdminDashboardUserInfoComponent from '../components/admin_dashboard_user_info.component';
 import { useEffect, useState } from 'react';
 import { showToast } from '../utils/toast';
-import { api_routes, messages, request_methods, toast_types } from '../utils/consts';
+import { api_routes, messages, request_methods, toast_types, user_roles } from '../utils/consts';
 import { authRequest } from '../utils/network';
 
 export default AdminDashboardUserInfoScreen = ({route, navigation})=>{
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [updatingRole, setUpdatingRole] = useState(false);
     const { id } = route.params;
+
+    const handleRolaChange = async ()=>{
+        console.log('Working...');
+        if(user.role){
+            let url = '';
+            let newRole = '';
+
+            if(user.role == user_roles.user){
+                url = api_routes.admin.promote;
+                newRole = user_roles.mod;
+            }else{
+                url = api_routes.admin.demote;
+                newRole = user_roles.user;
+            }
+
+            setUpdatingRole(true);
+
+            try{
+                await authRequest(request_methods.POST, url, { id });
+                setUser({
+                    ...user,
+                    role : newRole
+                });
+            }catch(error){
+                console.log(error);
+                showToast(toast_types.error, messages.NETWORK_ERROR);
+            }
+
+            setUpdatingRole(false);
+        }
+    }
 
     const loadInfos = async ()=>{
         if(!id){
@@ -29,5 +61,10 @@ export default AdminDashboardUserInfoScreen = ({route, navigation})=>{
         loadInfos();
     }, []);
 
-    return <AdminDashboardUserInfoComponent user={user} loading={loading} navigation={navigation} />
+    return <AdminDashboardUserInfoComponent 
+                user={user} 
+                handleRoleChange={handleRolaChange} 
+                updatingRole={updatingRole} 
+                navigation={navigation} 
+            />
 }

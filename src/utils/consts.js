@@ -68,7 +68,9 @@ export const api_routes = {
     admin : {
         dashboard_info : '/admin/total/users',
         users : '/admin/users',
-        user : '/admin/user'
+        user : '/admin/user',
+        promote : '/admin/moderator',
+        demote : '/admin/de_elevate'
     }
 }
 
