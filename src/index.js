@@ -31,7 +31,8 @@ const MyTheme = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background : 'white'
+      background : 'white',
+      text : 'black'
     },
   };
 
