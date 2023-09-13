@@ -4,7 +4,7 @@ import loginStyle from '../../../styles/login.style';
 import AdminUserEachCard from './admin_users.each_card';
 import { DropDownComponent } from '../../dropdown.component';
 import { screenNames, user_filters } from '../../../utils/consts';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { messages } from '../../../utils/consts';
 
 
@@ -12,6 +12,7 @@ export default AdminUsersComponent = ({ navigation, handleScroll, filterLabel, r
     const [filterOpen, setFilterOpen] = useState(false);
     const data = users.map((user)=>{
         return {
+            id : user.id,
             name : user.fullname,
             image: require('../../../../assets/static/user.png'),
             date_joined : (new Date(`${user.createdAt}`)).toDateString(),

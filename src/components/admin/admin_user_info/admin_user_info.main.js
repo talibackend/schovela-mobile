@@ -1,21 +1,29 @@
 import { Pressable, ScrollView, Text, View, Image } from 'react-native';
 import adminStyle from '../../../styles/admin.style';
+import { user_roles } from '../../../utils/consts';
 
-export default AdminUserInfoMainComponent = ({navigation})=>{
+export default AdminUserInfoMainComponent = ({loading, user, navigation})=>{
     const data = {
-        name : 'Femi Fatokun',
-        email : 'fatokunfemi03@gmail.com',
-        phone : '+2349047238648',
-        level : '200',
-        faculty : 'Science',
-        dept : 'Computer Science',
+        name : user?.fullname,
+        email : user?.email,
+        phone : user?.phone,
+        level : user?.level,
+        faculty : user?.faculty,
+        dept : user?.department,
         image : require('../../../../assets/static/user.png'),
-        dob : '27-02-2002'
+        joined:  (new Date(`${user?.createdAt}`)).toDateString(),
+        role : user?.role
     }
     return <View style={adminStyle.main_container}>
         <ScrollView>
             <View style={adminStyle.elevate_btn_container}>
-                <Pressable style={adminStyle.elevate_btn} onPress={()=>{ console.log('User Elevated'); }}><Text style={adminStyle.elevate_btn_txt}>Elevate</Text></Pressable>
+            {
+                data.role && data.role !== user_roles.admin ?
+                <Pressable style={adminStyle.elevate_btn} onPress={()=>{ console.log('User Elevated'); }}>
+                    <Text style={adminStyle.elevate_btn_txt}>{ data.role == user_roles.user ? 'Elevate' : 'Demote' }</Text>
+                </Pressable>
+                 : null
+            }
             </View>
             <View style={adminStyle.user_image_container}>
                 <Image style={adminStyle.user_image} source={data.image} />
@@ -45,8 +53,8 @@ export default AdminUserInfoMainComponent = ({navigation})=>{
                 <Text style={adminStyle.user_info_value}>{data.dept}</Text>
             </View>
             <View style={adminStyle.user_info_columns}>
-                <Text style={adminStyle.user_info_title}>Date of Birth</Text>
-                <Text style={adminStyle.user_info_value}>{data.dob}</Text>
+                <Text style={adminStyle.user_info_title}>Joined on</Text>
+                <Text style={adminStyle.user_info_value}>{data.joined}</Text>
             </View>
         </ScrollView>
     </View>

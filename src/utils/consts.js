@@ -67,7 +67,8 @@ export const api_routes = {
     reset_password : '/auth/change/password',
     admin : {
         dashboard_info : '/admin/total/users',
-        users : '/admin/users'
+        users : '/admin/users',
+        user : '/admin/user'
     }
 }
 
