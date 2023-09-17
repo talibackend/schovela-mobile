@@ -149,5 +149,17 @@ export default StyleSheet.create({
     },
     each_content_list_info : {
         flex : 9
+    },
+    create_content_floating_pressable : {
+        backgroundColor: 'white',
+        borderRadius: 50,
+        position: 'absolute',
+        padding : 15,
+        bottom : 5,
+        right: 5
+    },
+    create_content_floating_icon : {
+        color : 'black',
+        fontSize: 30
     }
 });

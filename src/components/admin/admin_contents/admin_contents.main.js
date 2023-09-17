@@ -5,6 +5,7 @@ import { DropDownComponent } from "../../dropdown.component";
 import { content_filters, messages } from "../../../utils/consts";
 import { useState, useEffect } from "react";
 import AdminContentEachCard from './admin_contents.each_card';
+import AdminCreateContentButton from './admin_contents.create_button';
 
 export default AdminContentsMainComponent = ({navigation})=>{
     const [filterOpen, setFilterOpen] = useState(false);
@@ -113,5 +114,6 @@ export default AdminContentsMainComponent = ({navigation})=>{
                 })
             }
         </ScrollView>
+        <AdminCreateContentButton />
     </View>
 }
