@@ -56,7 +56,7 @@ export const screenNames = {
     admin_dashboard : 'admin',
     admin_dashboard_users : 'admin/users',
     admin_dashboard_user_info : 'admin/user_info',
-    user_auth : 'hgfyr893y4t954y8749y57846'
+    admin_dashboard_contents : 'admin/contents'
 }
 
 export const api_routes = {
@@ -115,6 +115,14 @@ export const user_filters = [
     { label : 'Normal Users', value : 'user' },
     { label : 'Moderators', value : 'moderator' },
     { label : 'Admins', value : 'admin' },
+]
+
+export const content_filters = [
+    { label : 'All', value : null },
+    { label : 'Approved', value : 'approved' },
+    { label : 'Pending', value : 'pending' },
+    { label : 'Hidden', value : 'hidden' },
+    { label : 'Live', value : 'live' }
 ]
 
 export const request_methods = {

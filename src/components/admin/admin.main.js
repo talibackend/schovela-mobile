@@ -6,7 +6,7 @@ import AdminEachMenuCardComponent from './admin.each_menu_card';
 export default AdminMainComponent = ({ navigation, contentCount, userCount }) => {
     const buttonData = [
         { name : 'Users', counts : userCount, link : screenNames.admin_dashboard_users },
-        { name : 'Contents', counts : contentCount, link : 'dummy' }
+        { name : 'Contents', counts : contentCount, link : screenNames.admin_dashboard_contents }
     ]
 
     return <View style={adminStyle.main_container}>

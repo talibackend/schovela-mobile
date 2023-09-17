@@ -9,6 +9,7 @@ import SetBasicsScreen from './pages/set_basics.page';
 import AdminDashboardScreen from './pages/admin_dashboard.page';
 import AdminDashboardUsersScreen from './pages/admin_dashboard_users.page';
 import AdminDashboardUserInfoScreen from './pages/admin_dashboard_user_info.page';
+import AdminDashboardContentsScreen from './pages/admin_dashboard_contents.page';
 // import ForgotPasswordSuccessScreen from './pages/forgot_password_success.page';
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -52,6 +53,7 @@ const Scafffold = ()=>{
                         <Stack.Screen name={screenNames.admin_dashboard} options={{ headerShown : false }} component={AdminDashboardScreen} />
                         <Stack.Screen name={screenNames.admin_dashboard_users} options={{ headerShown : false }} component={AdminDashboardUsersScreen} />
                         <Stack.Screen name={screenNames.admin_dashboard_user_info} options={{ headerShown : false }} component={AdminDashboardUserInfoScreen} />
+                        <Stack.Screen name={screenNames.admin_dashboard_contents} options={{ headerShown : false }} component={AdminDashboardContentsScreen} />
                         {/* </Stack.Screen> */}
                     </Stack.Navigator>
                 </NavigationContainer>
