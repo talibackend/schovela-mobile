@@ -114,6 +114,6 @@ export default AdminContentsMainComponent = ({navigation})=>{
                 })
             }
         </ScrollView>
-        <AdminCreateContentButton />
+        <AdminCreateContentButton navigation={navigation} />
     </View>
 }
