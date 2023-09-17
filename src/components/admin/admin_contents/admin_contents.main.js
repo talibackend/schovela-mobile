@@ -25,7 +25,7 @@ export default AdminContentsMainComponent = ({navigation})=>{
             title : 'Math201 past question.',
             poster : 'Femi Fatokun',
             moment_posted : (new Date()).toDateString(),
-            image : require('../../../../assets/static/file.png')
+            image : require('../../../../assets/static/image.png')
         },
         {
             title : 'Math201 past question.',
@@ -43,7 +43,7 @@ export default AdminContentsMainComponent = ({navigation})=>{
             title : 'Math201 past question.',
             poster : 'Femi Fatokun',
             moment_posted : (new Date()).toDateString(),
-            image : require('../../../../assets/static/file.png')
+            image : require('../../../../assets/static/play.png')
         },
         {
             title : 'Math201 past question.',
@@ -61,7 +61,7 @@ export default AdminContentsMainComponent = ({navigation})=>{
             title : 'Math201 past question.',
             poster : 'Femi Fatokun',
             moment_posted : (new Date()).toDateString(),
-            image : require('../../../../assets/static/file.png')
+            image : require('../../../../assets/static/image.png')
         },
         {
             title : 'Math201 past question.',
@@ -73,7 +73,7 @@ export default AdminContentsMainComponent = ({navigation})=>{
             title : 'Math201 past question.',
             poster : 'Femi Fatokun',
             moment_posted : (new Date()).toDateString(),
-            image : require('../../../../assets/static/file.png')
+            image : require('../../../../assets/static/play.png')
         },
         {
             title : 'Math201 past question.',
@@ -85,7 +85,7 @@ export default AdminContentsMainComponent = ({navigation})=>{
             title : 'Math201 past question.',
             poster : 'Femi Fatokun',
             moment_posted : (new Date()).toDateString(),
-            image : require('../../../../assets/static/file.png')
+            image : require('../../../../assets/static/image.png')
         },
     ]
 

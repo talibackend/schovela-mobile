@@ -69,11 +69,10 @@ export default StyleSheet.create({
         borderRadius : 50
     },
     each_content_logo : {
-        height : 100,
-        width : 100,
+        height : 70,
+        width : 70,
     },
     each_user_list_info : {
-        // backgroundColor : 'red',
         flex : 8,
         padding : 10
     },
@@ -144,5 +143,11 @@ export default StyleSheet.create({
         paddingHorizontal : 10,
         paddingVertical : 5,
         color : 'black'
+    },
+    each_content_card_icon : {
+        flex : 3
+    },
+    each_content_list_info : {
+        flex : 9
     }
 });
