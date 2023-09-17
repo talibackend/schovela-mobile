@@ -155,8 +155,13 @@ export default StyleSheet.create({
         borderRadius: 50,
         position: 'absolute',
         padding : 15,
-        bottom : 5,
-        right: 5
+        bottom : 10,
+        right: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 2,
+        elevation: 2,
     },
     create_content_floating_icon : {
         color : 'black',
