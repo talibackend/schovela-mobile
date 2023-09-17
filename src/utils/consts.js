@@ -33,7 +33,9 @@ export const messages = {
     UNAUTHORIZED_ACTION : "The action you are trying to perform is unauthorized.",
     PASSWORD_RESET : "Password reset successful, please login.",
     FILTER_USERS : "Filter Users",
-    NO_RECORDS : "No records found."
+    NO_RECORDS : "No records found.",
+    TITLE_PLACEHOLDER : "Title",
+    DESC_PLACEHOLDER : "Description"
 }
 
 export const storageKeyNames = {
