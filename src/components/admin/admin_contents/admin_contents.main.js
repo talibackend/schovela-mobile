@@ -20,12 +20,74 @@ export default AdminContentsMainComponent = ({navigation})=>{
         }
     }, [status])
 
-    const data = {
-        title : 'Math201 past question.',
-        poster : 'Femi Fatokun',
-        moment_posted : (new Date()).toDateString(),
-        image : require('../../../../assets/static/file.png')
-    }
+    const data = [
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+        {
+            title : 'Math201 past question.',
+            poster : 'Femi Fatokun',
+            moment_posted : (new Date()).toDateString(),
+            image : require('../../../../assets/static/file.png')
+        },
+    ]
 
     return <View style={adminStyle.main_container}>
         <DropDownComponent
@@ -37,13 +99,19 @@ export default AdminContentsMainComponent = ({navigation})=>{
         />
         <TextInput style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={filterLabel ? filterLabel : ""} placeholder={messages.FILTER_USERS} onPressIn={() => { return setFilterOpen(true); }} readonly={true} />
         <ScrollView>
-            <AdminContentEachCard 
-                title={data.title}
-                poster={data.poster}
-                moment_posted={data.moment_posted}
-                navigation={navigation}
-                image={data.image}
-            />
+            {
+                data.map((datum, index)=>{
+                    return <AdminContentEachCard 
+                                title={datum.title}
+                                poster={datum.poster}
+                                moment_posted={datum.moment_posted}
+                                navigation={navigation}
+                                image={datum.image}
+                                id={index + 1}
+                                key={`admin_each_content_${index}`}
+                            />
+                })
+            }
         </ScrollView>
     </View>
 }
