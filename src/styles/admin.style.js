@@ -68,6 +68,10 @@ export default StyleSheet.create({
         width : 100,
         borderRadius : 50
     },
+    each_content_logo : {
+        height : 100,
+        width : 100,
+    },
     each_user_list_info : {
         // backgroundColor : 'red',
         flex : 8,
@@ -77,6 +81,12 @@ export default StyleSheet.create({
         color : 'white',
         fontWeight : 'bold',
         fontSize : 25,
+        marginBottom : 5
+    },
+    each_content_list_info_name : {
+        color : 'white',
+        fontWeight : 'bold',
+        fontSize : 20,
         marginBottom : 5
     },
     each_user_list_info_email : {

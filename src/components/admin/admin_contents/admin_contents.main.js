@@ -1,9 +1,10 @@
-import { Text, View, TextInput } from "react-native";
+import { Text, View, TextInput, ScrollView } from "react-native";
 import adminStyle from "../../../styles/admin.style";
 import loginStyle from "../../../styles/login.style";
 import { DropDownComponent } from "../../dropdown.component";
 import { content_filters, messages } from "../../../utils/consts";
 import { useState, useEffect } from "react";
+import AdminContentEachCard from './admin_contents.each_card';
 
 export default AdminContentsMainComponent = ({navigation})=>{
     const [filterOpen, setFilterOpen] = useState(false);
@@ -17,9 +18,14 @@ export default AdminContentsMainComponent = ({navigation})=>{
                 setFilterLabel( content_filters[i].label);
             }
         }
-        // setRetryCount(1);
     }, [status])
 
+    const data = {
+        title : 'Math201 past question.',
+        poster : 'Femi Fatokun',
+        moment_posted : (new Date()).toDateString(),
+        image : require('../../../../assets/static/file.png')
+    }
 
     return <View style={adminStyle.main_container}>
         <DropDownComponent
@@ -30,5 +36,14 @@ export default AdminContentsMainComponent = ({navigation})=>{
             closeHandler={() => { setFilterOpen(false); }}
         />
         <TextInput style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={filterLabel ? filterLabel : ""} placeholder={messages.FILTER_USERS} onPressIn={() => { return setFilterOpen(true); }} readonly={true} />
+        <ScrollView>
+            <AdminContentEachCard 
+                title={data.title}
+                poster={data.poster}
+                moment_posted={data.moment_posted}
+                navigation={navigation}
+                image={data.image}
+            />
+        </ScrollView>
     </View>
 }
