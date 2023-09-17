@@ -19,5 +19,20 @@ export default StyleSheet.create({
     create_content_desc_input : {
         height : 200,
         paddingTop : 10
+    },
+    create_content_upload_section : {
+        flex : 1,
+        flexDirection : "row",
+        alignItems : "center",
+        justifyContent : "space-evenly",
+        marginVertical: 10,
+        borderStyle : 'dashed',
+        borderColor: 'black',
+        borderWidth : 1,
+        paddingVertical : 10
+    },
+    each_file_picker_icon : {
+        height : 50,
+        width : 50
     }
 })
