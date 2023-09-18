@@ -97,7 +97,7 @@ export default AdminContentsMainComponent = ({navigation})=>{
             selectHandler={setStatus}
             closeHandler={() => { setFilterOpen(false); }}
         />
-        <TextInput style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={filterLabel ? filterLabel : ""} placeholder={messages.FILTER_USERS} onPressIn={() => { return setFilterOpen(true); }} readonly={true} />
+        <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={filterLabel ? filterLabel : ""} placeholder={messages.FILTER_USERS} onPressIn={() => { return setFilterOpen(true); }} readonly={true} />
         <ScrollView>
             {
                 data.map((datum, index)=>{

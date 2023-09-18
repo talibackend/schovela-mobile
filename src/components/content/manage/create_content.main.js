@@ -60,8 +60,8 @@ export default CreateContentMain = ({navigation})=>{
                         selectHandler={setFaculty}
                         closeHandler={()=>{ setFacultyOpen(false); }}
                     />
-                    <TextInput style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
-                    <TextInput style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
+                    <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
+                    <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
                     <View style={contentStyle.create_content_upload_section}>
                         <Pressable><Image style={contentStyle.each_file_picker_icon} source={require('../../../../assets/static/image.png')} /></Pressable>
                         <Pressable><Image style={contentStyle.each_file_picker_icon} source={require('../../../../assets/static/play.png')} /></Pressable>
