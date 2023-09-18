@@ -100,11 +100,13 @@ export const user_categories = [
 ]
 
 export const user_faculties = [
+    { label : "", value : null },
     {label : 'Faculty of Science', value : 'science'},
     {label : 'Faculty of Engineering', value : 'engineering'}
 ]
 
 export const user_levels = [
+    { label : "", value : null },
     { label : "Pre Degree", value : "pre" },
     { label : "100 Level", value : "100" },
     { label : "200 Level", value : "200" },

@@ -1,4 +1,4 @@
-import { Text, View, TextInput, ScrollView } from "react-native";
+import { Keyboard, View, TextInput, ScrollView } from "react-native";
 import adminStyle from "../../../styles/admin.style";
 import loginStyle from "../../../styles/login.style";
 import { DropDownComponent } from "../../dropdown.component";
@@ -11,7 +11,6 @@ export default AdminContentsMainComponent = ({navigation})=>{
     const [filterOpen, setFilterOpen] = useState(false);
     const [status, setStatus] = useState(null);
     const [filterLabel, setFilterLabel] = useState("All");
-
 
     useEffect(()=>{
         for(let i = 0; i < content_filters.length; i++){
