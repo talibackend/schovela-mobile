@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, TextInput, View, Image, Keyboard } from "react-native"
+import { Pressable, ScrollView, TextInput, View, Image, Text, Keyboard } from "react-native"
 import { messages, user_levels, user_faculties } from "../../../utils/consts"
 import LoginButton from "../../login/login.button"
 import adminStyle from "../../../styles/admin.style"
@@ -63,10 +63,10 @@ export default CreateContentMain = ({navigation})=>{
                     <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
                     <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
                     <View style={contentStyle.create_content_upload_section}>
-                        <Pressable><Image style={contentStyle.each_file_picker_icon} source={require('../../../../assets/static/image.png')} /></Pressable>
-                        <Pressable><Image style={contentStyle.each_file_picker_icon} source={require('../../../../assets/static/play.png')} /></Pressable>
-                        <Pressable><Image style={contentStyle.each_file_picker_icon} source={require('../../../../assets/static/file.png')} /></Pressable>
-                        <Pressable><Image style={contentStyle.each_file_picker_icon} source={require('../../../../assets/static/image.png')} /></Pressable>
+                        <Text>Upload Attachment</Text>
+                    </View>
+                    <View style={contentStyle.create_content_upload_section}>
+                        <Text>Attachment Preview</Text>
                     </View>
                     <LoginButton name="Create" action={()=>{ console.log("Wanna create"); }} />
                 </ScrollView>

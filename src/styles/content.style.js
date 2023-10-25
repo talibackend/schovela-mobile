@@ -32,7 +32,7 @@ export default StyleSheet.create({
         paddingVertical : 10
     },
     each_file_picker_icon : {
-        height : 50,
-        width : 50
+        height : 30,
+        width : 30
     }
 })
