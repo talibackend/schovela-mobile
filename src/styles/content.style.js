@@ -34,5 +34,17 @@ export default StyleSheet.create({
     each_file_picker_icon : {
         height : 30,
         width : 30
+    },
+    view_content_title : {
+        fontSize : 15,
+        fontWeight : 'bold',
+        marginVertical : 10
+    },
+    view_content_attachment_preview : {
+        paddingVertical : 60,
+        marginVertical : 10
+    },
+    description : {
+        lineHeight : 25
     }
 })
