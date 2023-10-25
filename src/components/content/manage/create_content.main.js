@@ -5,7 +5,8 @@ import adminStyle from "../../../styles/admin.style"
 import contentStyle from "../../../styles/content.style"
 import loginStyle from "../../../styles/login.style"
 import { DropDownComponent } from "../../dropdown.component"
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
+import DocumentPicker from 'react-native-document-picker';
 
 export default CreateContentMain = ({navigation})=>{
     const [levelOpen, setLevelOpen] = useState(false);
@@ -16,6 +17,15 @@ export default CreateContentMain = ({navigation})=>{
     const [faculty, setFaculty] = useState(null);
     const [facultyLabel, setFacultyLabel] = useState("");
 
+    const selectAttachment = async ()=>{
+        try{
+            let result = await DocumentPicker.pickSingle();
+            console.log(result);
+        }catch(error){
+            console.log(error);
+        }
+
+    }
 
     useEffect(()=>{
         for(let i = 0; i < user_levels.length; i++){
@@ -63,7 +73,9 @@ export default CreateContentMain = ({navigation})=>{
                     <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
                     <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
                     <View style={contentStyle.create_content_upload_section}>
-                        <Text>Upload Attachment</Text>
+                        <Pressable onPress={()=>{ return selectAttachment(); }}>
+                            <Text>Click to Upload Attachment</Text>
+                        </Pressable>
                     </View>
                     <View style={contentStyle.create_content_upload_section}>
                         <Text>Attachment Preview</Text>

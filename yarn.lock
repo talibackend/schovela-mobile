@@ -6286,6 +6286,13 @@
   dependencies:
     "moment" "^2.22.0"
 
+"react-native-document-picker@^9.0.1":
+  "integrity" "sha512-l2c2xChwsdjzZIV9QJc85buC3vXkM5ZuY4943yMDj3TiszJp1spmHNaRMZKYIh3yVwdD2jENm0DBU5AWa+jhLg=="
+  "resolved" "https://registry.npmjs.org/react-native-document-picker/-/react-native-document-picker-9.0.1.tgz"
+  "version" "9.0.1"
+  dependencies:
+    "invariant" "^2.2.4"
+
 "react-native-dotenv@^3.4.9":
   "integrity" "sha512-dbyd+mcy7SUzxEgmt33TRf1FGcNe6swJhXmB0unKkI49F7+pidog9kPtjxMLTAfmKA8gcN2XHQSKltGfGbGCLQ=="
   "resolved" "https://registry.npmjs.org/react-native-dotenv/-/react-native-dotenv-3.4.9.tgz"
