@@ -1,8 +1,9 @@
 import adminStyle from "../../../styles/admin.style";
 import { Text, View, Image, Pressable } from 'react-native';
+import { screenNames } from "../../../utils/consts";
 
 export default AdminContentEachCard = ({ id, title, poster, image, moment_posted, navigation})=>{
-    return <Pressable onPress={() => { console.log(`${id} clicked...`); }}>
+    return <Pressable onPress={() => { navigation.navigate(screenNames.view_content, { id }) }}>
                 <View style={[adminStyle.each_dashboard_card, adminStyle.each_user_card]}>
                     <View style={adminStyle.each_content_card_icon}>
                         <Image style={adminStyle.each_content_logo} source={image} />

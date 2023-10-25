@@ -1,10 +1,10 @@
 import { Pressable, ScrollView, TextInput, View, Image, Text, Keyboard } from "react-native"
-import { messages, user_levels, user_faculties } from "../../../utils/consts"
-import LoginButton from "../../login/login.button"
-import adminStyle from "../../../styles/admin.style"
-import contentStyle from "../../../styles/content.style"
-import loginStyle from "../../../styles/login.style"
-import { DropDownComponent } from "../../dropdown.component"
+import { messages, user_levels, user_faculties } from "../../utils/consts"
+import LoginButton from "../login/login.button"
+import adminStyle from "../../styles/admin.style"
+import contentStyle from "../../styles/content.style"
+import loginStyle from "../../styles/login.style"
+import { DropDownComponent } from "../dropdown.component"
 import { useState, useEffect } from "react";
 import DocumentPicker from 'react-native-document-picker';
 
