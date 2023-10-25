@@ -56,6 +56,7 @@ export const screenNames = {
     set_password : 'set_password',
     set_basics : 'set_basics',
     create_content : 'create_content',
+    view_content : 'view_content',
     admin_dashboard : 'admin',
     admin_dashboard_users : 'admin/users',
     admin_dashboard_user_info : 'admin/user_info',
