@@ -74,11 +74,11 @@ export default CreateContentMain = ({navigation})=>{
                     <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
                     <View style={contentStyle.create_content_upload_section}>
                         <Pressable onPress={()=>{ return selectAttachment(); }}>
-                            <Text>Click to Upload Attachment</Text>
+                            <Text style={contentStyle.description}>Click to Upload Attachment</Text>
                         </Pressable>
                     </View>
                     <View style={contentStyle.create_content_upload_section}>
-                        <Text>Attachment Preview</Text>
+                        <Text style={contentStyle.description}>Attachment Preview</Text>
                     </View>
                     <LoginButton name="Create" action={()=>{ console.log("Wanna create"); }} />
                 </ScrollView>

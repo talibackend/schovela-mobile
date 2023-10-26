@@ -11,7 +11,7 @@ export default ViewContentMain = ({ navigation })=>{
         <ScrollView>
             <Text style={contentStyle.view_content_title}>Hello world, this is the title of the content that we are trying to view.</Text>
             <View style={[contentStyle.create_content_upload_section, contentStyle.view_content_attachment_preview]}>
-                <Text>Attachment Preview</Text>
+                <Text style={contentStyle.attachment_preview_text}>Attachment Preview</Text>
             </View>
             <Text style={contentStyle.description}>
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -19,11 +19,11 @@ export default ViewContentMain = ({ navigation })=>{
             <View style={contentStyle.stat_section}>
                 <View style={contentStyle.stat_each_section}>
                     <Image style={contentStyle.stat_images} source={require('../../../assets/static/like.png')} />
-                    <Text>20</Text>
+                    <Text style={contentStyle.description}>20</Text>
                 </View>
                 <View style={contentStyle.stat_each_section}>
                     <Icon style={contentStyle.stat_icons} size={20} name="eye" />
-                    <Text>20</Text>
+                    <Text style={contentStyle.description}>20</Text>
                 </View>
             </View>
             <View>

@@ -38,14 +38,16 @@ export default StyleSheet.create({
     view_content_title : {
         fontSize : 15,
         fontWeight : 'bold',
-        marginVertical : 10
+        marginVertical : 10,
+        color : "black"
     },
     view_content_attachment_preview : {
         marginVertical : 10,
         height : 200
     },
     description : {
-        lineHeight : 25
+        lineHeight : 25,
+        color : "black"
     },
     stat_section : {
         flex : 1,
@@ -68,5 +70,8 @@ export default StyleSheet.create({
         marginRight : 5,
         height : 25,
         width : 25,
+    },
+    attachment_preview_text : {
+        color : "black"
     }
 })
