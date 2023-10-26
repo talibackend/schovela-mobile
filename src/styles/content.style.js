@@ -42,9 +42,31 @@ export default StyleSheet.create({
     },
     view_content_attachment_preview : {
         marginVertical : 10,
-        height : 300
+        height : 200
     },
     description : {
         lineHeight : 25
+    },
+    stat_section : {
+        flex : 1,
+        flexDirection : "row",
+        marginVertical : 20,
+        alignItems : "center",
+        justifyContent : "space-evenly"
+        // backgroundColor : "red"
+    },
+    stat_each_section : {
+        flexDirection : "row",
+        alignItems : "center",
+        justifyContent : "space-between"
+    },
+    stat_icons : {
+        fontSize : 25,
+        marginRight : 5
+    },
+    stat_images : {
+        marginRight : 5,
+        height : 25,
+        width : 25,
     }
 })
