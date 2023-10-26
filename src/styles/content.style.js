@@ -64,7 +64,8 @@ export default StyleSheet.create({
     },
     stat_icons : {
         fontSize : 25,
-        marginRight : 5
+        marginRight : 5,
+        color : "black"
     },
     stat_images : {
         marginRight : 5,
