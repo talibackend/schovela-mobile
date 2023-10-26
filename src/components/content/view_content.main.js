@@ -1,7 +1,9 @@
 import { View, Text, ScrollView, Image } from "react-native";
 import contentStyle from "../../styles/content.style";
+import { screenNames } from "../../utils/consts";
 import adminStyle from "../../styles/admin.style";
 import Icon from "react-native-vector-icons/Ionicons";
+import AdminUserEachCard from '../admin/admin_users/admin_users.each_card';
 
 export default ViewContentMain = ({ navigation })=>{
 
@@ -23,6 +25,18 @@ export default ViewContentMain = ({ navigation })=>{
                     <Icon style={contentStyle.stat_icons} size={20} name="eye" />
                     <Text>20</Text>
                 </View>
+            </View>
+            <View>
+                {/* <Text>Poster</Text> */}
+                <AdminUserEachCard
+                    id={1}
+                    image={require('../../../assets/static/user.png')}
+                    name="Femi Fatokun"
+                    email="fatokunfemi03@gmail.com"
+                    date_joined={new Date().toDateString()}
+                    navigation={navigation}
+                    link={screenNames.admin_dashboard_user_info}
+                />
             </View>
         </ScrollView>
     </View>
