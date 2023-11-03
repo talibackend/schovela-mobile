@@ -22,7 +22,15 @@ export default ViewContentMain = ({ navigation })=>{
                     <Text style={contentStyle.description}>20</Text>
                 </View>
                 <View style={contentStyle.stat_each_section}>
-                    <Icon style={contentStyle.stat_icons} size={20} name="eye" />
+                    <Icon style={contentStyle.stat_icons} size={20} name="eye-outline" />
+                    <Text style={contentStyle.description}>20</Text>
+                </View>
+                <View style={contentStyle.stat_each_section}>
+                    <Icon style={contentStyle.stat_icons} size={20} name="share-outline" />
+                    <Text style={contentStyle.description}>20</Text>
+                </View>
+                <View style={contentStyle.stat_each_section}>
+                    <Icon style={contentStyle.stat_icons} size={20} name="download-outline" />
                     <Text style={contentStyle.description}>20</Text>
                 </View>
             </View>
