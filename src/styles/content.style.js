@@ -74,5 +74,11 @@ export default StyleSheet.create({
     },
     attachment_preview_text : {
         color : "black"
+    },
+    admin_actions_container : {
+        flexDirection : 'row',
+        alignItems : 'center',
+        justifyContent : "space-around",
+        marginVertical : 5
     }
 })

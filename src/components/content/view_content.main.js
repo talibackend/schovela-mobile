@@ -1,14 +1,16 @@
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, Pressable } from "react-native";
 import contentStyle from "../../styles/content.style";
 import { screenNames } from "../../utils/consts";
 import adminStyle from "../../styles/admin.style";
 import Icon from "react-native-vector-icons/Ionicons";
 import AdminUserEachCard from '../admin/admin_users/admin_users.each_card';
+import ContentAdminActionButtons from './view_content/admin_actions.main';
 
 export default ViewContentMain = ({ navigation })=>{
 
     return <View style={[adminStyle.main_container, contentStyle.create_content_container]}>
         <ScrollView>
+            <ContentAdminActionButtons />
             <Text style={contentStyle.view_content_title}>Hello world, this is the title of the content that we are trying to view.</Text>
             <View style={[contentStyle.create_content_upload_section, contentStyle.view_content_attachment_preview]}>
                 <Text style={contentStyle.attachment_preview_text}>Attachment Preview</Text>
