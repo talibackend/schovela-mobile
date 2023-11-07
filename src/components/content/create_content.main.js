@@ -8,7 +8,7 @@ import { DropDownComponent } from "../dropdown.component"
 import { useState, useEffect } from "react";
 import DocumentPicker from 'react-native-document-picker';
 
-export default CreateContentMain = ({navigation})=>{
+export default CreateContentMain = ({navigation, edit, data})=>{
     const [levelOpen, setLevelOpen] = useState(false);
     const [level, setLevel] = useState(null);
     const [levelLabel, setLevelLabel] = useState("");

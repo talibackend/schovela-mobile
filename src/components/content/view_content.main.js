@@ -10,7 +10,7 @@ export default ViewContentMain = ({ navigation })=>{
 
     return <View style={[adminStyle.main_container, contentStyle.create_content_container]}>
         <ScrollView>
-            <ContentAdminActionButtons />
+            <ContentAdminActionButtons navigation={navigation} />
             <Text style={contentStyle.view_content_title}>Hello world, this is the title of the content that we are trying to view.</Text>
             <View style={[contentStyle.create_content_upload_section, contentStyle.view_content_attachment_preview]}>
                 <Text style={contentStyle.attachment_preview_text}>Attachment Preview</Text>
