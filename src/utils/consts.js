@@ -107,6 +107,12 @@ export const user_faculties = [
     {label : 'Faculty of Engineering', value : 'engineering'}
 ]
 
+export const user_depts = [
+    { label : "", value : null },
+    { label : "Computer Science", value : "comp-sci" },
+    { label : "Political Science", value : "pol-sci" }
+]
+
 export const user_levels = [
     { label : "", value : null },
     { label : "Pre Degree", value : "pre" },
@@ -126,8 +132,6 @@ export const user_filters = [
 
 export const content_filters = [
     { label : 'All', value : null },
-    { label : 'Approved', value : 'approved' },
-    { label : 'Pending', value : 'pending' },
     { label : 'Hidden', value : 'hidden' },
     { label : 'Live', value : 'live' }
 ]
