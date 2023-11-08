@@ -35,7 +35,8 @@ export const messages = {
     FILTER_USERS : "Filter Users",
     NO_RECORDS : "No records found.",
     TITLE_PLACEHOLDER : "Title",
-    DESC_PLACEHOLDER : "Description"
+    DESC_PLACEHOLDER : "Description",
+    SELECT_DEPT : "Select Department"
 }
 
 export const storageKeyNames = {

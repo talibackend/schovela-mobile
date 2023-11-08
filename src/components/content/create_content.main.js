@@ -1,11 +1,10 @@
 import { Pressable, ScrollView, TextInput, View, Image, Text, Keyboard } from "react-native"
-import { messages, user_levels, user_faculties } from "../../utils/consts"
+import { messages, user_levels, user_faculties, user_depts } from "../../utils/consts"
 import LoginButton from "../login/login.button"
 import adminStyle from "../../styles/admin.style"
 import contentStyle from "../../styles/content.style"
 import loginStyle from "../../styles/login.style"
-import { DropDownComponent } from "../dropdown.component"
-import { useState, useEffect } from "react";
+import { DropDownComponent } from "../dropdown.component";
 import DocumentPicker from 'react-native-document-picker';
 
 export default CreateContentMain = ({
@@ -39,7 +38,7 @@ export default CreateContentMain = ({
     const selectAttachment = async () => {
         try {
             let result = await DocumentPicker.pickSingle();
-            console.log(result);
+            setAttachment(result);
         } catch (error) {
             console.log(error);
         }
@@ -70,8 +69,16 @@ export default CreateContentMain = ({
                 selectHandler={setFaculty}
                 closeHandler={() => { setFacultyOpen(false); }}
             />
+            <DropDownComponent
+                data={user_depts}
+                opened={deptOpen}
+                selected={dept}
+                selectHandler={setDept}
+                closeHandler={() => { setDeptOpen(false); }}
+            />
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
+            <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={deptLabel ? deptLabel : ""} placeholder={messages.SELECT_DEPT} onPressIn={() => { return setDeptOpen(true); }} readonly={true} />
             <View style={contentStyle.create_content_upload_section}>
                 <Pressable onPress={() => { return selectAttachment(); }}>
                     <Text style={contentStyle.description}>Click to Upload Attachment</Text>
