@@ -1,6 +1,7 @@
 import CreateContentComponent from '../components/create_content.component';
 import { useEffect, useState } from 'react';
 import { user_levels, user_depts, user_faculties } from '../utils/consts';
+import { fileToBase64 } from '../utils/general';
 
 export default CreateContentScreen = ({navigation})=>{
     const [title, setTitle] = useState("");
@@ -26,8 +27,10 @@ export default CreateContentScreen = ({navigation})=>{
     }
 
     useEffect(()=>{
+        if(attachment){
+            fileToBase64(attachment).then(data=>{ console.log(data); }).catch(err=>console.log(err));
+        }
         console.log(attachment);
-        
     }, [attachment]);
 
     useEffect(() => {
