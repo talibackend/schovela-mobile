@@ -52,13 +52,15 @@ export default CreateContentMain = ({
 
     return <View style={[adminStyle.main_container, contentStyle.create_content_container]}>
         <ScrollView>
-            <TextInput style={contentStyle.create_content_title_input} placeholderTextColor="grey" placeholder={messages.TITLE_PLACEHOLDER} autoCorrect={true} />
+            <TextInput value={title} onChangeText={(e)=>{ return setTitle(e) }} style={contentStyle.create_content_title_input} placeholderTextColor="grey" placeholder={messages.TITLE_PLACEHOLDER} autoCorrect={true} />
             <TextInput
                 style={[contentStyle.create_content_title_input, contentStyle.create_content_desc_input]}
                 placeholder={messages.DESC_PLACEHOLDER}
                 autoCorrect={true}
                 placeholderTextColor="grey"
                 multiline={true}
+                value={title}
+                onChangeText={(e)=>{ return setDesc(e); }}
             />
             <DropDownComponent
                 data={user_levels}
