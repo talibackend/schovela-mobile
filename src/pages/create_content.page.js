@@ -25,7 +25,9 @@ export default CreateContentScreen = ({navigation})=>{
     const [deptLabel, setDeptLabel] = useState("");
 
     const handleSubmit = async ()=>{
-        console.log("Clicked...");
+        if(!title || !desc || !level || !faculty || !dept || !attachmentBase64){
+            return showToast('error', "All fields are required including attachment.");
+        }
     }
 
     useEffect(()=>{
@@ -45,7 +47,7 @@ export default CreateContentScreen = ({navigation})=>{
             }
             fileToBase64(attachment).then(data=>{ setAttachmentBase64(data); }).catch(err=>console.log(err));
             setAttachmentExt(ext);
-            
+
         }
     }, [attachment]);
 
