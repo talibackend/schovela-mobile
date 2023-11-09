@@ -59,7 +59,7 @@ export default CreateContentMain = ({
                 autoCorrect={true}
                 placeholderTextColor="grey"
                 multiline={true}
-                value={title}
+                value={desc}
                 onChangeText={(e)=>{ return setDesc(e); }}
             />
             <DropDownComponent
@@ -107,7 +107,7 @@ export default CreateContentMain = ({
                     </View>
                     : null
             }
-            <LoginButton name="Create" action={() => { handleSubmit(); }} />
+            <LoginButton name="Create" loading={loading} action={() => { handleSubmit(); }} />
         </ScrollView>
     </View>;
 }

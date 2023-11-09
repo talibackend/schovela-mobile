@@ -36,7 +36,8 @@ export const messages = {
     NO_RECORDS : "No records found.",
     TITLE_PLACEHOLDER : "Title",
     DESC_PLACEHOLDER : "Description",
-    SELECT_DEPT : "Select Department"
+    SELECT_DEPT : "Select Department",
+    CONTENT_CREATED : "Content has been successfully uploaded."
 }
 
 export const storageKeyNames = {
@@ -72,6 +73,7 @@ export const api_routes = {
     login : '/auth/login',
     forgot_password : '/auth/forgot',
     reset_password : '/auth/change/password',
+    create_content : '/post',
     admin : {
         dashboard_info : '/admin/total/users',
         users : '/admin/users',

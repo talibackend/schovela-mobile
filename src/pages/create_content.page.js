@@ -1,8 +1,19 @@
 import CreateContentComponent from '../components/create_content.component';
 import { useEffect, useState } from 'react';
-import { user_levels, user_depts, user_faculties, getAllExtensions } from '../utils/consts';
+import { 
+    user_levels, 
+    messages, 
+    user_depts, 
+    user_faculties, 
+    getAllExtensions, 
+    api_routes, 
+    toast_types, 
+    screenNames,
+    request_methods
+} from '../utils/consts';
 import { fileToBase64 } from '../utils/general';
 import { showToast } from '../utils/toast';
+import { authRequest } from '../utils/network';
 
 export default CreateContentScreen = ({navigation})=>{
     const [title, setTitle] = useState("");
@@ -26,7 +37,25 @@ export default CreateContentScreen = ({navigation})=>{
 
     const handleSubmit = async ()=>{
         if(!title || !desc || !level || !faculty || !dept || !attachmentBase64){
-            return showToast('error', "All fields are required including attachment.");
+            return showToast(toast_types.error, "All fields are required including attachment.");
+        }
+
+        const payload = { title, desc, level, faculty, dept, attachment : attachmentBase64, attachment_ext : attachmentExt };
+
+        try{
+            setLoading(true);
+            let request = await authRequest(request_methods.POST, api_routes.create_content, payload);
+            setLoading(false);
+            if(typeof(request) == "string"){
+                showToast(toast_types.error, request);
+                setLoading(false);
+                return;
+            }
+            showToast(toast_types.success, messages.CONTENT_CREATED, 3);
+            navigation.navigate(screenNames.admin_dashboard_contents);
+        }catch(error){
+            console.log(error);
+            showToast(toast_types.error, messages.NETWORK_ERROR);
         }
     }
 
@@ -37,11 +66,11 @@ export default CreateContentScreen = ({navigation})=>{
             ext = ext.toLowerCase();
 
             if(!getAllExtensions().includes(ext)){
-                showToast('error', 'Invalid file selected.');
+                showToast(toast_types.error, 'Invalid file selected.');
                 return;
             }else{
                 if(attachment.size > 50000000){
-                    showToast('error', 'File too large, maximum of 50mb allowed.');
+                    showToast(toast_types.error, 'File too large, maximum of 50mb allowed.');
                     return;
                 }
             }
