@@ -27,7 +27,8 @@ export default CreateContentComponent = ({
     levelOpen,
     facultyOpen,
     deptOpen,
-    handleSubmit
+    handleSubmit,
+    attachment
 }) => {
     return <View style={appStyle.app_container}>
         <AdminHeader navigation={navigation} backButton={true} name="Create Content" />
@@ -57,6 +58,7 @@ export default CreateContentComponent = ({
             facultyOpen={facultyOpen}
             deptOpen={deptOpen}
             handleSubmit={handleSubmit}
+            attachment={attachment}
         />
     </View>
 }

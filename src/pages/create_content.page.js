@@ -28,9 +28,8 @@ export default CreateContentScreen = ({navigation})=>{
 
     useEffect(()=>{
         if(attachment){
-            fileToBase64(attachment).then(data=>{ console.log(data); }).catch(err=>console.log(err));
+            fileToBase64(attachment).then(data=>{ setAttachmentBase64(data); }).catch(err=>console.log(err));
         }
-        console.log(attachment);
     }, [attachment]);
 
     useEffect(() => {
@@ -82,5 +81,6 @@ export default CreateContentScreen = ({navigation})=>{
         facultyOpen={facultyOpen}
         deptOpen={deptOpen}
         handleSubmit={handleSubmit}
+        attachment={attachment}
     />
 }

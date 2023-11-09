@@ -155,3 +155,24 @@ export const user_roles = {
     user : 'user',
     mod : 'moderator'
 }
+
+export const attachment_exts = {
+    image : [
+        "png",
+        "jpg",
+        "jpeg",
+        "pneg",
+        "gif",
+        "webp",
+        "svg",
+    ],
+    video : [
+        "mp4",
+        "wmv"
+    ],
+    docs : [
+        "doc",
+        "docx",
+        "pdf"
+    ]
+}

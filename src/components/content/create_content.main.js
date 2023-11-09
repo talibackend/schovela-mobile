@@ -6,6 +6,7 @@ import contentStyle from "../../styles/content.style"
 import loginStyle from "../../styles/login.style"
 import { DropDownComponent } from "../dropdown.component";
 import DocumentPicker from 'react-native-document-picker';
+import { useEffect, useState } from "react"
 
 export default CreateContentMain = ({
     navigation,
@@ -33,8 +34,10 @@ export default CreateContentMain = ({
     levelOpen,
     deptOpen,
     facultyOpen,
-    handleSubmit
+    handleSubmit,
+    attachment
 }) => {
+    let localAttachment;
     const selectAttachment = async () => {
         try {
             let result = await DocumentPicker.pickSingle();
@@ -42,7 +45,6 @@ export default CreateContentMain = ({
         } catch (error) {
             console.log(error);
         }
-
     }
 
     return <View style={[adminStyle.main_container, contentStyle.create_content_container]}>
@@ -84,9 +86,13 @@ export default CreateContentMain = ({
                     <Text style={contentStyle.description}>Click to Upload Attachment</Text>
                 </Pressable>
             </View>
-            <View style={contentStyle.create_content_upload_section}>
-                <Text style={contentStyle.description}>Attachment Preview</Text>
-            </View>
+            {
+                attachmentBase64 !== "" ?
+                    <View style={contentStyle.create_content_upload_section}>
+                        <Image style={{ height: 200, width: 200 }} source={{ uri: `data:${attachment.type};base64,${attachmentBase64}` }} />
+                    </View>
+                    : null
+            }
             <LoginButton name="Create" action={() => { handleSubmit(); }} />
         </ScrollView>
     </View>;
