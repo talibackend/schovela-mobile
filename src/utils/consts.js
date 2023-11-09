@@ -176,3 +176,14 @@ export const attachment_exts = {
         "pdf"
     ]
 }
+
+export const getAllExtensions = ()=>{
+    let keys = Object.keys(attachment_exts);
+    let allExts = [];
+
+    for(let i = 0; i < keys.length; i++){
+        allExts.push(...attachment_exts[keys[i]]);
+    }
+
+    return allExts;
+}

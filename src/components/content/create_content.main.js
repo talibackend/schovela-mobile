@@ -1,5 +1,5 @@
 import { Pressable, ScrollView, TextInput, View, Image, Text, Keyboard } from "react-native"
-import { messages, user_levels, user_faculties, user_depts } from "../../utils/consts"
+import { messages, user_levels, user_faculties, user_depts, attachment_exts } from "../../utils/consts"
 import LoginButton from "../login/login.button"
 import adminStyle from "../../styles/admin.style"
 import contentStyle from "../../styles/content.style"
@@ -7,6 +7,8 @@ import loginStyle from "../../styles/login.style"
 import { DropDownComponent } from "../dropdown.component";
 import DocumentPicker from 'react-native-document-picker';
 import { useEffect, useState } from "react"
+import { generateVideoPath } from "../../utils/general";
+import Video from 'react-native-video';
 
 export default CreateContentMain = ({
     navigation,
@@ -35,9 +37,10 @@ export default CreateContentMain = ({
     deptOpen,
     facultyOpen,
     handleSubmit,
-    attachment
+    attachment,
+    attachmentExt
 }) => {
-    let localAttachment;
+    const [videoPath, setVideoPath] = useState(null);
     const selectAttachment = async () => {
         try {
             let result = await DocumentPicker.pickSingle();
@@ -89,7 +92,16 @@ export default CreateContentMain = ({
             {
                 attachmentBase64 !== "" ?
                     <View style={contentStyle.create_content_upload_section}>
-                        <Image style={{ height: 200, width: 200 }} source={{ uri: `data:${attachment.type};base64,${attachmentBase64}` }} />
+                        {
+                            attachment_exts.image.includes(attachmentExt) ?
+                            <Image style={{ height: 200, width: 200 }} source={{ uri: `data:${attachment.type};base64,${attachmentBase64}` }} /> : 
+                            <View>
+                                <Text style={contentStyle.description}>Attachment Preview Not Available</Text>
+                                <Text style={contentStyle.description}>File Name : {attachment.name}</Text>
+                                <Text style={contentStyle.description}>Type : {attachment.type.split('/')[0]}</Text>
+                                <Text style={contentStyle.description}>Size : {attachment.size}</Text>
+                            </View>
+                        }
                     </View>
                     : null
             }

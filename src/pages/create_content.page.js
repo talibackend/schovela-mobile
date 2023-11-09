@@ -1,13 +1,15 @@
 import CreateContentComponent from '../components/create_content.component';
 import { useEffect, useState } from 'react';
-import { user_levels, user_depts, user_faculties } from '../utils/consts';
+import { user_levels, user_depts, user_faculties, getAllExtensions } from '../utils/consts';
 import { fileToBase64 } from '../utils/general';
+import { showToast } from '../utils/toast';
 
 export default CreateContentScreen = ({navigation})=>{
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
     const [attachment, setAttachment] = useState(null);
     const [attachmentBase64, setAttachmentBase64] = useState("");
+    const [attachmentExt, setAttachmentExt] = useState(null);
     const [loading, setLoading] = useState(false);
 
     const [levelOpen, setLevelOpen] = useState(false);
@@ -28,7 +30,22 @@ export default CreateContentScreen = ({navigation})=>{
 
     useEffect(()=>{
         if(attachment){
+            let ext = attachment.name.split('.');
+            ext = ext[ext.length - 1];
+            ext = ext.toLowerCase();
+
+            if(!getAllExtensions().includes(ext)){
+                showToast('error', 'Invalid file selected.');
+                return;
+            }else{
+                if(attachment.size > 50000000){
+                    showToast('error', 'File too large, maximum of 50mb allowed.');
+                    return;
+                }
+            }
             fileToBase64(attachment).then(data=>{ setAttachmentBase64(data); }).catch(err=>console.log(err));
+            setAttachmentExt(ext);
+            
         }
     }, [attachment]);
 
@@ -82,5 +99,6 @@ export default CreateContentScreen = ({navigation})=>{
         deptOpen={deptOpen}
         handleSubmit={handleSubmit}
         attachment={attachment}
+        attachmentExt={attachmentExt}
     />
 }
