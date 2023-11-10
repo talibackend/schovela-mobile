@@ -81,5 +81,22 @@ export default StyleSheet.create({
         alignItems : 'center',
         justifyContent : "space-around",
         marginVertical : 5
+    },
+    modal_close_pressable : {
+        flexDirection : 'row',
+        justifyContent: 'flex-start',
+        marginTop : 30,
+        backgroundColor : 'black'
+    },
+    modal_close_container : {
+        borderRadius : 50,
+        flexDirection : 'row',
+        justifyContent : 'center',
+        marginLeft : 5,
+        marginTop : 15
+    },
+    modal_close_button : {
+        color : 'white',
+        fontSize : 30
     }
 })
