@@ -5,6 +5,7 @@ import adminStyle from "../../styles/admin.style";
 import Icon from "react-native-vector-icons/Ionicons";
 import AdminUserEachCard from '../admin/admin_users/admin_users.each_card';
 import ContentAdminActionButtons from './view_content/admin_actions.main';
+import AttachmentViewComponent from './view_content/attachment_view.main';
 
 export default ViewContentMain = ({ navigation, post, loading })=>{
 
@@ -20,9 +21,7 @@ export default ViewContentMain = ({ navigation, post, loading })=>{
                 <>
                 <ContentAdminActionButtons navigation={navigation} />
                 <Text style={contentStyle.view_content_title}>{post.title}</Text>
-                <View style={[contentStyle.create_content_upload_section, contentStyle.view_content_attachment_preview]}>
-                    <Text style={contentStyle.attachment_preview_text}>Attachment Preview</Text>
-                </View>
+                <AttachmentViewComponent path={post.attachment} ext={post.attachment_ext} />
                 <Text style={contentStyle.description}>{post.desc}</Text>
                 <View style={contentStyle.stat_section}>
                     <View style={contentStyle.stat_each_section}>
