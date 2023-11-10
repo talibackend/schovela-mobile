@@ -20,7 +20,7 @@ export const openRequest = async (method, url, body=false, additionalHeaders=fal
     if(additionalHeaders){
         options.headers = {...options.headers, ...additionalHeaders}
     }
-    let timeout = setTimeout(()=>{ controller.abort(); return messages.NETWORK_ERROR }, 20000);
+    let timeout = setTimeout(()=>{ controller.abort(); return messages.NETWORK_ERROR }, 5 * 60 * 1000);
     try{
         console.log(`${API_BASEURL}${url}`);
         console.log(options);
