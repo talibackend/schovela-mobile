@@ -43,7 +43,8 @@ export default StyleSheet.create({
     },
     view_content_attachment_preview : {
         marginVertical : 10,
-        height : 200
+        height : 200,
+        padding : 0
     },
     description : {
         lineHeight : 25,

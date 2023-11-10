@@ -7,6 +7,7 @@ import { showToast } from "../utils/toast";
 export default ViewContentScreen = ({ navigation, route })=>{
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [openFull, setOpenFull] = useState(false);
     const { id } = route.params;
 
 
@@ -35,5 +36,7 @@ export default ViewContentScreen = ({ navigation, route })=>{
         navigation={navigation} 
         post={post}
         loading={loading}
+        openFull={openFull} 
+        setOpenFull={setOpenFull} 
     />
 }

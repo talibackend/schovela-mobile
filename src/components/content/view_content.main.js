@@ -7,7 +7,7 @@ import AdminUserEachCard from '../admin/admin_users/admin_users.each_card';
 import ContentAdminActionButtons from './view_content/admin_actions.main';
 import AttachmentViewComponent from './view_content/attachment_view.main';
 
-export default ViewContentMain = ({ navigation, post, loading })=>{
+export default ViewContentMain = ({ navigation, post, loading, openFull, setOpenFull })=>{
 
     return <View style={[adminStyle.main_container, contentStyle.create_content_container]}>
         <ScrollView>
@@ -21,7 +21,7 @@ export default ViewContentMain = ({ navigation, post, loading })=>{
                 <>
                 <ContentAdminActionButtons navigation={navigation} />
                 <Text style={contentStyle.view_content_title}>{post.title}</Text>
-                <AttachmentViewComponent path={post.attachment} ext={post.attachment_ext} />
+                <AttachmentViewComponent path={post.attachment} ext={post.attachment_ext} openFull={openFull} setOpenFull={setOpenFull} />
                 <Text style={contentStyle.description}>{post.desc}</Text>
                 <View style={contentStyle.stat_section}>
                     <View style={contentStyle.stat_each_section}>
