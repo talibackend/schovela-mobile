@@ -45,7 +45,6 @@ export default CreateContentScreen = ({navigation})=>{
         try{
             setLoading(true);
             let request = await authRequest(request_methods.POST, api_routes.create_content, payload);
-            setLoading(false);
             if(typeof(request) == "string"){
                 showToast(toast_types.error, request);
                 setLoading(false);
@@ -57,6 +56,7 @@ export default CreateContentScreen = ({navigation})=>{
             console.log(error);
             showToast(toast_types.error, messages.NETWORK_ERROR);
         }
+        setLoading(false);
     }
 
     useEffect(()=>{
