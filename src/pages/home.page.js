@@ -2,7 +2,7 @@ import { getItem } from "../utils/asyncStorage";
 import { useState, useEffect } from "react";
 import { useToast } from "react-native-toast-notifications";
 import { errorToastOptions, messages, storageKeyNames, screenNames, user_roles } from "../utils/consts";
-import { Text } from "react-native";
+import AdminDashboardContentsScreen from './admin_dashboard_contents.page';
 
 export default HomeScreen = ({navigation})=>{
     // const [loggedin, setLoggedIn] = useState(false);
@@ -35,5 +35,5 @@ export default HomeScreen = ({navigation})=>{
     //     }
     // }, [loggedin])
 
-    return <Text>Hello world this is the homepage.</Text>
+    return <AdminDashboardContentsScreen navigation={navigation} />
 }
