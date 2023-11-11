@@ -26,7 +26,8 @@ export default StyleSheet.create({
         color : 'white'
     },
     main_container : {
-        flex : 11.1
+        flex : 11.1,
+        paddingBottom : 10
     },
     each_dashboard_card : {
         backgroundColor : 'black',

@@ -42,7 +42,6 @@ export default ViewContentMain = ({ navigation, post, loading, openFull, setOpen
                     </View>
                 </View>
                 <View>
-                    {/* <Text>Poster</Text> */}
                     <AdminUserEachCard
                         id={1}
                         image={require('../../../assets/static/user.png')}

@@ -86,17 +86,12 @@ export default CreateContentMain = ({
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={deptLabel ? deptLabel : ""} placeholder={messages.SELECT_DEPT} onPressIn={() => { return setDeptOpen(true); }} readonly={true} />
-            <View style={contentStyle.create_content_upload_section}>
-                <Pressable onPress={() => { return selectAttachment(); }}>
-                    <Text style={contentStyle.description}>Click to Upload Attachment</Text>
-                </Pressable>
-            </View>
             {
                 attachmentBase64 !== "" ?
                     <View style={contentStyle.create_content_upload_section}>
                         {
                             attachment_exts.image.includes(attachmentExt) ?
-                            <Image style={{ height: 200, width: 200 }} source={{ uri: `data:${attachment.type};base64,${attachmentBase64}` }} /> : 
+                            <Image style={{ height: 200, width: 300 }} source={{ uri: `data:${attachment.type};base64,${attachmentBase64}` }} /> : 
                             <View>
                                 <Text style={contentStyle.description}>Attachment Preview Not Available</Text>
                                 <Text style={contentStyle.description}>File Name : {attachment.name}</Text>
@@ -107,6 +102,11 @@ export default CreateContentMain = ({
                     </View>
                     : null
             }
+            <View style={contentStyle.create_content_upload_section}>
+                <Pressable onPress={() => { return selectAttachment(); }}>
+                    <Text style={contentStyle.description}>Click to Upload Attachment</Text>
+                </Pressable>
+            </View>
             <LoginButton name="Create" loading={loading} action={() => { handleSubmit(); }} />
         </ScrollView>
     </View>;
