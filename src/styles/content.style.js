@@ -43,7 +43,7 @@ export default StyleSheet.create({
     },
     view_content_attachment_preview : {
         marginVertical : 10,
-        height : 200,
+        height : 300,
         padding : 0
     },
     description : {
@@ -85,7 +85,8 @@ export default StyleSheet.create({
     modal_close_pressable : {
         flexDirection : 'row',
         justifyContent: 'flex-start',
-        marginTop : 30,
+        // marginTop : 30
+        height : 80,
         backgroundColor : 'black'
     },
     modal_close_container : {

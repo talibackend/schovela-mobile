@@ -5,6 +5,7 @@ import { IMAGE_BASE_URL } from "@env";
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Icon from "react-native-vector-icons/Ionicons";
 import { useEffect } from 'react';
+import Video from 'react-native-video';
 
 export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) => {
 
@@ -12,6 +13,7 @@ export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) 
 
     useEffect(() => {
         console.log(openFull);
+        console.log(url);
     })
 
     return <Pressable onPress={() => { return setOpenFull(true) }}>
@@ -29,13 +31,27 @@ export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) 
                             <Pressable style={contentStyle.modal_close_pressable} onPress={() => { return setOpenFull(false); }}>
                                 <Text></Text>
                                 <View style={contentStyle.modal_close_container}>
-                                    {/* <Text  style={contentStyle.modal_close_button}>x</Text> */}
                                     <Icon style={contentStyle.modal_close_button} size={20} name="arrow-back" />
                                 </View>
                             </Pressable>
                             <ImageViewer imageUrls={[{ url }]} renderIndicator={() => null} />
                         </Modal>
                     </>
+                    : null
+            }
+            {
+                attachment_exts.video.includes(ext) ?
+                    <Video style={{ height: '100%', width: '100%' }} 
+                        fullscreen={true} 
+                        resizeMode="cover" 
+                        source={{ uri: url }} 
+                        controls={true} 
+                        onError={(e)=>{ console.log(e) }} 
+                        fullscreenOrientation="landscape"
+                        audio={true}
+                        fullscreenAutorotate={true}
+                        presentFullscreenPlayer={()=>{ this.player.presentFullscreenPlayer(); }}
+                    />
                     : null
             }
         </View>
