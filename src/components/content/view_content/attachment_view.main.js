@@ -13,8 +13,7 @@ export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) 
     let url = `${IMAGE_BASE_URL}${path}`;
 
     useEffect(() => {
-        console.log(openFull);
-        console.log(url);
+        
     })
 
     return <Pressable onPress={() => { return setOpenFull(true) }}>
@@ -77,7 +76,10 @@ export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) 
             {
                 attachment_exts.docs.includes(ext) ?
                     <>
-                        <Text>We will view document now.</Text>
+                        <View style={{ justifyContent : "center", alignItems : "center" }}>
+                            <Text style={{ fontSize : 15, color : "black" }} >Preview Not Available</Text>
+                            <Text style={{ fontSize : 25, fontWeight : 'bold', color : "black" }} >Click to view</Text>
+                        </View>
                         <Modal visible={openFull}>
                             <Pressable style={contentStyle.modal_close_pressable} onPress={() => { return setOpenFull(false); }}>
                                 <Text></Text>

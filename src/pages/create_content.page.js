@@ -36,8 +36,8 @@ export default CreateContentScreen = ({navigation})=>{
     const [deptLabel, setDeptLabel] = useState("");
 
     const handleSubmit = async ()=>{
-        if(!title || !desc || !level || !faculty || !dept || !attachmentBase64){
-            return showToast(toast_types.error, "All fields are required including attachment.");
+        if(!title || !desc || !attachmentBase64){
+            return showToast(toast_types.error, "Only level, faculty and department are allowed to be optional.");
         }
 
         const payload = { title, desc, level, faculty, dept, attachment : attachmentBase64, attachment_ext : attachmentExt };

@@ -19,7 +19,7 @@ export default ViewContentMain = ({ navigation, post, loading, openFull, setOpen
             {
                 post ? 
                 <>
-                <ContentAdminActionButtons navigation={navigation} />
+                {/* <ContentAdminActionButtons navigation={navigation} /> */}
                 <Text style={contentStyle.view_content_title}>{post.title}</Text>
                 <AttachmentViewComponent path={post.attachment} ext={post.attachment_ext} openFull={openFull} setOpenFull={setOpenFull} />
                 <Text style={contentStyle.description}>{post.desc}</Text>
@@ -43,11 +43,11 @@ export default ViewContentMain = ({ navigation, post, loading, openFull, setOpen
                 </View>
                 <View>
                     <AdminUserEachCard
-                        id={1}
+                        id={post.User.id}
                         image={require('../../../assets/static/user.png')}
-                        name="Femi Fatokun"
-                        email="fatokunfemi03@gmail.com"
-                        date_joined={new Date().toDateString()}
+                        name={post.User.fullname}
+                        email={post.User.email}
+                        date_joined={new Date(`${post.User.createdAt}`).toDateString()}
                         navigation={navigation}
                         link={screenNames.admin_dashboard_user_info}
                     />

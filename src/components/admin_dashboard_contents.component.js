@@ -5,7 +5,7 @@ import { View } from 'react-native';
 
 export default AdminContentsComponent = ({navigation, posts, loading})=>{
     return <View style={appStyle.app_container}>
-        <AdminHeader navigation={navigation} backButton={true} name='Contents' />
+        <AdminHeader navigation={navigation} backButton={true} name='Home' />
         <AdminContentsMain loading={loading} posts={posts} navigation={navigation} />
     </View>;
 }

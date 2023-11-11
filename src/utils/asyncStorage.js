@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { storageKeyNames } from './consts';
 
 export const setItem = async (key, value)=>{
     try{
@@ -17,6 +18,10 @@ export const getItem = async (key)=>{
         console.log(error);
         throw error;
     }
+}
+
+export const getUser = ()=>{
+    return getItem(storageKeyNames.user).then((user)=>{ return user }).catch(err=>console.log(err));
 }
 
 export const deleteItem = async (key)=>{

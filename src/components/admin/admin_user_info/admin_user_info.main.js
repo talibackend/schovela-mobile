@@ -1,6 +1,7 @@
 import { Pressable, ScrollView, Text, View, Image, ActivityIndicator } from 'react-native';
 import adminStyle from '../../../styles/admin.style';
-import { user_roles } from '../../../utils/consts';
+import { user_roles, storageKeyNames } from '../../../utils/consts';
+import { getUser } from '../../../utils/asyncStorage';
 
 export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, user, navigation})=>{
     const data = {
@@ -14,6 +15,10 @@ export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, us
         joined:  (new Date(`${user?.createdAt}`)).toDateString(),
         role : user?.role
     }
+    
+    const currentUser = getUser();
+    console.log(currentUser);
+
     return <View style={adminStyle.main_container}>
         <ScrollView>
             <View style={adminStyle.elevate_btn_container}>
