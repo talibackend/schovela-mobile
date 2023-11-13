@@ -51,7 +51,7 @@ export default CreateContentScreen = ({navigation})=>{
                 return;
             }
             showToast(toast_types.success, messages.CONTENT_CREATED, 3);
-            navigation.navigate(screenNames.admin_dashboard_contents);
+            navigation.navigate(screenNames.view_content, { id : request.post.id });
         }catch(error){
             console.log(error);
             showToast(toast_types.error, messages.NETWORK_ERROR);

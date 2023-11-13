@@ -13,7 +13,6 @@ export default AdminDashboardUserInfoScreen = ({route, navigation})=>{
     const { id } = route.params;
 
     const handleRolaChange = async ()=>{
-        console.log('Working...');
         if(user.role){
             let url = '';
             let newRole = '';

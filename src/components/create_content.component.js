@@ -29,10 +29,11 @@ export default CreateContentComponent = ({
     deptOpen,
     handleSubmit,
     attachment,
-    attachmentExt
+    attachmentExt,
+    pageName,
 }) => {
     return <View style={appStyle.app_container}>
-        <AdminHeader navigation={navigation} backButton={true} name="Create Content" />
+        <AdminHeader navigation={navigation} backButton={true} name={pageName} />
         <CreateContentMain
             navigation={navigation}
             title={title}
@@ -61,6 +62,7 @@ export default CreateContentComponent = ({
             handleSubmit={handleSubmit}
             attachment={attachment}
             attachmentExt={attachmentExt}
+            pageName={pageName}
         />
     </View>
 }

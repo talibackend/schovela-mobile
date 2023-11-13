@@ -38,9 +38,10 @@ export default CreateContentMain = ({
     facultyOpen,
     handleSubmit,
     attachment,
-    attachmentExt
+    attachmentExt,
+    pageName
 }) => {
-    const [videoPath, setVideoPath] = useState(null);
+    
     const selectAttachment = async () => {
         try {
             let result = await DocumentPicker.pickSingle();
@@ -107,7 +108,7 @@ export default CreateContentMain = ({
                     <Text style={contentStyle.description}>Click to Upload Attachment</Text>
                 </Pressable>
             </View>
-            <LoginButton name="Create" loading={loading} action={() => { handleSubmit(); }} />
+            <LoginButton name={ pageName == "Create Content" ? "Create" : "Update" } loading={loading} action={() => { handleSubmit(); }} />
         </ScrollView>
     </View>;
 }

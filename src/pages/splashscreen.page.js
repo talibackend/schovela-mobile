@@ -4,7 +4,7 @@ import { screenNames } from "../utils/consts";
 const SplashScreen = ({navigation})=>{
     setTimeout(() => {
         navigation.navigate(screenNames.home);
-    }, 5000);
+    }, 2000);
     return <SplashScreenComponent />;
 }
 
