@@ -7,7 +7,7 @@ import AdminUserEachCard from '../admin/admin_users/admin_users.each_card';
 import ContentAdminActionButtons from './view_content/admin_actions.main';
 import AttachmentViewComponent from './view_content/attachment_view.main';
 
-export default ViewContentMain = ({ navigation, post, loading, openFull, setOpenFull })=>{
+export default ViewContentMain = ({ navigation, post, loading, openFull, setOpenFull, hasPrivilege })=>{
 
     return <View style={[adminStyle.main_container, contentStyle.create_content_container]}>
         <ScrollView>
@@ -19,7 +19,10 @@ export default ViewContentMain = ({ navigation, post, loading, openFull, setOpen
             {
                 post ? 
                 <>
-                {/* <ContentAdminActionButtons navigation={navigation} /> */}
+                {
+                    hasPrivilege ?
+                    <ContentAdminActionButtons navigation={navigation} /> : null
+                }
                 <Text style={contentStyle.view_content_title}>{post.title}</Text>
                 <AttachmentViewComponent path={post.attachment} ext={post.attachment_ext} openFull={openFull} setOpenFull={setOpenFull} />
                 <Text style={contentStyle.description}>{post.desc}</Text>

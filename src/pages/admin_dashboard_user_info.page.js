@@ -1,13 +1,15 @@
 import AdminDashboardUserInfoComponent from '../components/admin_dashboard_user_info.component';
 import { useEffect, useState } from 'react';
 import { showToast } from '../utils/toast';
-import { api_routes, messages, request_methods, toast_types, user_roles } from '../utils/consts';
+import { api_routes, messages, request_methods, toast_types, user_roles, storageKeyNames } from '../utils/consts';
 import { authRequest } from '../utils/network';
+import { getItem } from '../utils/asyncStorage';
 
 export default AdminDashboardUserInfoScreen = ({route, navigation})=>{
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
     const [updatingRole, setUpdatingRole] = useState(false);
+    const [hasPrivilege, setHasPrivilege] = useState(false);
     const { id } = route.params;
 
     const handleRolaChange = async ()=>{
@@ -49,6 +51,12 @@ export default AdminDashboardUserInfoScreen = ({route, navigation})=>{
             try{
                 let request = await authRequest(request_methods.GET, `${api_routes.admin.user}/${id}`);
                 setUser(request.user);
+                let localUser = JSON.parse(await getItem(storageKeyNames.user));
+    
+                if(localUser.role === user_roles.admin){
+                    setHasPrivilege(true);
+                }
+
             }catch(error){
                 console.log(error);
                 showToast(toast_types.error, messages.NETWORK_ERROR);
@@ -66,5 +74,6 @@ export default AdminDashboardUserInfoScreen = ({route, navigation})=>{
                 handleRoleChange={handleRolaChange} 
                 updatingRole={updatingRole} 
                 navigation={navigation} 
+                hasPrivilege={hasPrivilege}
             />
 }

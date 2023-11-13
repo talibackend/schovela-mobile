@@ -3,7 +3,7 @@ import adminStyle from '../../../styles/admin.style';
 import { user_roles, storageKeyNames } from '../../../utils/consts';
 import { getUser } from '../../../utils/asyncStorage';
 
-export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, user, navigation})=>{
+export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, user, navigation, hasPrivilege})=>{
     const data = {
         name : user?.fullname,
         email : user?.email,
@@ -23,7 +23,7 @@ export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, us
         <ScrollView>
             <View style={adminStyle.elevate_btn_container}>
             {
-                data.role && data.role !== user_roles.admin ?
+                data.role && data.role !== user_roles.admin && hasPrivilege ?
                 <Pressable style={adminStyle.elevate_btn} onPress={()=>{ handleRoleChange(); }}>
                     {
                         updatingRole ? <ActivityIndicator color='white' /> :

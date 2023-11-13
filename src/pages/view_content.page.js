@@ -1,13 +1,15 @@
 import ViewContentComponent from '../components/view_content.component';
 import { useState, useEffect } from 'react';
 import { authRequest } from "../utils/network";
-import { request_methods, api_routes, toast_types } from "../utils/consts";
+import { request_methods, api_routes, toast_types, user_roles, messages, storageKeyNames } from "../utils/consts";
 import { showToast } from "../utils/toast";
+import { getItem } from '../utils/asyncStorage';
 
 export default ViewContentScreen = ({ navigation, route })=>{
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(false);
     const [openFull, setOpenFull] = useState(false);
+    const [hasPrivilege, setHasPrivilege] = useState(false);
     const { id } = route.params;
 
 
@@ -21,6 +23,15 @@ export default ViewContentScreen = ({ navigation, route })=>{
                 return;
             }
             setPost({...request.post});
+            let localUser = JSON.parse(await getItem(storageKeyNames.user));
+
+            if(localUser.role === user_roles.admin){
+                setHasPrivilege(true);
+            }else{
+                if(localUser.id === request.post.UserId){
+                    setHasPrivilege(true);
+                }
+            }
         }catch(error){
             console.log(error);
             showToast(toast_types.error, messages.NETWORK_ERROR);
@@ -38,5 +49,6 @@ export default ViewContentScreen = ({ navigation, route })=>{
         loading={loading}
         openFull={openFull} 
         setOpenFull={setOpenFull} 
+        hasPrivilege={hasPrivilege}
     />
 }
