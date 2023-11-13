@@ -4,7 +4,7 @@ import { authRequest } from "../utils/network";
 import { request_methods, api_routes, toast_types } from "../utils/consts";
 import { showToast } from "../utils/toast";
 
-export default AdminDashboardContentsScreen = ({navigation})=>{
+export default AdminDashboardContentsScreen = ({navigation, title})=>{
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -33,5 +33,6 @@ export default AdminDashboardContentsScreen = ({navigation})=>{
         navigation={navigation} 
         posts={posts}
         loading={loading}
+        title={title ? title : "Content"}
     />
 }

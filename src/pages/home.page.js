@@ -29,11 +29,5 @@ export default HomeScreen = ({navigation})=>{
         })()
     }, []);
 
-    // useEffect(()=>{
-    //     if (!loggedin) {
-    //         navigation.navigate(screenNames.login)
-    //     }
-    // }, [loggedin])
-
-    return <AdminDashboardContentsScreen navigation={navigation} />
+    return <AdminDashboardContentsScreen navigation={navigation} title="Home" />
 }
