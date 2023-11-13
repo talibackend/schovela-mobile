@@ -8,6 +8,7 @@ import { getItem } from '../utils/asyncStorage';
 export default ViewContentScreen = ({ navigation, route })=>{
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [hideLoading, setHideLoading] = useState(false);
     const [openFull, setOpenFull] = useState(false);
     const [hasPrivilege, setHasPrivilege] = useState(false);
     const { id } = route.params;
@@ -39,6 +40,23 @@ export default ViewContentScreen = ({ navigation, route })=>{
         setLoading(false);
     }
 
+    const handleHideUnhide = async ()=>{
+        try{
+            setHideLoading(true);
+            let request = await authRequest(request_methods.POST, api_routes.hide_content, { id : post.id });
+            if(typeof(request) == "string"){
+                showToast(toast_types.error, request);
+                setHideLoading(false);
+                return;
+            }
+            setPost({...post, live : request.post.live });
+        }catch(error){
+            console.log(error);
+            showToast(toast_types.error, messages.NETWORK_ERROR);
+        }
+        setHideLoading(false);
+    }
+
     useEffect(()=>{
         loadInfos();
     }, []);
@@ -50,5 +68,7 @@ export default ViewContentScreen = ({ navigation, route })=>{
         openFull={openFull} 
         setOpenFull={setOpenFull} 
         hasPrivilege={hasPrivilege}
+        handleHideUnhide={handleHideUnhide}
+        hideLoading={hideLoading}
     />
 }
