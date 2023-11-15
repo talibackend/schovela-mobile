@@ -10,9 +10,6 @@ export default SetBasicComponent = ({
     navigation,
     phoneNumber, setPhoneNumber,
     dept, setDept,
-    categoryOpen, setCategoryOpen,
-    categoryValue, setCategoryValue,
-    categoryLabel,
     facultyOpen, setFacultyOpen,
     facultyValue, setFacultyValue,
     facultyLabel,
@@ -22,7 +19,6 @@ export default SetBasicComponent = ({
     dateModalOpened, setDateModalOpened,
     date, setDate,
     maxDate,
-    categories,
     faculties,
     levels,
     btnHandler,
@@ -36,11 +32,6 @@ export default SetBasicComponent = ({
             setPhoneNumber={setPhoneNumber}
             dept={dept}
             setDept={setDept}
-            categoryOpen={categoryOpen}
-            setCategoryOpen={setCategoryOpen}
-            categoryValue={categoryValue}
-            setCategoryValue={setCategoryValue}
-            categoryLabel={categoryLabel}
             facultyOpen={facultyOpen}
             setFacultyOpen={setFacultyOpen}
             facultyValue={facultyValue}
@@ -56,7 +47,6 @@ export default SetBasicComponent = ({
             date={date}
             setDate={setDate}
             maxDate={maxDate}
-            categories={categories}
             faculties={faculties}
             btnHandler={btnHandler}
             loading={loading}

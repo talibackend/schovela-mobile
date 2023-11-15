@@ -18,11 +18,7 @@ import { setItem } from '../utils/asyncStorage';
 export default SetBasicsScreen = ({navigation})=>{
     const [phoneNumber, setPhoneNumber] = useState("");
     const [dept, setDept] = useState("");
-    // Category States
-    const [categoryOpen, setCategoryOpen] = useState(false);
-    const [categoryValue, setCategoryValue] = useState(null);
-    const [categoryLabel, setCategoryLabel] = useState(null);
-    const categories = user_categories;
+    
     //Faculty States
     const [facultyOpen, setFacultyOpen] = useState(false);
     const [facultyValue, setFacultyValue] = useState(null);
@@ -124,15 +120,6 @@ export default SetBasicsScreen = ({navigation})=>{
     }, []);
     
     useEffect(() => {
-        for(let i = 0; i < categories.length; i++){
-            let category = categories[i];
-            if(category.value == categoryValue){
-                setCategoryLabel(category.label);
-            }
-        }
-    }, [categoryValue]);
-    
-    useEffect(() => {
         for(let i = 0; i < faculties.length; i++){
             let faculty = faculties[i];
             if(faculty.value == facultyValue){
@@ -156,11 +143,6 @@ export default SetBasicsScreen = ({navigation})=>{
         setPhoneNumber={setPhoneNumber}
         dept={dept}
         setDept={setDept}
-        categoryOpen={categoryOpen}
-        setCategoryOpen={setCategoryOpen}
-        categoryValue={categoryValue}
-        setCategoryValue={setCategoryValue}
-        categoryLabel={categoryLabel}
         facultyOpen={facultyOpen}
         setFacultyOpen={setFacultyOpen}
         facultyValue={facultyValue}
@@ -176,7 +158,6 @@ export default SetBasicsScreen = ({navigation})=>{
         date={date}
         setDate={setDate}
         maxDate={maxDate}
-        categories={categories}
         faculties={faculties}
         btnHandler={btnHandler}
         loading={loading}
