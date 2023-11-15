@@ -46,9 +46,9 @@ export default SetBasicsMainComponent = ({
         
         <DropDownComponent 
             opened={deptOpen} 
-            data={depts[facultyValue]} 
-            selected={deptValue}
-            selectHandler={setDeptValue}
+            data={depts} 
+            selected={dept}
+            selectHandler={setDept}
             closeHandler={()=>{ setDeptOpen(false); }}
         />
 

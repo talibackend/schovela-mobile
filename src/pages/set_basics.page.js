@@ -27,7 +27,7 @@ export default SetBasicsScreen = ({navigation})=>{
     const [deptOpen, setDeptOpen] = useState(false);
     const [dept, setDept] = useState(null);
     const [deptLabel, setDeptLabel] = useState("");
-    const depts = user_depts(faculty)
+    const depts = user_depts(facultyValue)
     //Level States
     const [levelOpen, setLevelOpen] = useState(false);
     const [levelValue, setLevelValue] = useState(null);
@@ -128,15 +128,15 @@ export default SetBasicsScreen = ({navigation})=>{
             let faculty = faculties[i];
             if(faculty.value == facultyValue){
                 setFacultyLabel(faculty.label);
-                setDeptLabel(user_depts(faculty)[0].label);
+                setDeptLabel(user_depts(facultyValue)[0].label);
             }
         }
     }, [facultyValue]);
 
     useEffect(() => {
-        for (let i = 0; i < user_depts(faculty).length; i++) {
-            if (user_depts(faculty)[i].value == dept) {
-                setDeptLabel(user_depts(faculty)[i].label);
+        for (let i = 0; i < user_depts(facultyValue).length; i++) {
+            if (user_depts(facultyValue)[i].value == dept) {
+                setDeptLabel(user_depts(facultyValue)[i].label);
             }
         }
     }, [dept])
