@@ -7,9 +7,9 @@ import {
     request_methods, 
     storageKeyNames, 
     toast_types, 
-    user_categories, 
     user_faculties, 
-    user_levels
+    user_levels,
+    user_depts
 } from "../utils/consts";
 import { showToast } from '../utils/toast';
 import { authRequest } from '../utils/network';
@@ -17,13 +17,17 @@ import { setItem } from '../utils/asyncStorage';
 
 export default SetBasicsScreen = ({navigation})=>{
     const [phoneNumber, setPhoneNumber] = useState("");
-    const [dept, setDept] = useState("");
     
     //Faculty States
     const [facultyOpen, setFacultyOpen] = useState(false);
     const [facultyValue, setFacultyValue] = useState(null);
     const [facultyLabel, setFacultyLabel] = useState(null);
     const faculties = user_faculties;
+    //Dept States
+    const [deptOpen, setDeptOpen] = useState(false);
+    const [dept, setDept] = useState(null);
+    const [deptLabel, setDeptLabel] = useState("");
+    const depts = user_depts(faculty)
     //Level States
     const [levelOpen, setLevelOpen] = useState(false);
     const [levelValue, setLevelValue] = useState(null);
@@ -124,9 +128,18 @@ export default SetBasicsScreen = ({navigation})=>{
             let faculty = faculties[i];
             if(faculty.value == facultyValue){
                 setFacultyLabel(faculty.label);
+                setDeptLabel(user_depts(faculty)[0].label);
             }
         }
     }, [facultyValue]);
+
+    useEffect(() => {
+        for (let i = 0; i < user_depts(faculty).length; i++) {
+            if (user_depts(faculty)[i].value == dept) {
+                setDeptLabel(user_depts(faculty)[i].label);
+            }
+        }
+    }, [dept])
     
     useEffect(() => {
         for(let i = 0; i < levels.length; i++){
@@ -143,6 +156,10 @@ export default SetBasicsScreen = ({navigation})=>{
         setPhoneNumber={setPhoneNumber}
         dept={dept}
         setDept={setDept}
+        deptOpen={deptOpen}
+        setDeptOpen={setDeptOpen}
+        deptLabel={deptLabel}
+        depts={depts}
         facultyOpen={facultyOpen}
         setFacultyOpen={setFacultyOpen}
         facultyValue={facultyValue}

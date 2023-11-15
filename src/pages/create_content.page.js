@@ -92,14 +92,15 @@ export default CreateContentScreen = ({navigation})=>{
         for (let i = 0; i < user_faculties.length; i++) {
             if (user_faculties[i].value == faculty) {
                 setFacultyLabel(user_faculties[i].label);
+                setDeptLabel(user_depts(faculty)[0].label);
             }
         }
     }, [faculty])
 
     useEffect(() => {
-        for (let i = 0; i < user_depts.length; i++) {
-            if (user_depts[i].value == dept) {
-                setDeptLabel(user_depts[i].label);
+        for (let i = 0; i < user_depts(faculty).length; i++) {
+            if (user_depts(faculty)[i].value == dept) {
+                setDeptLabel(user_depts(faculty)[i].label);
             }
         }
     }, [dept])

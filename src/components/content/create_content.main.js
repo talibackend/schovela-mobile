@@ -6,9 +6,6 @@ import contentStyle from "../../styles/content.style"
 import loginStyle from "../../styles/login.style"
 import { DropDownComponent } from "../dropdown.component";
 import DocumentPicker from 'react-native-document-picker';
-import { useEffect, useState } from "react"
-import { generateVideoPath } from "../../utils/general";
-import Video from 'react-native-video';
 
 export default CreateContentMain = ({
     navigation,
@@ -78,7 +75,7 @@ export default CreateContentMain = ({
                 closeHandler={() => { setFacultyOpen(false); }}
             />
             <DropDownComponent
-                data={user_depts}
+                data={user_depts(faculty)}
                 opened={deptOpen}
                 selected={dept}
                 selectHandler={setDept}

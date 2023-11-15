@@ -1,0 +1,74 @@
+{
+    "AGRICULTURE": [
+      "Agricultural Economics",
+      "Agricultural Extension & Rural Development",
+      "Animal Science",
+      "Crop Science",
+      "Fisheries and Aquaculture",
+      "Forestry and Environment",
+      "Soil Science and Agricultural Engineering"
+    ],
+    "ARTS": [
+      "English and Literary Studies",
+      "French",
+      "History and International Studies",
+      "Linguistics",
+      "Mass Communication",
+      "Nigerian Languages"
+    ],
+    "ARABIC AND ISLAMIC STUDIES": [
+      "Arabic",
+      "Arabic Literary Studies",
+      "Islamic Studies",
+      "Quran and Hadith Studies"
+    ],
+    "EDUCATION AND EXTENSION SERVICES": [
+      "Adult Education and Extension Services",
+      "Curriculum Studies & Educational Tech.",
+      "Educational Foundations",
+      "Library and Information Science",
+      "Science and Vocational Education"
+    ],
+    "ENGINEERING AND ENVIRONMENTAL DESIGN": [
+      "Civil Engineering",
+      "Electrical/Electronics",
+      "Environmental and Resources Management",
+      "Information and Computer Technology (ICT)",
+      "Mechanical Engineering"
+    ],
+    "LAW": [
+      "Islamic Law"
+    ],
+    "LIFE SCIENCE": [],
+    "SOCIAL SCIENCE": [
+      "Geography",
+      "Economics",
+      "Political Science",
+      "Sociology"
+    ],
+    "PHYSICAL AND COMPUTING SCIENCE": [
+      "Computer Science",
+      "Geology",
+      "Mathematics",
+      "Physics",
+      "Statistics",
+      "Cybersecurity"
+    ],
+    "VETERINARY MEDICINE": [
+      "Vet Medicine"
+    ],
+    "MANAGEMENT SCIENCE": [
+      "Accounting",
+      "Business Administration",
+      "Public Administration"
+    ],
+    "CHEMICAL AND LIFE SCIENCE": [
+      "Biochemistry and Molecular Biology",
+      "Biology",
+      "Applied Chemistry",
+      "Microbiology",
+      "Plant Science",
+      "Pure and Environmental Chemistry",
+      "Zoology"
+    ]
+  }

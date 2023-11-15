@@ -10,6 +10,8 @@ export default SetBasicComponent = ({
     navigation,
     phoneNumber, setPhoneNumber,
     dept, setDept,
+    deptOpen, setDeptOpen,
+    deptLabel,
     facultyOpen, setFacultyOpen,
     facultyValue, setFacultyValue,
     facultyLabel,
@@ -20,6 +22,7 @@ export default SetBasicComponent = ({
     date, setDate,
     maxDate,
     faculties,
+    depts,
     levels,
     btnHandler,
     loading
@@ -51,6 +54,10 @@ export default SetBasicComponent = ({
             btnHandler={btnHandler}
             loading={loading}
             levels={levels}
+            deptOpen={deptOpen}
+            setDeptOpen={setDeptOpen}
+            deptLabel={deptLabel}
+            depts={depts}
         />
     </View>;
 }

@@ -1,3 +1,5 @@
+import udus from './udus.json';
+
 export const messages = {
     APP_ERROR : "Sorry an unknown error occured in your app, please contact support.",
     PASSWORD_PLACEHOLDER : "Password",
@@ -105,17 +107,33 @@ export const user_categories = [
     {label : 'Others', value : 'others'}
 ]
 
-export const user_faculties = [
-    { label : "", value : null },
-    {label : 'Faculty of Science', value : 'science'},
-    {label : 'Faculty of Engineering', value : 'engineering'}
-]
+let udusFaculties = udus;
 
-export const user_depts = [
-    { label : "", value : null },
-    { label : "Computer Science", value : "comp-sci" },
-    { label : "Political Science", value : "pol-sci" }
-]
+const extractFaculties = (facultyKeys)=>{
+    let resObj = [
+        { label : "", value : null }
+    ];
+
+    for(let i = 0; i < facultyKeys.length; i++){
+        resObj.push({
+            label : facultyKeys[i],
+            value : facultyKeys[i]
+        });
+    }
+
+    return resObj;
+}
+
+export const user_faculties = extractFaculties(Object.keys(udusFaculties));
+
+export const user_depts = (faculty)=>{
+    if(!faculty){
+        return [{ label : "", value : null }];
+    }
+    let depts = udusFaculties[faculty];
+    
+    return extractFaculties(depts);
+}
 
 export const user_levels = [
     { label : "", value : null },

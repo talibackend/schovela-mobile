@@ -8,6 +8,8 @@ import { DropDownComponent } from "../dropdown.component";
 export default SetBasicsMainComponent = ({ 
         phoneNumber, setPhoneNumber,
         dept, setDept,
+        deptOpen, setDeptOpen,
+        deptLabel,
         facultyOpen, setFacultyOpen,
         facultyValue, setFacultyValue,
         facultyLabel,
@@ -18,6 +20,7 @@ export default SetBasicsMainComponent = ({
         date, setDate,
         maxDate,
         faculties,
+        depts,
         levels,
         btnHandler,
         loading
