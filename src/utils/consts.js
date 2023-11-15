@@ -144,6 +144,7 @@ export const user_levels = [
     { label : "400 Level", value : "400" },
     { label : "500 Level", value : "500" },
     { label : "600 Level", value : "600" },
+    { label : "Post Graduate", value : "pg" },
     { label : "Others", value : "others" }
 ]
 
