@@ -21,20 +21,20 @@ export default AdminDashboardContentsScreen = ({navigation, title})=>{
 
     let filterObject = {
         level : {
+            label : "Select Level",
             selected : level,
-            label : levelLabel,
             data : user_levels,
             selectHandler : setLevel
         },
         faculty : {
+            label : "Select Faculty",
             selected : faculty,
-            label : facultyLabel,
             data : user_faculties,
             selectHandler : setFaculty
         },
         depts : {
+            label : "Select Department",
             selected : dept,
-            label : deptLabel,
             data : user_depts(faculty),
             selectHandler : setDept
         }

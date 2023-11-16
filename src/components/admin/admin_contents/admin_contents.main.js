@@ -1,15 +1,13 @@
-import { Keyboard, View, TextInput, ScrollView, Text, ActivityIndicator } from "react-native";
+import { Keyboard, View, TextInput, ScrollView, Text, ActivityIndicator, Pressable } from "react-native";
 import adminStyle from "../../../styles/admin.style";
 import loginStyle from "../../../styles/login.style";
-import { DropDownComponent } from "../../dropdown.component";
-import { attachment_exts, content_filters, messages } from "../../../utils/consts";
-import { useState, useEffect } from "react";
+import { MultiDropDownComponent } from "../../dropdown_multiple.component";
+import { attachment_exts, messages } from "../../../utils/consts";
 import AdminContentEachCard from './admin_contents.each_card';
 import AdminCreateContentButton from './admin_contents.create_button';
 import Icon from "react-native-vector-icons/Ionicons";
 
 export default AdminContentsMainComponent = ({navigation, loading, posts, filterObject, filterOpen, setFilterOpen})=>{
-    const [status, setStatus] = useState(null);
 
     const data = posts.map((each)=>{
         let image = '';
@@ -34,10 +32,15 @@ export default AdminContentsMainComponent = ({navigation, loading, posts, filter
     return <View style={adminStyle.main_container}>
         <View style={adminStyle.filter_container}>
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_input]} placeholder="Search" />
-            <TextInput onPressIn={()=>{ setFilterOpen(true); }} placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_filter]} readOnly={true} onFocus={()=>{ Keyboard.dismiss(); }}>
+            <Pressable onPress={()=>{ return setFilterOpen(true); }} placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_filter]}>
                 <Icon style={adminStyle.create_content_floating_icon} size={100} name="filter" />
-            </TextInput>
+            </Pressable>
         </View>
+        <MultiDropDownComponent 
+            data={filterObject}
+            opened={filterOpen}
+            closeHandler={()=>{ setFilterOpen(false) }}
+        />
         <ScrollView>
             {
                 loading ? <View style={{ paddingTop: 20 }}>

@@ -21,13 +21,16 @@ export default StyleSheet.create({
     },
     multi_scroll_view : {
         maxHeight : '70%',
+        width : '80%',
     },
     scroll_element : {
         marginVertical : 10,
         width : '100%'
     },
-    scroll_pressable : {
-
+    main_label : {
+        fontWeight : "bold",
+        fontSize : 18,
+        color : "black"
     },
     scroll_pressable_text : {
         fontSize : 15,
