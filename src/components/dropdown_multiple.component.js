@@ -18,13 +18,13 @@ export const MultiDropDownComponent = ({ data, opened, closeHandler }) => {
                             })
                         })
                     }
-                    <View>
-                        <LoginButton 
-                            name="Apply"
-                            action={()=>{ closeHandler(); }}
-                        />
-                    </View>
                 </ScrollView>
+                <View>
+                    <LoginButton 
+                        name="Apply"
+                        action={()=>{ closeHandler(); }}
+                    />
+                </View>
             </View>
         </View>
     </Modal> : null

@@ -176,5 +176,20 @@ export default StyleSheet.create({
     create_content_floating_icon : {
         color : 'black',
         fontSize: 30
+    },
+    filter_values_container : {
+        flexDirection : "row",
+        paddingHorizontal : 5,
+        flexWrap : "wrap"
+    },
+    filter_value_text : {
+        color : "black",
+        borderColor: 'black',
+        borderWidth: 0.5,
+        marginBottom: 10,
+        padding : 5,
+        marginHorizontal : 5,
+        fontSize : 10,
+        borderRadius : 10
     }
 });

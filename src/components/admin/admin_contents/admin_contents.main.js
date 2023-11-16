@@ -30,11 +30,34 @@ export default AdminContentsMainComponent = ({navigation, loading, posts, filter
     });
 
     return <View style={adminStyle.main_container}>
-        <View style={adminStyle.filter_container}>
-            <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_input]} placeholder="Search" />
-            <Pressable onPress={()=>{ return setFilterOpen(true); }} placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_filter]}>
-                <Icon style={adminStyle.create_content_floating_icon} size={100} name="filter" />
-            </Pressable>
+        <View>
+            <View style={adminStyle.filter_container}>
+                <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_input]} placeholder="Search" />
+                <Pressable onPress={()=>{ return setFilterOpen(true); }} placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_filter]}>
+                    <Icon style={adminStyle.create_content_floating_icon} size={100} name="filter" />
+                </Pressable>
+            </View>
+            {
+                filterObject.level.selectedLabel || filterObject.faculty.selectedLabel || filterObject.depts.selectedLabel ?
+                    <View style={adminStyle.filter_values_container}>
+                        {
+                            filterObject.level.selectedLabel ? 
+                                <Text style={adminStyle.filter_value_text}>{filterObject.level.selectedLabel}</Text>
+                            : null
+                        }
+                        {
+                            filterObject.faculty.selectedLabel ? 
+                                <Text style={adminStyle.filter_value_text}>{filterObject.faculty.selectedLabel}</Text>
+                            : null
+                        }
+                        {
+                            filterObject.depts.selectedLabel ? 
+                                <Text style={adminStyle.filter_value_text}>{filterObject.depts.selectedLabel}</Text>
+                            : null
+                        }
+                    </View>
+                : null
+            }
         </View>
         <MultiDropDownComponent 
             data={filterObject}

@@ -24,17 +24,20 @@ export default AdminDashboardContentsScreen = ({navigation, title})=>{
             label : "Select Level",
             selected : level,
             data : user_levels,
+            selectedLabel : levelLabel,
             selectHandler : setLevel
         },
         faculty : {
             label : "Select Faculty",
             selected : faculty,
             data : user_faculties,
+            selectedLabel : facultyLabel,
             selectHandler : setFaculty
         },
         depts : {
             label : "Select Department",
             selected : dept,
+            selectedLabel : deptLabel,
             data : user_depts(faculty),
             selectHandler : setDept
         }
