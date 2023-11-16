@@ -110,7 +110,7 @@ export default AdminDashboardContentsScreen = ({navigation, title})=>{
                     setLoading(false);
                     return;
                 }
-                setPosts([...request.post]);
+                setPosts([...posts, ...request.post]);
                 if(request.post.length < 20){
                     setAllLoaded(true);
                 }
