@@ -27,10 +27,10 @@ export default ViewContentMain = ({ hideLoading, handleHideUnhide, navigation, p
                 <AttachmentViewComponent path={post.attachment} ext={post.attachment_ext} openFull={openFull} setOpenFull={setOpenFull} />
                 <Text style={contentStyle.description}>{post.desc}</Text>
                 <View style={contentStyle.stat_section}>
-                    <View style={contentStyle.stat_each_section}>
+                    {/* <View style={contentStyle.stat_each_section}>
                         <Image style={contentStyle.stat_images} source={require('../../../assets/static/like.png')} />
                         <Text style={contentStyle.description}>20</Text>
-                    </View>
+                    </View> */}
                     <View style={contentStyle.stat_each_section}>
                         <Icon style={contentStyle.stat_icons} size={20} name="eye-outline" />
                         <Text style={contentStyle.description}>20</Text>
@@ -39,10 +39,10 @@ export default ViewContentMain = ({ hideLoading, handleHideUnhide, navigation, p
                         <Icon style={contentStyle.stat_icons} size={20} name="share-outline" />
                         <Text style={contentStyle.description}>20</Text>
                     </View>
-                    <View style={contentStyle.stat_each_section}>
+                    {/* <View style={contentStyle.stat_each_section}>
                         <Icon style={contentStyle.stat_icons} size={20} name="download-outline" />
                         <Text style={contentStyle.description}>20</Text>
-                    </View>
+                    </View> */}
                 </View>
                 <View>
                     <AdminUserEachCard

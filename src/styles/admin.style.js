@@ -27,7 +27,8 @@ export default StyleSheet.create({
     },
     main_container : {
         flex : 11.1,
-        paddingBottom : 10
+        paddingBottom : 5,
+        paddingHorizontal : 2
     },
     each_dashboard_card : {
         backgroundColor : 'black',
@@ -100,6 +101,9 @@ export default StyleSheet.create({
         flexDirection : "row",
         alignItems : "center",
         justifyContent : "center"
+    },
+    filter_input : {
+        marginTop : 5
     },
     search_input : {
         margin : 3,
