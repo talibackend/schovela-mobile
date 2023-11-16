@@ -105,7 +105,7 @@ export default CreateContentMain = ({
                     <Text style={contentStyle.description}>Click to Upload Attachment</Text>
                 </Pressable>
             </View>
-            <LoginButton name={ pageName == "Create Content" ? "Create" : "Update" } loading={loading} action={() => { handleSubmit(); }} />
+            <LoginButton name={ pageName == "Edit Content" ? "Update" : "Create" } loading={loading} action={() => { handleSubmit(); }} />
         </ScrollView>
     </View>;
 }

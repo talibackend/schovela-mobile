@@ -33,7 +33,7 @@ export default CreateContentComponent = ({
     pageName,
 }) => {
     return <View style={appStyle.app_container}>
-        <AdminHeader navigation={navigation} backButton={true} name={pageName} />
+        <AdminHeader navigation={navigation} backButton={true} name={pageName ? pageName : "Create Content"} />
         <CreateContentMain
             navigation={navigation}
             title={title}
