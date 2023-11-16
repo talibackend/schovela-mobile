@@ -9,7 +9,7 @@ export default StyleSheet.create({
         backgroundColor : 'rgba(0, 0, 0, 0.3)'
     },
     scroll_view : {
-        maxHeight : '30%',
+        maxHeight : '50%',
         minHeight : '10%',
         overflow: 'scroll',
         backgroundColor : 'white',
@@ -18,6 +18,9 @@ export default StyleSheet.create({
         maxWidth : '80%',
         paddingHorizontal : 10,
         paddingVertical : 10
+    },
+    multi_scroll_view : {
+        maxHeight : '70%',
     },
     scroll_element : {
         marginVertical : 10,

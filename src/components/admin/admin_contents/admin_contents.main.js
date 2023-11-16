@@ -6,19 +6,10 @@ import { attachment_exts, content_filters, messages } from "../../../utils/const
 import { useState, useEffect } from "react";
 import AdminContentEachCard from './admin_contents.each_card';
 import AdminCreateContentButton from './admin_contents.create_button';
+import Icon from "react-native-vector-icons/Ionicons";
 
-export default AdminContentsMainComponent = ({navigation, loading, posts})=>{
-    const [filterOpen, setFilterOpen] = useState(false);
+export default AdminContentsMainComponent = ({navigation, loading, posts, filterObject, filterOpen, setFilterOpen})=>{
     const [status, setStatus] = useState(null);
-    const [filterLabel, setFilterLabel] = useState("All");
-
-    useEffect(()=>{
-        for(let i = 0; i < content_filters.length; i++){
-            if(content_filters[i].value == status){
-                setFilterLabel( content_filters[i].label);
-            }
-        }
-    }, [status])
 
     const data = posts.map((each)=>{
         let image = '';
@@ -41,14 +32,12 @@ export default AdminContentsMainComponent = ({navigation, loading, posts})=>{
     });
 
     return <View style={adminStyle.main_container}>
-        <DropDownComponent
-            data={content_filters}
-            opened={filterOpen}
-            selected={status}
-            selectHandler={setStatus}
-            closeHandler={() => { setFilterOpen(false); }}
-        />
-        <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={filterLabel ? filterLabel : ""} placeholder={messages.FILTER_USERS} onPressIn={() => { return setFilterOpen(true); }} readonly={true} />
+        <View style={adminStyle.filter_container}>
+            <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_input]} placeholder="Search" />
+            <TextInput onPressIn={()=>{ setFilterOpen(true); }} placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_filter]} readOnly={true} onFocus={()=>{ Keyboard.dismiss(); }}>
+                <Icon style={adminStyle.create_content_floating_icon} size={100} name="filter" />
+            </TextInput>
+        </View>
         <ScrollView>
             {
                 loading ? <View style={{ paddingTop: 20 }}>

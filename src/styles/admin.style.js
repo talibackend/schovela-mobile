@@ -96,9 +96,19 @@ export default StyleSheet.create({
         color : 'white',
         fontSize : 12
     },
-    filter_input : {
-        margin : 5
+    filter_container : {
+        flexDirection : "row",
+        alignItems : "center",
+        justifyContent : "center"
     },
+    search_input : {
+        margin : 3,
+        width : '80%'
+    },
+    search_filter : {
+        margin : 3,
+        width : '15%'
+    },  
     elevate_btn_container : {
         alignItems : 'center',
         margin : 20
