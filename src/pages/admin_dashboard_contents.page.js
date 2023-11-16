@@ -30,6 +30,8 @@ export default AdminDashboardContentsScreen = ({navigation, title})=>{
     const [dept, setDept] = useState(null);
     const [deptLabel, setDeptLabel] = useState("");
 
+    const [search, setSearch] = useState(null);
+
     let filterObject = {
         level : {
             label : "Select Level",
@@ -84,6 +86,22 @@ export default AdminDashboardContentsScreen = ({navigation, title})=>{
     const loadInfos = async (page2 = 0)=>{
         if(!allLoaded){
             let url = `${api_routes.create_content}?offset=${page2}`;
+            let filters = {
+                level,
+                faculty,
+                dept,
+                search,
+            };
+            
+            for(let i = 0; i < Object.keys(filters).length; i++){
+                let key = Object.keys(filters)[i];
+                let data = filters[key];
+                
+                if(data){
+                    url += `&${key}=${data}`
+                }
+            }
+
             try{
                 setLoading(true);
                 let request = await authRequest(request_methods.GET, url);
@@ -129,6 +147,14 @@ export default AdminDashboardContentsScreen = ({navigation, title})=>{
         loadInfos(page);
     }, [allLoaded, page]);
 
+    useEffect(()=>{
+        setPage(0);
+        setAllLoaded(false);
+        setPosts([]);
+        setLoading(true);
+        loadInfos(page);
+    }, [search]);
+
     return <AdminContentsComponent 
         navigation={navigation} 
         posts={posts}
@@ -138,5 +164,7 @@ export default AdminDashboardContentsScreen = ({navigation, title})=>{
         filterOpen={filterOpen}
         setFilterOpen={setFilterOpen}
         handleScroll={handleScroll}
+        search={search}
+        setSearch={setSearch}
     />
 }

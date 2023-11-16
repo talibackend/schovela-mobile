@@ -3,7 +3,18 @@ import appStyle from '../styles/app.style';
 import AdminHeader from './admin/admin.header';
 import { View } from 'react-native';
 
-export default AdminContentsComponent = ({navigation, posts, loading, title, filterObject, filterOpen, handleScroll, setFilterOpen})=>{
+export default AdminContentsComponent = ({
+        navigation, 
+        posts, 
+        loading, 
+        title, 
+        filterObject, 
+        filterOpen, 
+        handleScroll, 
+        setFilterOpen,
+        search,
+        setSearch
+    })=>{
     return <View style={appStyle.app_container}>
         <AdminHeader navigation={navigation} backButton={true} name={title} />
         <AdminContentsMain 
@@ -14,6 +25,8 @@ export default AdminContentsComponent = ({navigation, posts, loading, title, fil
             posts={posts} 
             navigation={navigation} 
             handleScroll={handleScroll}
+            search={search}
+            setSearch={setSearch}
         />
     </View>;
 }

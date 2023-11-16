@@ -7,7 +7,17 @@ import AdminContentEachCard from './admin_contents.each_card';
 import AdminCreateContentButton from './admin_contents.create_button';
 import Icon from "react-native-vector-icons/Ionicons";
 
-export default AdminContentsMainComponent = ({navigation, loading, posts, filterObject, filterOpen, handleScroll, setFilterOpen})=>{
+export default AdminContentsMainComponent = ({
+    navigation, 
+    loading, 
+    posts, 
+    filterObject, 
+    filterOpen, 
+    handleScroll, 
+    setFilterOpen,
+    search,
+    setSearch
+    })=>{
 
     const data = posts.map((each)=>{
         let image = '';
@@ -32,7 +42,7 @@ export default AdminContentsMainComponent = ({navigation, loading, posts, filter
     return <View style={adminStyle.main_container}>
         <View>
             <View style={adminStyle.filter_container}>
-                <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_input]} placeholder="Search" />
+                <TextInput value={search} onChangeText={(e)=>{ setSearch(e); }} placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_input]} placeholder="Search" />
                 <Pressable onPress={()=>{ return setFilterOpen(true); }} placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_filter]}>
                     <Icon style={adminStyle.create_content_floating_icon} size={100} name="filter" />
                 </Pressable>
