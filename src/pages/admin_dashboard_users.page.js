@@ -31,7 +31,6 @@ export default AdminDashboardUsersScreen = ({navigation})=>{
             } catch (error) {
                 console.log(error);
                 showToast('error', messages.NETWORK_ERROR);
-                // await loadInfos();
             }
         }
     }
@@ -43,7 +42,6 @@ export default AdminDashboardUsersScreen = ({navigation})=>{
                     loadInfos(page + 20);
                     setPage(page => page + 20);
                 }
-                // setRetryCount(1);
             }
         }
     }
@@ -57,7 +55,6 @@ export default AdminDashboardUsersScreen = ({navigation})=>{
         setPage(0);
         setAllLoaded(false);
         setUsers([]);
-        // setRetryCount(1);
     }, [role])
 
     useEffect(()=>{

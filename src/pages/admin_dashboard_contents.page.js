@@ -1,12 +1,23 @@
 import AdminContentsComponent from "../components/admin_dashboard_contents.component";
 import { useState, useEffect } from 'react';
 import { authRequest } from "../utils/network";
-import { request_methods, api_routes, toast_types, user_levels, user_faculties, user_depts } from "../utils/consts";
+import { 
+    request_methods, 
+    api_routes, 
+    toast_types, 
+    user_levels, 
+    user_faculties, 
+    user_depts,
+    messages
+} from "../utils/consts";
 import { showToast } from "../utils/toast";
+import { isCloseToBottom } from '../utils/scroll';
 
 export default AdminDashboardContentsScreen = ({navigation, title})=>{
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [allLoaded, setAllLoaded] = useState(false);
+    const [page, setPage] = useState(0);
 
     const [filterOpen, setFilterOpen] = useState(false);
 
@@ -70,26 +81,53 @@ export default AdminDashboardContentsScreen = ({navigation, title})=>{
 
 
 
-    const loadInfos = async ()=>{
-        try{
-            setLoading(true);
-            let request = await authRequest(request_methods.GET, api_routes.create_content);
-            if(typeof(request) == "string"){
-                showToast(toast_types.error, request);
-                setLoading(false);
-                return;
+    const loadInfos = async (page2 = 0)=>{
+        if(!allLoaded){
+            let url = `${api_routes.create_content}?offset=${page2}`;
+            try{
+                setLoading(true);
+                let request = await authRequest(request_methods.GET, url);
+                if(typeof(request) == "string"){
+                    showToast(toast_types.error, request);
+                    setLoading(false);
+                    return;
+                }
+                setPosts([...request.post]);
+                if(request.post.length < 20){
+                    setAllLoaded(true);
+                }
+            }catch(error){
+                console.log(error);
+                showToast(toast_types.error, messages.NETWORK_ERROR);
             }
-            setPosts([...request.post]);
-        }catch(error){
-            console.log(error);
-            showToast(toast_types.error, messages.NETWORK_ERROR);
+            setLoading(false);
         }
-        setLoading(false);
+    }
+
+    const handleScroll = (nativeEvent)=>{
+        if(!loading){
+            if(isCloseToBottom(nativeEvent)){
+                if(!allLoaded){
+                    loadInfos(page + 20);
+                    setPage(page => page + 20);
+                }
+            }
+        }
     }
 
     useEffect(()=>{
-        loadInfos();
-    }, []);
+        if(!filterOpen){
+            setPage(0);
+            setAllLoaded(false);
+            setPosts([]);
+            setLoading(true);
+            loadInfos(page);
+        }
+    }, [filterOpen])
+
+    useEffect(()=>{
+        loadInfos(page);
+    }, [allLoaded, page]);
 
     return <AdminContentsComponent 
         navigation={navigation} 
@@ -99,5 +137,6 @@ export default AdminDashboardContentsScreen = ({navigation, title})=>{
         filterObject={filterObject}
         filterOpen={filterOpen}
         setFilterOpen={setFilterOpen}
+        handleScroll={handleScroll}
     />
 }

@@ -7,7 +7,7 @@ import AdminContentEachCard from './admin_contents.each_card';
 import AdminCreateContentButton from './admin_contents.create_button';
 import Icon from "react-native-vector-icons/Ionicons";
 
-export default AdminContentsMainComponent = ({navigation, loading, posts, filterObject, filterOpen, setFilterOpen})=>{
+export default AdminContentsMainComponent = ({navigation, loading, posts, filterObject, filterOpen, handleScroll, setFilterOpen})=>{
 
     const data = posts.map((each)=>{
         let image = '';
@@ -64,7 +64,7 @@ export default AdminContentsMainComponent = ({navigation, loading, posts, filter
             opened={filterOpen}
             closeHandler={()=>{ setFilterOpen(false) }}
         />
-        <ScrollView>
+        <ScrollView scrollEventThrottle={100} onScroll={({ nativeEvent }) => { handleScroll(nativeEvent); }}>
             {
                 loading ? <View style={{ paddingTop: 20 }}>
                     <ActivityIndicator color='black' />
