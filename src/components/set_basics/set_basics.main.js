@@ -1,5 +1,5 @@
 import loginStyle from "../../styles/login.style";
-import { ScrollView, TextInput, Keyboard } from 'react-native';
+import { View, TextInput, Keyboard } from 'react-native';
 import { messages } from "../../utils/consts";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import LoginButton from "../login/login.button";
@@ -26,7 +26,7 @@ export default SetBasicsMainComponent = ({
         loading
     }) => {
     
-    return <ScrollView style={loginStyle.input_wrapper}>
+    return <View style={loginStyle.input_wrapper}>
         <TextInput  placeholderTextColor="grey" style={loginStyle.input_field} value={phoneNumber} placeholder={messages.PHONE_NUMBER} onChangeText={(value) => { return setPhoneNumber(value); }} autoComplete='name' autoCorrect={true} />
         <TextInput placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={date} onPressIn={() => { return setDateModalOpened(true); }} placeholder={messages.DOB} readonly={true} />
         <TextInput placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
@@ -60,5 +60,5 @@ export default SetBasicsMainComponent = ({
             closeHandler={()=>{ setLevelOpen(false); }}
         />
         <LoginButton loading={loading} name={messages.COMPLETE} action={() => { btnHandler(); }} />
-    </ScrollView>
+    </View>
 }

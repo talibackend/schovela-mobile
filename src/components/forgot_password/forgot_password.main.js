@@ -1,4 +1,4 @@
-import { ScrollView, TextInput } from 'react-native';
+import { View, TextInput } from 'react-native';
 import LoginButton from '../login/login.button';
 import LoginFooter from '../login/login.footer'
 import loginStyle from '../../styles/login.style'
@@ -13,9 +13,9 @@ export default ForgotPasswordMainComponent = ({
         loading,
         btnHandler
     })=>{
-    return  <ScrollView style={loginStyle.input_wrapper}>
+    return  <View style={loginStyle.input_wrapper}>
                 <TextInput  placeholderTextColor="grey" style={loginStyle.input_field} placeholder={messages.EMAIL_PLACEHOLDER} onChangeText={(value)=>{ return setEmail(value); }} autoComplete='email' autoCorrect={false} />
                 <LoginButton loading={loading} name={messages.NEXT} action={()=>{ btnHandler(); }} />
                 <LoginFooter button_link={screenNames.login} button_name={messages.LOGIN} message="Back to " navigation={navigation} />
-            </ScrollView>
+            </View>
 }
