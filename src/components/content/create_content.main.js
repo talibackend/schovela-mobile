@@ -81,6 +81,7 @@ export default CreateContentMain = ({
                 selectHandler={setDept}
                 closeHandler={() => { setDeptOpen(false); }}
             />
+            <TextInput  placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={"Usmanu Danfodiyo University, Sokoto"} autoComplete='name' autoCorrect={true} readonly={true} />
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={deptLabel ? deptLabel : ""} placeholder={messages.SELECT_DEPT} onPressIn={() => { return setDeptOpen(true); }} readonly={true} />
