@@ -75,10 +75,14 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
                 setStatusLabel(content_filters[i].label);
             }
         }
-        if(status == "hidden"){
-            setLive(false);
+        if(status != null){
+            if(status == "hidden"){
+                setLive(false);
+            }else{
+                setLive(true);
+            }
         }else{
-            setLive(true);
+            setLive(null);
         }
     }, [status])
 
