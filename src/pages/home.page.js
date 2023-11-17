@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "react-native-toast-notifications";
 import { errorToastOptions, messages, storageKeyNames, screenNames, user_roles } from "../utils/consts";
 import AdminDashboardContentsScreen from './admin_dashboard_contents.page';
+import { BackHandler } from "react-native";
 
 export default HomeScreen = ({navigation})=>{
     // const [loggedin, setLoggedIn] = useState(false);
@@ -27,7 +28,10 @@ export default HomeScreen = ({navigation})=>{
             }
             
         })()
+        BackHandler.addEventListener("hardwareBackPress", ()=>{
+            return true;
+        });
     }, []);
 
-    return <AdminDashboardContentsScreen navigation={navigation} title="Home" />
+    return <AdminDashboardContentsScreen navigation={navigation} title="Home" allowBack={false} />
 }

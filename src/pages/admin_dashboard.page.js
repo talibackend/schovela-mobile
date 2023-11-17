@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { showToast } from '../utils/toast';
 import { authRequest } from '../utils/network';
 import { api_routes, request_methods, messages } from '../utils/consts';
+import { BackHandler } from "react-native";
 
 export default AdminDashboardScreen = ({ navigation }) => {
     const [userCount, updateUserCount] = useState(0);
@@ -21,6 +22,9 @@ export default AdminDashboardScreen = ({ navigation }) => {
 
     useEffect(() => {
         loadInfos();
+        BackHandler.addEventListener("hardwareBackPress", ()=>{
+            return true;
+        });
     }, []);
 
     return <AdminDashboardComponent userCount={userCount} contentCount={contentCount} navigation={navigation} />;

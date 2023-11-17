@@ -13,10 +13,11 @@ export default AdminContentsComponent = ({
         handleScroll, 
         setFilterOpen,
         search,
-        setSearch
+        setSearch,
+        allowBack
     })=>{
     return <View style={appStyle.app_container}>
-        <AdminHeader navigation={navigation} backButton={true} name={title} />
+        <AdminHeader navigation={navigation} backButton={allowBack !== undefined ? allowBack : true} name={title} />
         <AdminContentsMain 
             filterObject={filterObject}
             filterOpen={filterOpen}

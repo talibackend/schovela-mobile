@@ -40,7 +40,19 @@ export default CreateContentScreen = ({navigation})=>{
             return showToast(toast_types.error, "Only level, faculty and department are allowed to be optional.");
         }
 
-        const payload = { title, desc, level, faculty, dept, attachment : attachmentBase64, attachment_ext : attachmentExt };
+        const payload = { title, desc, attachment : attachmentBase64, attachment_ext : attachmentExt };
+
+        if(level){
+            payload.level = level;
+        }
+
+        if(faculty){
+            payload.faculty = faculty;
+        }
+
+        if(dept){
+            payload.dept = dept;
+        }
 
         try{
             setLoading(true);
@@ -52,6 +64,14 @@ export default CreateContentScreen = ({navigation})=>{
             }
             showToast(toast_types.success, messages.CONTENT_CREATED, 3);
             navigation.navigate(screenNames.view_content, { id : request.post.id });
+            setTitle("");
+            setDesc("");
+            setAttachmentBase64("");
+            setAttachmentExt(null);
+            setAttachment(null);
+            setLevel(null);
+            setFaculty(null);
+            setDept(null);
         }catch(error){
             console.log(error);
             showToast(toast_types.error, messages.NETWORK_ERROR);

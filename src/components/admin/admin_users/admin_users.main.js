@@ -37,6 +37,11 @@ export default AdminUsersComponent = ({ navigation, loading, handleScroll, filte
             }
             {
                 data.length == 0 && !loading ? <View style={{ paddingTop: 20 }}>
+                    <Text style={{ textAlign : 'center', color : "black" }}>{messages.NO_RECORDS}</Text>
+                </View> : null
+            }
+            {
+                data.length == 0 && !loading ? <View style={{ paddingTop: 20 }}>
                     <Text style={{ textAlign : 'center' }}>{messages.NO_RECORDS}</Text>
                 </View> : null
             }
