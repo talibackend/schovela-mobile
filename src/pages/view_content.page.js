@@ -73,5 +73,6 @@ export default ViewContentScreen = ({ navigation, route })=>{
         hasPrivilege={hasPrivilege}
         handleHideUnhide={handleHideUnhide}
         hideLoading={hideLoading}
+        loadHandler={loadInfos}
     />
 }

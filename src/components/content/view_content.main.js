@@ -6,16 +6,12 @@ import Icon from "react-native-vector-icons/Ionicons";
 import AdminUserEachCard from '../admin/admin_users/admin_users.each_card';
 import ContentAdminActionButtons from './view_content/admin_actions.main';
 import AttachmentViewComponent from './view_content/attachment_view.main';
+import { RefreshControl } from "react-native";
 
-export default ViewContentMain = ({ views, hideLoading, handleHideUnhide, navigation, post, loading, openFull, setOpenFull, hasPrivilege })=>{
+export default ViewContentMain = ({ loadHandler, views, hideLoading, handleHideUnhide, navigation, post, loading, openFull, setOpenFull, hasPrivilege })=>{
 
     return <View style={[adminStyle.main_container, contentStyle.create_content_container]}>
-        <ScrollView>
-            {
-                loading ? <View style={{ paddingTop: 20 }}>
-                    <ActivityIndicator color='black' />
-                </View> : null
-            }
+        <ScrollView refreshControl={<RefreshControl refreshing={loading} onRefresh={loadHandler} />}>
             {
                 post ? 
                 <>

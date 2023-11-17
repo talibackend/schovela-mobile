@@ -8,8 +8,10 @@ import { BackHandler } from "react-native";
 export default AdminDashboardScreen = ({ navigation }) => {
     const [userCount, updateUserCount] = useState(0);
     const [contentCount, updateContentCount] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     const loadInfos = async () => {
+        setLoading(true);
         try {
             let request = await authRequest(request_methods.GET, api_routes.admin.dashboard_info);
             updateUserCount(request.total_user);
@@ -18,6 +20,7 @@ export default AdminDashboardScreen = ({ navigation }) => {
             console.log(error);
             showToast('error', messages.NETWORK_ERROR);
         }
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -27,5 +30,5 @@ export default AdminDashboardScreen = ({ navigation }) => {
         });
     }, []);
 
-    return <AdminDashboardComponent userCount={userCount} contentCount={contentCount} navigation={navigation} />;
+    return <AdminDashboardComponent loadHandler={loadInfos} loading={loading} userCount={userCount} contentCount={contentCount} navigation={navigation} />;
 }

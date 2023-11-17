@@ -69,5 +69,6 @@ export default AdminDashboardUsersScreen = ({navigation})=>{
                 navigation={navigation}
                 loading={loading}
                 handleScroll={handleScroll}
+                loadHandler={loadInfos}
             />
 }

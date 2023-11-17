@@ -6,9 +6,10 @@ import { DropDownComponent } from '../../dropdown.component';
 import { screenNames, user_filters } from '../../../utils/consts';
 import { useState } from 'react';
 import { messages } from '../../../utils/consts';
+import { RefreshControl } from 'react-native';
 
 
-export default AdminUsersComponent = ({ navigation, loading, handleScroll, filterLabel, role, setRole, users }) => {
+export default AdminUsersComponent = ({ loadHandler, navigation, loading, handleScroll, filterLabel, role, setRole, users }) => {
     const [filterOpen, setFilterOpen] = useState(false);
     const data = users.map((user) => {
         return {
@@ -29,7 +30,7 @@ export default AdminUsersComponent = ({ navigation, loading, handleScroll, filte
             closeHandler={() => { setFilterOpen(false); }}
         />
         <TextInput style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={filterLabel ? filterLabel : ""} placeholder={messages.FILTER_USERS} onPressIn={() => { return setFilterOpen(true); }} readonly={true} />
-        <ScrollView scrollEventThrottle={100} onScroll={({ nativeEvent }) => { handleScroll(nativeEvent); }}>
+        <ScrollView refreshControl={<RefreshControl refreshing={loading} onRefresh={loadHandler} />} scrollEventThrottle={100} onScroll={({ nativeEvent }) => { handleScroll(nativeEvent); }}>
             {
                 loading ? <View style={{ paddingTop: 20 }}>
                     <ActivityIndicator color='black' />
