@@ -8,6 +8,7 @@ import {
     user_levels, 
     user_faculties, 
     user_depts,
+    content_filters,
     messages
 } from "../utils/consts";
 import { showToast } from "../utils/toast";
@@ -21,6 +22,10 @@ export default AdminDashboardContentsScreen = ({navigation, title, allowBack})=>
 
     const [filterOpen, setFilterOpen] = useState(false);
 
+    const [status, setStatus] = useState(null);
+    const [statusLabel, setStatusLabel] = useState("");
+    const [live, setLive] = useState(null);
+
     const [level, setLevel] = useState(null);
     const [levelLabel, setLevelLabel] = useState("");
 
@@ -33,6 +38,13 @@ export default AdminDashboardContentsScreen = ({navigation, title, allowBack})=>
     const [search, setSearch] = useState(null);
 
     let filterObject = {
+        status : {
+            label : "Select Status",
+            selected : status,
+            data : content_filters,
+            selectedLabel : statusLabel,
+            selectHandler : setStatus
+        },
         level : {
             label : "Select Level",
             selected : level,
@@ -55,6 +67,19 @@ export default AdminDashboardContentsScreen = ({navigation, title, allowBack})=>
             selectHandler : setDept
         }
     }
+
+    useEffect(() => {
+        for (let i = 0; i < content_filters.length; i++) {
+            if (content_filters[i].value == level) {
+                setStatusLabel(content_filters[i].label);
+            }
+        }
+        if(status == "hidden"){
+            setLive(false);
+        }else{
+            setLive(true);
+        }
+    }, [status])
 
     useEffect(() => {
         for (let i = 0; i < user_levels.length; i++) {
@@ -92,6 +117,10 @@ export default AdminDashboardContentsScreen = ({navigation, title, allowBack})=>
                 dept,
                 search,
             };
+
+            if(live == false || live == true){
+                filters.live = live;
+            }
             
             for(let i = 0; i < Object.keys(filters).length; i++){
                 let key = Object.keys(filters)[i];
@@ -99,6 +128,10 @@ export default AdminDashboardContentsScreen = ({navigation, title, allowBack})=>
                 
                 if(data){
                     url += `&${key}=${data}`
+                }else{
+                    if(key == "live"){
+                        url += `&${key}=${data}`
+                    }
                 }
             }
 

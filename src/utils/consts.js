@@ -157,8 +157,8 @@ export const user_filters = [
 
 export const content_filters = [
     { label : 'All', value : null },
-    { label : 'Hidden', value : 'hidden' },
-    { label : 'Live', value : 'live' }
+    { label : 'Live', value : 'live' },
+    { label : 'Hidden', value : 'hidden' }
 ]
 
 export const request_methods = {
