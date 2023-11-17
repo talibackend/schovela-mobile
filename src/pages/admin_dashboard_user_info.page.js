@@ -74,5 +74,7 @@ export default AdminDashboardUserInfoScreen = ({route, navigation})=>{
                 updatingRole={updatingRole} 
                 navigation={navigation} 
                 hasPrivilege={hasPrivilege}
+                loadHandler={loadInfos}
+                loading={loading}
             />
 }

@@ -1,9 +1,10 @@
 import { Pressable, ScrollView, Text, View, Image, ActivityIndicator } from 'react-native';
 import adminStyle from '../../../styles/admin.style';
-import { user_roles, storageKeyNames } from '../../../utils/consts';
+import { user_roles } from '../../../utils/consts';
 import { getUser } from '../../../utils/asyncStorage';
+import { RefreshControl } from 'react-native';
 
-export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, user, navigation, hasPrivilege})=>{
+export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, user, loadHandler, loading, hasPrivilege})=>{
     const data = {
         name : user?.fullname,
         email : user?.email,
@@ -20,7 +21,7 @@ export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, us
     console.log(currentUser);
 
     return <View style={adminStyle.main_container}>
-        <ScrollView>
+        <ScrollView refreshControl={<RefreshControl refreshing={loading} onRefresh={loadHandler} />}>
             <View style={adminStyle.elevate_btn_container}>
             {
                 data.role && data.role !== user_roles.admin && hasPrivilege ?

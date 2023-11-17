@@ -1,4 +1,4 @@
-import { Keyboard, View, TextInput, ScrollView, Text, ActivityIndicator, Pressable } from "react-native";
+import { View, TextInput, ScrollView, Text, ActivityIndicator, Pressable } from "react-native";
 import adminStyle from "../../../styles/admin.style";
 import loginStyle from "../../../styles/login.style";
 import { MultiDropDownComponent } from "../../dropdown_multiple.component";
@@ -6,6 +6,8 @@ import { attachment_exts, messages } from "../../../utils/consts";
 import AdminContentEachCard from './admin_contents.each_card';
 import AdminCreateContentButton from './admin_contents.create_button';
 import Icon from "react-native-vector-icons/Ionicons";
+// import { RefreshComponent } from "../../refresh_control.component";
+import { RefreshControl } from "react-native";
 
 export default AdminContentsMainComponent = ({
     navigation, 
@@ -16,7 +18,8 @@ export default AdminContentsMainComponent = ({
     handleScroll, 
     setFilterOpen,
     search,
-    setSearch
+    setSearch,
+    loadHandler
     })=>{
 
     const data = posts.map((each)=>{
@@ -74,12 +77,7 @@ export default AdminContentsMainComponent = ({
             opened={filterOpen}
             closeHandler={()=>{ setFilterOpen(false) }}
         />
-        <ScrollView scrollEventThrottle={100} onScroll={({ nativeEvent }) => { handleScroll(nativeEvent); }}>
-            {
-                loading ? <View style={{ paddingTop: 20 }}>
-                    <ActivityIndicator color='black' />
-                </View> : null
-            }
+        <ScrollView refreshControl={<RefreshControl refreshing={loading} onRefresh={loadHandler} />} scrollEventThrottle={100} onScroll={({ nativeEvent }) => { handleScroll(nativeEvent); }}>
             {
                 data.length == 0 && !loading ? <View style={{ paddingTop: 20 }}>
                     <Text style={{ textAlign : 'center', color : "black" }}>{messages.NO_RECORDS}</Text>

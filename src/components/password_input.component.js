@@ -3,20 +3,24 @@ import { messages } from "../utils/consts";
 import { useState } from "react";
 
 const PasswordInput = ({ stateUpdater, style, placeholder }) => {
-    const [_password, _setPassword] = useState("");
+    const [password, setPassword] = useState("");
     const [asterisks, setAsterisks] = useState("");
 
     const handlePasswordInput = (value) => {
-        let formerPass = _password;
-        if(value.length > _password.length){
-            formerPass = value;
+        let formerPass = password;
+        if(value.length > password.length){
+            if((value.length - password.length) == 1){
+                formerPass += value[value.length - 1];
+            }else{
+                formerPass = value;
+            }
         }else{
             formerPass = formerPass.split("");
             formerPass.pop();
             formerPass = formerPass.join("");
         }
         
-        _setPassword(formerPass);
+        setPassword(formerPass);
         stateUpdater(formerPass);
         let asterisk = "";
         for (let i = 0; i < formerPass.length; i++) {
@@ -26,15 +30,14 @@ const PasswordInput = ({ stateUpdater, style, placeholder }) => {
     }
 
     useState(()=>{
-        console.log("Not changed...");
-        console.log(_password);
-    }, [_password]);
+        console.log(password);
+    }, [password]);
 
     return <TextInput
                 autoCapitalize="none"
                 style={style}
                 placeholderTextColor="grey"
-                onChangeText={(value) => { return handlePasswordInput(value) }}
+                onChangeText={(value) => { handlePasswordInput(value) }}
                 value={asterisks}
                 placeholder={!placeholder ? messages.PASSWORD_PLACEHOLDER : placeholder}
             />;

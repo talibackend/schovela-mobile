@@ -200,5 +200,6 @@ export default AdminDashboardContentsScreen = ({navigation, title, allowBack})=>
         search={search}
         setSearch={setSearch}
         allowBack={allowBack}
+        loadHandler={loadInfos}
     />
 }
