@@ -36,7 +36,7 @@ export default AdminContentsMainComponent = ({
         return {
             id : each.id,
             title : each.title,
-            poster : `${each.faculty}, ${each.dept}, ${each.level}L`,
+            poster : `${each.faculty ? each.faculty + " | " : "All Faculties | "} ${each.dept ? each.dept + " |" : ""} ${each.leve ? each.level + "L" : "All Levels"}`,
             moment_posted : (new Date(`${each.createdAt}`)).toDateString(),
             image,
             live : each.live
