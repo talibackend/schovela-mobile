@@ -9,12 +9,13 @@ const PasswordInput = ({ stateUpdater, style, placeholder }) => {
     const handlePasswordInput = (value) => {
         let formerPass = _password;
         if(value.length > _password.length){
-            formerPass += value[value.length - 1];
+            formerPass = value;
         }else{
             formerPass = formerPass.split("");
             formerPass.pop();
             formerPass = formerPass.join("");
         }
+        
         _setPassword(formerPass);
         stateUpdater(formerPass);
         let asterisk = "";
@@ -23,6 +24,11 @@ const PasswordInput = ({ stateUpdater, style, placeholder }) => {
         }
         setAsterisks(asterisk);
     }
+
+    useState(()=>{
+        console.log("Not changed...");
+        console.log(_password);
+    }, [_password]);
 
     return <TextInput
                 autoCapitalize="none"
