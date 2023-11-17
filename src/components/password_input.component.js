@@ -12,7 +12,7 @@ const PasswordInput = ({ stateUpdater, style, placeholder }) => {
             if((value.length - password.length) == 1){
                 formerPass += value[value.length - 1];
             }else{
-                formerPass = value;
+                formerPass += value;
             }
         }else{
             formerPass = formerPass.split("");

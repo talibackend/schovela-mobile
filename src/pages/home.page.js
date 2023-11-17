@@ -6,7 +6,6 @@ import AdminDashboardContentsScreen from './admin_dashboard_contents.page';
 import { BackHandler } from "react-native";
 
 export default HomeScreen = ({ navigation }) => {
-    let [renderHome, setRenderHome] = useState(false);
     const toast = useToast();
 
     const loadInfo = async () => {
@@ -19,9 +18,10 @@ export default HomeScreen = ({ navigation }) => {
             } else {
                 if (localUser.role == user_roles.admin) {
                     return navigation.navigate(screenNames.admin_dashboard);
+                }else{
+                    return navigation.navigate(screenNames.user_home, { title : "Home", allowBack : false });
                 }
             }
-            setRenderHome(true);
         } catch (error) {
             toast.show(messages.APP_ERROR, errorToastOptions);
         }
@@ -32,8 +32,6 @@ export default HomeScreen = ({ navigation }) => {
     }
 
     useEffect(() => {
-        (async () => {return await loadInfo()})();
+        loadInfo();
     }, []);
-
-    return renderHome ? <AdminDashboardContentsScreen navigation={navigation} title="Home" allowBack={false} /> : null;
 } 

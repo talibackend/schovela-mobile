@@ -14,7 +14,8 @@ import {
 import { showToast } from "../utils/toast";
 import { isCloseToBottom } from '../utils/scroll';
 
-export default AdminDashboardContentsScreen = ({navigation, title, allowBack})=>{
+export default AdminDashboardContentsScreen = ({navigation, route})=>{
+    const { title, allowBack } = route.params;
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [allLoaded, setAllLoaded] = useState(false);

@@ -51,6 +51,7 @@ export const storageKeyNames = {
 
 export const screenNames = {
     splashscreen : 'splashscreen',
+    user_home : "user_home",
     home : 'home',
     login : 'login',
     forgot_password : 'forgot_password',
