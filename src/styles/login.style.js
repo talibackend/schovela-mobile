@@ -21,7 +21,8 @@ export default StyleSheet.create({
     },
     input_wrapper: {
         borderRadius: 10,
-        flex: 1
+        flex: 1,
+        height : '100%'
     },
     input_field: {
         borderColor: 'black',

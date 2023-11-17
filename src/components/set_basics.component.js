@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import appStyle from "../styles/app.style";
 import loginStyle from "../styles/login.style";
 import SetBasicsHeader from './set_basics/set_basics.header';
@@ -28,36 +28,38 @@ export default SetBasicComponent = ({
     loading
 })=>{
     return <View style={[appStyle.app_container, loginStyle.login_container]}>
-        <SetBasicsHeader />
-        <SetBasicsMain 
-            navigation={navigation}
-            phoneNumber={phoneNumber}
-            setPhoneNumber={setPhoneNumber}
-            dept={dept}
-            setDept={setDept}
-            facultyOpen={facultyOpen}
-            setFacultyOpen={setFacultyOpen}
-            facultyValue={facultyValue}
-            setFacultyValue={setFacultyValue}
-            facultyLabel={facultyLabel}
-            levelOpen={levelOpen}
-            setLevelOpen={setLevelOpen}
-            levelValue={levelValue}
-            setLevelValue={setLevelValue}
-            levelLabel={levelLabel}
-            dateModalOpened={dateModalOpened}
-            setDateModalOpened={setDateModalOpened}
-            date={date}
-            setDate={setDate}
-            maxDate={maxDate}
-            faculties={faculties}
-            btnHandler={btnHandler}
-            loading={loading}
-            levels={levels}
-            deptOpen={deptOpen}
-            setDeptOpen={setDeptOpen}
-            deptLabel={deptLabel}
-            depts={depts}
-        />
+        <ScrollView>
+            <SetBasicsHeader />
+            <SetBasicsMain 
+                navigation={navigation}
+                phoneNumber={phoneNumber}
+                setPhoneNumber={setPhoneNumber}
+                dept={dept}
+                setDept={setDept}
+                facultyOpen={facultyOpen}
+                setFacultyOpen={setFacultyOpen}
+                facultyValue={facultyValue}
+                setFacultyValue={setFacultyValue}
+                facultyLabel={facultyLabel}
+                levelOpen={levelOpen}
+                setLevelOpen={setLevelOpen}
+                levelValue={levelValue}
+                setLevelValue={setLevelValue}
+                levelLabel={levelLabel}
+                dateModalOpened={dateModalOpened}
+                setDateModalOpened={setDateModalOpened}
+                date={date}
+                setDate={setDate}
+                maxDate={maxDate}
+                faculties={faculties}
+                btnHandler={btnHandler}
+                loading={loading}
+                levels={levels}
+                deptOpen={deptOpen}
+                setDeptOpen={setDeptOpen}
+                deptLabel={deptLabel}
+                depts={depts}
+            />
+        </ScrollView>
     </View>;
 }
