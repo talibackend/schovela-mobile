@@ -29,15 +29,12 @@ const PasswordInput = ({ stateUpdater, style, placeholder }) => {
         setAsterisks(asterisk);
     }
 
-    useState(()=>{
-        console.log(password);
-    }, [password]);
-
     return <TextInput
                 autoCapitalize="none"
+                autoComplete="off"
                 style={style}
                 placeholderTextColor="grey"
-                onChangeText={(value) => { handlePasswordInput(value) }}
+                onChangeText={(value) => { console.log(value); handlePasswordInput(value) }}
                 value={asterisks}
                 placeholder={!placeholder ? messages.PASSWORD_PLACEHOLDER : placeholder}
             />;
