@@ -195,5 +195,8 @@ export default StyleSheet.create({
         marginHorizontal : 5,
         fontSize : 10,
         borderRadius : 10
+    },
+    each_not_live_card : {
+        backgroundColor : 'grey'
     }
 });

@@ -38,7 +38,8 @@ export default AdminContentsMainComponent = ({
             title : each.title,
             poster : `${each.faculty}, ${each.dept}, ${each.level}L`,
             moment_posted : (new Date(`${each.createdAt}`)).toDateString(),
-            image
+            image,
+            live : each.live
         }
     });
 
@@ -93,6 +94,7 @@ export default AdminContentsMainComponent = ({
                                 image={datum.image}
                                 id={datum.id}
                                 key={`admin_each_content_${index}`}
+                                live={datum.live}
                             />
                 })
             }
