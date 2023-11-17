@@ -5,33 +5,35 @@ import { errorToastOptions, messages, storageKeyNames, screenNames, user_roles }
 import AdminDashboardContentsScreen from './admin_dashboard_contents.page';
 import { BackHandler } from "react-native";
 
-export default HomeScreen = ({navigation})=>{
-    // const [loggedin, setLoggedIn] = useState(false);
-    // const [token, setToken] = useState(null);
+export default HomeScreen = ({ navigation }) => {
+    let [renderHome, setRenderHome] = useState(false);
     const toast = useToast();
-    
-    useEffect(()=>{
-        (async ()=>{
-            try{
-                let localToken = await getItem(storageKeyNames.accessToken);
-                let localUser = JSON.parse(await getItem(storageKeyNames.user));
-                
-                if(!localToken){
-                    navigation.navigate(screenNames.login)
-                }else{
-                    if(localUser.role == user_roles.admin){
-                        navigation.navigate(screenNames.admin_dashboard);
-                    }
+
+    const loadInfo = async () => {
+        try {
+            let localToken = await getItem(storageKeyNames.accessToken);
+            let localUser = JSON.parse(await getItem(storageKeyNames.user));
+
+            if (!localToken) {
+                return navigation.navigate(screenNames.login)
+            } else {
+                if (localUser.role == user_roles.admin) {
+                    return navigation.navigate(screenNames.admin_dashboard);
                 }
-            }catch(error){
-                toast.show(messages.APP_ERROR, errorToastOptions);
             }
-            
-        })()
-        BackHandler.addEventListener("hardwareBackPress", ()=>{
+            setRenderHome(true);
+        } catch (error) {
+            toast.show(messages.APP_ERROR, errorToastOptions);
+        }
+
+        BackHandler.addEventListener("hardwareBackPress", () => {
             return true;
         });
+    }
+
+    useEffect(() => {
+        (async () => {return await loadInfo()})();
     }, []);
 
-    return <AdminDashboardContentsScreen navigation={navigation} title="Home" allowBack={false} />
-}
+    return renderHome ? <AdminDashboardContentsScreen navigation={navigation} title="Home" allowBack={false} /> : null;
+} 

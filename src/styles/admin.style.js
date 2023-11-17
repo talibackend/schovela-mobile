@@ -32,7 +32,7 @@ export default StyleSheet.create({
     },
     each_dashboard_card : {
         backgroundColor : 'black',
-        marginVertical : 5,
+        marginVertical : 2,
         marginHorizontal : 2,
         paddingVertical : 20,
         paddingHorizontal : 15,
