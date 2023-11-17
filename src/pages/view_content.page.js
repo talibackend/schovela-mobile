@@ -11,6 +11,7 @@ export default ViewContentScreen = ({ navigation, route })=>{
     const [hideLoading, setHideLoading] = useState(false);
     const [openFull, setOpenFull] = useState(false);
     const [hasPrivilege, setHasPrivilege] = useState(false);
+    const [views, setViews] = useState(null);
     const { id } = route.params;
 
 
@@ -24,6 +25,7 @@ export default ViewContentScreen = ({ navigation, route })=>{
                 return;
             }
             setPost({...request.post});
+            setViews(request.views);
             let localUser = JSON.parse(await getItem(storageKeyNames.user));
 
             if(localUser.role === user_roles.admin){
@@ -64,6 +66,7 @@ export default ViewContentScreen = ({ navigation, route })=>{
     return <ViewContentComponent 
         navigation={navigation} 
         post={post}
+        views={views}
         loading={loading}
         openFull={openFull} 
         setOpenFull={setOpenFull} 

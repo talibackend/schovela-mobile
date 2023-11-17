@@ -7,7 +7,7 @@ import AdminUserEachCard from '../admin/admin_users/admin_users.each_card';
 import ContentAdminActionButtons from './view_content/admin_actions.main';
 import AttachmentViewComponent from './view_content/attachment_view.main';
 
-export default ViewContentMain = ({ hideLoading, handleHideUnhide, navigation, post, loading, openFull, setOpenFull, hasPrivilege })=>{
+export default ViewContentMain = ({ views, hideLoading, handleHideUnhide, navigation, post, loading, openFull, setOpenFull, hasPrivilege })=>{
 
     return <View style={[adminStyle.main_container, contentStyle.create_content_container]}>
         <ScrollView>
@@ -33,11 +33,10 @@ export default ViewContentMain = ({ hideLoading, handleHideUnhide, navigation, p
                     </View> */}
                     <View style={contentStyle.stat_each_section}>
                         <Icon style={contentStyle.stat_icons} size={20} name="eye-outline" />
-                        <Text style={contentStyle.description}>20</Text>
+                        <Text style={contentStyle.description}>{views}</Text>
                     </View>
                     <View style={contentStyle.stat_each_section}>
                         <Icon style={contentStyle.stat_icons} size={20} name="share-outline" />
-                        <Text style={contentStyle.description}>20</Text>
                     </View>
                     {/* <View style={contentStyle.stat_each_section}>
                         <Icon style={contentStyle.stat_icons} size={20} name="download-outline" />
