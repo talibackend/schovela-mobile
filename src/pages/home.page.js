@@ -32,6 +32,6 @@ export default HomeScreen = ({ navigation }) => {
     }
 
     useEffect(() => {
-        loadInfo();
+        (async ()=>{ await loadInfo()})();
     }, []);
 } 

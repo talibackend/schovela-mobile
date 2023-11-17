@@ -37,7 +37,7 @@ export default LoginScreen = ({navigation})=>{
             if(request.user.role == user_roles.admin){
                 navigation.navigate(screenNames.admin_dashboard);
             }else{
-                navigation.navigate(screenNames.home);
+                navigation.navigate(screenNames.user_home, { allowBack : false, title : "Home" });
             }
         }catch(error){
             console.log(error);

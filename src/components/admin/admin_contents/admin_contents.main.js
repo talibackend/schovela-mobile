@@ -52,8 +52,13 @@ export default AdminContentsMainComponent = ({
                 </Pressable>
             </View>
             {
-                filterObject.level.selectedLabel || filterObject.faculty.selectedLabel || filterObject.depts.selectedLabel ?
+                filterObject.level.selectedLabel || filterObject.faculty.selectedLabel || filterObject.depts.selectedLabel || filterObject.status.selectedLabel ?
                     <View style={adminStyle.filter_values_container}>
+                        {
+                            filterObject.status.selectedLabel && filterObject.status.selected ? 
+                                <Text style={adminStyle.filter_value_text}>{filterObject.status.selectedLabel} Posts</Text>
+                            : null
+                        }
                         {
                             filterObject.level.selectedLabel ? 
                                 <Text style={adminStyle.filter_value_text}>{filterObject.level.selectedLabel}</Text>

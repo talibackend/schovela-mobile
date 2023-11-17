@@ -15,7 +15,7 @@ import { showToast } from "../utils/toast";
 import { isCloseToBottom } from '../utils/scroll';
 
 export default AdminDashboardContentsScreen = ({navigation, route})=>{
-    const { title, allowBack } = route.params;
+    const { title, allowBack } = route.params || {};
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [allLoaded, setAllLoaded] = useState(false);
@@ -71,7 +71,7 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
 
     useEffect(() => {
         for (let i = 0; i < content_filters.length; i++) {
-            if (content_filters[i].value == level) {
+            if (content_filters[i].value == status) {
                 setStatusLabel(content_filters[i].label);
             }
         }
