@@ -102,7 +102,13 @@ export default SetBasicsScreen = ({navigation})=>{
             }
             await setItem(storageKeyNames.user, JSON.stringify({...request.user}));
             showToast(toast_types.success, messages.BASIC_INFO_SET, 3);
-            navigation.navigate(screenNames.home);
+
+            if(request.user.role == user_roles.admin){
+                navigation.navigate(screenNames.admin_dashboard);
+            }else{
+                navigation.navigate(screenNames.user_home, { allowBack : false, title : "Home" });
+            }
+            
         }catch(error){
             console.log(error);
             showToast(toast_types.error, error)

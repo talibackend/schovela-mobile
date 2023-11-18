@@ -49,7 +49,6 @@ const Scafffold = ()=>{
                         <Stack.Screen name={screenNames.forgot_password} options={{ headerShown : false }} component={ForgotPasswordScreen} />
                         <Stack.Screen name={screenNames.sign_up} options={{ headerShown : false }} component={SignupScreen} />
                         <Stack.Screen name={screenNames.forgot_password_otp} options={{ headerShown : false }} component={ForgotPasswordOtpScreen} />
-                        {/* <Stack.Screen name={screenNames.user_auth} component={UserAuthComponent}> */}
                         <Stack.Screen name={screenNames.home} options={{ headerShown : false }} component={HomeScreen} />
                         <Stack.Screen name={screenNames.set_password} options={{ headerShown : false }} component={SetPasswordScreen} />
                         <Stack.Screen name={screenNames.set_basics} options={{ headerShown : false }} component={SetBasicsScreen} />
@@ -61,7 +60,6 @@ const Scafffold = ()=>{
                         <Stack.Screen name={screenNames.create_content} options={{ headerShown : false }} component={CreateContentScreen} />
                         <Stack.Screen name={screenNames.view_content} options={{ headerShown : false }} component={ViewContentScreen} />
                         <Stack.Screen name={screenNames.edit_content} options={{ headerShown : false }} component={EditContentScreen} />
-                        {/* </Stack.Screen> */}
                     </Stack.Navigator>
                 </NavigationContainer>
                 <Toast />

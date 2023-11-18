@@ -95,7 +95,7 @@ export default CreateContentMain = ({
                                 <Text style={contentStyle.description}>Attachment Preview Not Available</Text>
                                 <Text style={contentStyle.description}>File Name : {attachment.name}</Text>
                                 <Text style={contentStyle.description}>Type : {attachment.type.split('/')[0] == "application" ? "document" : attachment.type.split('/')[0]}</Text>
-                                <Text style={contentStyle.description}>Size : {attachment.size}</Text>
+                                <Text style={contentStyle.description}>Size : ~{Math.ceil(attachment.size / 1000000)}mb</Text>
                             </View>
                         }
                     </View>

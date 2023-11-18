@@ -34,7 +34,7 @@ const PasswordInput = ({ stateUpdater, style, placeholder }) => {
                 autoComplete="off"
                 style={style}
                 placeholderTextColor="grey"
-                onChangeText={(value) => { console.log(value); handlePasswordInput(value) }}
+                onChangeText={(value) => { handlePasswordInput(value) }}
                 value={asterisks}
                 placeholder={!placeholder ? messages.PASSWORD_PLACEHOLDER : placeholder}
             />;
