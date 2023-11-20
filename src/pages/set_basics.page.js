@@ -50,20 +50,7 @@ export default SetBasicsScreen = ({navigation})=>{
         if(dept.length > 0){
             body.department = dept;
         }
-        if(categoryValue){
-            let valid = false;
-            for(let i = 0; i < categories.length; i++){
-                if(categories[i].value == categoryValue){
-                    valid = true;
-                    break;
-                }
-            }
-            if(!valid){
-                showToast(toast_types.error, messages.INVALID_CATEGORY);
-                return;
-            }
-            body.account_type = categoryValue;
-        }
+        
         if(levelValue){
             let valid = false;
             for(let i = 0; i < levels.length; i++){
