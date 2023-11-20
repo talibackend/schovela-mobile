@@ -1,20 +1,21 @@
 import AdminContentsComponent from "../components/admin_dashboard_contents.component";
 import { useState, useEffect } from 'react';
 import { authRequest } from "../utils/network";
-import { 
-    request_methods, 
-    api_routes, 
-    toast_types, 
-    user_levels, 
-    user_faculties, 
+import {
+    request_methods,
+    api_routes,
+    toast_types,
+    user_levels,
+    user_faculties,
     user_depts,
     content_filters,
     messages
 } from "../utils/consts";
 import { showToast } from "../utils/toast";
 import { isCloseToBottom } from '../utils/scroll';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 
-export default AdminDashboardContentsScreen = ({navigation, route})=>{
+export default AdminDashboardContentsScreen = ({ navigation, route }) => {
     const { title, allowBack } = route.params || {};
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -37,35 +38,37 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
     const [deptLabel, setDeptLabel] = useState("");
 
     const [search, setSearch] = useState(null);
+    
+    const isFocused = useIsFocused();
 
     let filterObject = {
-        status : {
-            label : "Select Status",
-            selected : status,
-            data : content_filters,
-            selectedLabel : statusLabel,
-            selectHandler : setStatus
+        status: {
+            label: "Select Status",
+            selected: status,
+            data: content_filters,
+            selectedLabel: statusLabel,
+            selectHandler: setStatus
         },
-        level : {
-            label : "Select Level",
-            selected : level,
-            data : user_levels,
-            selectedLabel : levelLabel,
-            selectHandler : setLevel
+        level: {
+            label: "Select Level",
+            selected: level,
+            data: user_levels,
+            selectedLabel: levelLabel,
+            selectHandler: setLevel
         },
-        faculty : {
-            label : "Select Faculty",
-            selected : faculty,
-            data : user_faculties,
-            selectedLabel : facultyLabel,
-            selectHandler : setFaculty
+        faculty: {
+            label: "Select Faculty",
+            selected: faculty,
+            data: user_faculties,
+            selectedLabel: facultyLabel,
+            selectHandler: setFaculty
         },
-        depts : {
-            label : "Select Department",
-            selected : dept,
-            selectedLabel : deptLabel,
-            data : user_depts(faculty),
-            selectHandler : setDept
+        depts: {
+            label: "Select Department",
+            selected: dept,
+            selectedLabel: deptLabel,
+            data: user_depts(faculty),
+            selectHandler: setDept
         }
     }
 
@@ -75,13 +78,13 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
                 setStatusLabel(content_filters[i].label);
             }
         }
-        if(status != null){
-            if(status == "hidden"){
+        if (status != null) {
+            if (status == "hidden") {
                 setLive(false);
-            }else{
+            } else {
                 setLive(true);
             }
-        }else{
+        } else {
             setLive(null);
         }
         setPosts([]);
@@ -114,8 +117,8 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
 
 
 
-    const loadInfos = async (page2 = 0)=>{
-        if(!allLoaded){
+    const loadInfos = async (page2 = 0) => {
+        if (!allLoaded) {
             let url = `${api_routes.create_content}?offset=${page2}`;
             let filters = {
                 level,
@@ -124,36 +127,36 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
                 search,
             };
 
-            if(live == false || live == true){
+            if (live == false || live == true) {
                 filters.live = live;
             }
-            
-            for(let i = 0; i < Object.keys(filters).length; i++){
+
+            for (let i = 0; i < Object.keys(filters).length; i++) {
                 let key = Object.keys(filters)[i];
                 let data = filters[key];
-                
-                if(data){
+
+                if (data) {
                     url += `&${key}=${data}`
-                }else{
-                    if(key == "live"){
+                } else {
+                    if (key == "live") {
                         url += `&${key}=${data}`
                     }
                 }
             }
 
-            try{
+            try {
                 setLoading(true);
                 let request = await authRequest(request_methods.GET, url);
-                if(typeof(request) == "string"){
+                if (typeof (request) == "string") {
                     showToast(toast_types.error, request);
                     setLoading(false);
                     return;
                 }
                 setPosts([...posts, ...request.post]);
-                if(request.post.length < 20){
+                if (request.post.length < 20) {
                     setAllLoaded(true);
                 }
-            }catch(error){
+            } catch (error) {
                 console.log(error);
                 showToast(toast_types.error, messages.NETWORK_ERROR);
             }
@@ -161,10 +164,10 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
         }
     }
 
-    const handleScroll = (nativeEvent)=>{
-        if(!loading){
-            if(isCloseToBottom(nativeEvent)){
-                if(!allLoaded){
+    const handleScroll = (nativeEvent) => {
+        if (!loading) {
+            if (isCloseToBottom(nativeEvent)) {
+                if (!allLoaded) {
                     loadInfos(page + 20);
                     setPage(page => page + 20);
                 }
@@ -172,8 +175,8 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
         }
     }
 
-    useEffect(()=>{
-        if(!filterOpen){
+    useEffect(() => {
+        if (!filterOpen) {
             setPage(0);
             setAllLoaded(false);
             setPosts([]);
@@ -182,24 +185,34 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
         }
     }, [filterOpen])
 
-    useEffect(()=>{
+    useEffect(() => {
         loadInfos(page);
     }, [allLoaded, page]);
 
-    useEffect(()=>{
+    useEffect(() => {
         setPage(0);
         setAllLoaded(false);
         setPosts([]);
         setLoading(true);
         loadInfos(page);
     }, [search]);
+    
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            setPage(0);
+            setAllLoaded(false);
+            setPosts([]);
+            setLoading(true);
+            setAllLoaded(false);
+        });
+    
+        return () => {
+          unsubscribe();
+        };
+      }, [navigation, isFocused]);
 
-    useEffect(()=>{
-        setAllLoaded(false);
-    }, []);
-
-    return <AdminContentsComponent 
-        navigation={navigation} 
+    return <AdminContentsComponent
+        navigation={navigation}
         posts={posts}
         loading={loading}
         title={title ? title : "Content"}
