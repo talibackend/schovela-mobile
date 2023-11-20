@@ -84,6 +84,7 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
         }else{
             setLive(null);
         }
+        setPosts([]);
     }, [status])
 
     useEffect(() => {
@@ -192,6 +193,10 @@ export default AdminDashboardContentsScreen = ({navigation, route})=>{
         setLoading(true);
         loadInfos(page);
     }, [search]);
+
+    useEffect(()=>{
+        setAllLoaded(false);
+    }, []);
 
     return <AdminContentsComponent 
         navigation={navigation} 
