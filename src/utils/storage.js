@@ -1,9 +1,9 @@
 import storage from '@react-native-firebase/storage';
 import { messages } from './consts';
 
-export const uploadBase64 = async (string, filename, uploadedCountUpdater) =>{
+export const uploadBase64 = async (string, ext, uploadedCountUpdater) =>{
     try{
-        const ref = storage().ref(filename);
+        const ref = storage().ref(generateFilename(ext));
         const task = ref.putString(string, 'base64');
     
         task.on('state_changed', (snapshot)=>{
@@ -27,3 +27,6 @@ export const getFileUrl = async (path) =>{
     }
 }
 
+export const generateFilename = (ext)=>{
+    return `uploads/${ext}-${new Date().getTime()}-${Math.floor(Math.random() * 100)}-${new Date().getTime() + (Math.floor(Math.random() * 100))}.${ext}`;
+}

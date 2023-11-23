@@ -18,6 +18,7 @@ import { fileToBase64, getRemoteFile } from '../utils/general';
 import { showToast } from '../utils/toast';
 import { authRequest } from '../utils/network';
 import { getItem } from '../utils/asyncStorage';
+import { getFileUrl, uploadBase64 } from '../utils/storage';
 
 export default EditContentScreen = ({ navigation, route })=>{
     const { post } = route.params;
@@ -41,13 +42,40 @@ export default EditContentScreen = ({ navigation, route })=>{
     const [dept, setDept] = useState(null);
     const [deptLabel, setDeptLabel] = useState("");
 
+    const [attachmentUrl, setAttachmentUrl] = useState("");
+
+    const [attachmentText, setAttachmentText] = useState("Click to Change Attachment");
+    const [currentUploaded, setCurrentUploaded] = useState(null);
+
+    const handleUpload = async ()=>{
+        try{
+            setLoading(true);
+            let uploadedPath = await uploadBase64(attachmentBase64, attachmentExt, setCurrentUploaded);
+            setAttachmentUrl(uploadedPath);
+            setAttachmentText("Click to change attachment")
+            setLoading(false);
+            setCurrentUploaded(null);
+        }catch(error){
+            console.log(error);
+            showToast(toast_types.error, "Failed to upload attachment", 3);
+        }
+    }
+
+    useEffect(()=>{ 
+        if(currentUploaded !== null){
+            let newCurrentUploaded = Math.floor(currentUploaded)
+            setCurrentUploaded(newCurrentUploaded);
+            setAttachmentText(`Uploading attachment, ${currentUploaded}% completed.`);
+        }
+     }, [currentUploaded]);
+
     const handleSubmit = async ()=>{
         const id = post.id;
 
         const payload = { id, desc, level, faculty, dept };
 
         if(!attachment.first){
-            payload.attachment = attachmentBase64;
+            payload.attachment = attachmentUrl;
             payload.attachment_ext = attachmentExt;
         }
 
@@ -133,6 +161,7 @@ export default EditContentScreen = ({ navigation, route })=>{
             });
             setAttachmentBase64(data);
             setAttachmentExt(post.attachment_ext);
+            setAttachmentUrl(getFileUrl(post.attachment || ''));
         }).catch(err=>console.log(err));
     }
 
@@ -159,6 +188,12 @@ export default EditContentScreen = ({ navigation, route })=>{
             setAttachmentExt(ext);
         }
     }, [attachment]);
+
+    useEffect(()=>{
+        if(attachmentExt){
+            handleUpload(); 
+        }
+    }, [attachmentExt]);
 
     return <EditContentComponent 
         pageName="Edit Content"
@@ -188,5 +223,6 @@ export default EditContentScreen = ({ navigation, route })=>{
         handleSubmit={handleSubmit}
         attachment={attachment}
         attachmentExt={attachmentExt}
+        attachmentText={attachmentText}
     />
 }

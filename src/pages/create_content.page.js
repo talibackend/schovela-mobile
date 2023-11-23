@@ -44,7 +44,7 @@ export default CreateContentScreen = ({navigation})=>{
     const handleUpload = async ()=>{
         try{
             setLoading(true);
-            let uploadedPath = await uploadBase64(attachmentBase64, `test.${attachmentExt}`, setCurrentUploaded);
+            let uploadedPath = await uploadBase64(attachmentBase64, attachmentExt, setCurrentUploaded);
             setAttachmentUrl(uploadedPath);
             setAttachmentText("Click to change attachment")
             setLoading(false);
