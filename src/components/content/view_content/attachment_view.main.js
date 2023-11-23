@@ -7,13 +7,14 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { useEffect } from 'react';
 import Video from 'react-native-video';
 import { WebView } from 'react-native-webview';
+import Pdf from 'react-native-pdf';
 
 export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) => {
 
-    let url = `${IMAGE_BASE_URL}${path}`;
+    let url = path;
 
     useEffect(() => {
-        
+        // console.log(`https://docs.google.com/gview?embedded=true&url=${decodeURIComponent(url)}`);
     })
 
     return <Pressable onPress={() => { return setOpenFull(true) }}>
@@ -87,7 +88,9 @@ export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) 
                                     <Icon style={contentStyle.modal_close_button} size={20} name="arrow-back" />
                                 </View>
                             </Pressable>
-                            <WebView source={{ uri: `https://docs.google.com/gview?embedded=true&url=${url}` }} style={{ flex: 1 }} />
+                            <Pdf trustAllCerts={false} source={{ cache : true, uri : url }} onError={(error)=>{ console.log(error); }} style={{ flex : 1 }} />
+                            {/* <WebView source={{ uri: `https://docs.google.com/gview?embedded=true&url=${url}` }} style={{ flex: 1 }} /> */}
+                            {/* <WebView source={{ uri: `https://docs.google.com/gview?embedded=true&url=${url}` }} style={{ flex: 1 }} /> */}
                         </Modal>
                     </>
                 : null

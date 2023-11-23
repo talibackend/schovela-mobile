@@ -47,6 +47,10 @@ export default EditContentScreen = ({ navigation, route })=>{
     const [attachmentText, setAttachmentText] = useState("Click to Change Attachment");
     const [currentUploaded, setCurrentUploaded] = useState(null);
 
+    useEffect(()=>{
+        console.log(attachmentUrl);
+    }, [attachmentUrl]);
+
     const handleUpload = async ()=>{
         try{
             setLoading(true);
@@ -161,7 +165,6 @@ export default EditContentScreen = ({ navigation, route })=>{
             });
             setAttachmentBase64(data);
             setAttachmentExt(post.attachment_ext);
-            setAttachmentUrl(getFileUrl(post.attachment || ''));
         }).catch(err=>console.log(err));
     }
 

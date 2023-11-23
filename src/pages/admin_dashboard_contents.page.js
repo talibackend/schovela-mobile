@@ -209,6 +209,7 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
             setPosts([]);
             setLoading(true);
             setAllLoaded(false);
+            loadInfos();
         });
     
         return () => {
