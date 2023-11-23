@@ -72,6 +72,7 @@ export const screenNames = {
 export const api_routes = {
     signup : '/auth/create',
     verify_otp : '/auth/verify',
+    resend_otp : '/auth/resend',
     update_user_info : '/user/data',
     login : '/auth/login',
     forgot_password : '/auth/forgot',

@@ -44,12 +44,29 @@ export default SetPasswordScreen = ({navigation})=>{
         setLoading(false);
     }
 
+    const resendOtpHandler = async ()=>{
+        try{
+            setLoading(true);
+            const request = await authRequest(request_methods.PATCH, api_routes.resend_otp);
+            if(typeof(request) == "string"){
+                showToast(toast_types.error, request);
+                setLoading(false);
+                return;
+            }
+        }catch(error){
+            console.log(error);
+            showToast(toast_types.error, error);
+        }
+        setLoading(false);
+    }
+
     return <SetPasswordComponent 
             navigation={navigation} 
             setOtp={setOtp} 
             setPassword={setPassword} 
             setCPassword={setCPassword}
             btnHandler={setPasswordFunction}
+            resendOtpHandler={resendOtpHandler}
             loading={loading}
         />
 }

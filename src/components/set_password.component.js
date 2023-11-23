@@ -5,7 +5,7 @@ import SetPasswordHeader from './set_password/set_password.header';
 import SetpasswordMain from './set_password/set_password.main';
 
 
-export default SetPasswordComponent = ({navigation, setOtp, setPassword, setCPassword, btnHandler, loading})=>{
+export default SetPasswordComponent = ({navigation, resendOtpHandler, setOtp, setPassword, setCPassword, btnHandler, loading})=>{
     return <View style={[appStyle.app_container, loginStyle.login_container]}>
         <ScrollView>
             <SetPasswordHeader />
@@ -16,6 +16,7 @@ export default SetPasswordComponent = ({navigation, setOtp, setPassword, setCPas
                 setPassword={setPassword} 
                 btnHandler={btnHandler}
                 loading={loading}
+                resendOtpHandler={resendOtpHandler}
             />
         </ScrollView>
     </View>;

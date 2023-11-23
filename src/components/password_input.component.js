@@ -9,11 +9,11 @@ const PasswordInput = ({ stateUpdater, style, placeholder }) => {
     const handlePasswordInput = (value) => {
         let formerPass = password;
         if(value.length > password.length){
-            if((value.length - password.length) == 1){
+            // if((value.length - password.length) == 1){
                 formerPass += value[value.length - 1];
-            }else{
-                formerPass += value;
-            }
+            // }else{
+            //     formerPass += value;
+            // }
         }else{
             formerPass = formerPass.split("");
             formerPass.pop();
