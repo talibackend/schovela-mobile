@@ -105,6 +105,9 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
                 setDeptLabel(user_depts(faculty)[0].label);
             }
         }
+        if(!faculty){
+            setDept(null);
+        }
     }, [faculty])
 
     useEffect(() => {
