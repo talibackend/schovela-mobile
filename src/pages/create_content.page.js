@@ -38,27 +38,37 @@ export default CreateContentScreen = ({navigation})=>{
 
     const [attachmentUrl, setAttachmentUrl] = useState("");
 
-    const [uploading, setUploading] = useState(false);
     const [attachmentText, setAttachmentText] = useState("Click to Upload Attachment");
-    const [currentUploaded, setCurrentUploaded] = useState(0);
+    const [currentUploaded, setCurrentUploaded] = useState(null);
 
     const handleUpload = async ()=>{
-        console.log(attachmentBase64);
-        console.log(attachmentExt);
-        console.log("Hello world, we will upload here.")
-        let uploadedPath = await uploadBase64(attachmentBase64, `test.${attachmentExt}`, setCurrentUploaded);
-        setAttachmentUrl(uploadedPath);
-        console.log(uploadedPath);
+        try{
+            setLoading(true);
+            let uploadedPath = await uploadBase64(attachmentBase64, `test.${attachmentExt}`, setCurrentUploaded);
+            setAttachmentUrl(uploadedPath);
+            setAttachmentText("Click to change attachment")
+            setLoading(false);
+            setCurrentUploaded(null);
+        }catch(error){
+            console.log(error);
+            showToast(toast_types.error, "Failed to upload attachment", 3);
+        }
     }
 
-    useEffect(()=>{ console.log(currentUploaded); }, [currentUploaded]);
+    useEffect(()=>{ 
+        if(currentUploaded !== null){
+            let newCurrentUploaded = Math.floor(currentUploaded)
+            setCurrentUploaded(newCurrentUploaded);
+            setAttachmentText(`Uploading attachment, ${currentUploaded}% completed.`);
+        }
+     }, [currentUploaded]);
 
     const handleSubmit = async ()=>{
         if(!title || !desc || !attachmentBase64){
             return showToast(toast_types.error, "Only level, faculty and department are allowed to be optional.");
         }
 
-        const payload = { title, desc, attachment : attachmentBase64, attachment_ext : attachmentExt };
+        const payload = { title, desc, attachment : attachmentUrl, attachment_ext : attachmentExt };
 
         if(level){
             payload.level = level;
@@ -112,11 +122,18 @@ export default CreateContentScreen = ({navigation})=>{
                     return;
                 }
             }
-            fileToBase64(attachment).then(data=>{ setAttachmentBase64(data); }).catch(err=>console.log(err));
-            setAttachmentExt(ext);
-            handleUpload();
+            fileToBase64(attachment).then(data=>{ 
+                setAttachmentBase64(data);
+                setAttachmentExt(ext);
+            }).catch(err=>console.log(err));
         }
     }, [attachment]);
+
+    useEffect(()=>{
+        if(attachmentExt){
+            handleUpload(); 
+        }
+    }, [attachmentExt]);
 
     useEffect(() => {
         for (let i = 0; i < user_levels.length; i++) {
@@ -170,5 +187,6 @@ export default CreateContentScreen = ({navigation})=>{
         handleSubmit={handleSubmit}
         attachment={attachment}
         attachmentExt={attachmentExt}
+        attachmentText={attachmentText}
     />
 }

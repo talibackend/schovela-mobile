@@ -7,10 +7,8 @@ export const uploadBase64 = async (string, filename, uploadedCountUpdater) =>{
         const task = ref.putString(string, 'base64');
     
         task.on('state_changed', (snapshot)=>{
-            console.log(snapshot.bytesTransferred);
-            console.log(snapshot.totalBytes);
-            let percent = Math.ceil(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            uploadedCountUpdater(percent != "NaN" ? percent : 0);
+            let percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            uploadedCountUpdater(percent);
         });
         await task;
         return await ref.getDownloadURL();

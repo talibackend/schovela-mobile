@@ -36,7 +36,8 @@ export default CreateContentMain = ({
     handleSubmit,
     attachment,
     attachmentExt,
-    pageName
+    pageName,
+    attachmentText
 }) => {
     
     const selectAttachment = async () => {
@@ -103,7 +104,7 @@ export default CreateContentMain = ({
             }
             <View style={contentStyle.create_content_upload_section}>
                 <Pressable onPress={() => { return selectAttachment(); }}>
-                    <Text style={contentStyle.description}>Click to Upload Attachment</Text>
+                    <Text style={contentStyle.description}>{attachmentText}</Text>
                 </Pressable>
             </View>
             <LoginButton name={ pageName == "Edit Content" ? "Update" : "Create" } loading={loading} action={() => { handleSubmit(); }} />

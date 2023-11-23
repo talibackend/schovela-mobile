@@ -31,6 +31,7 @@ export default CreateContentComponent = ({
     attachment,
     attachmentExt,
     pageName,
+    attachmentText
 }) => {
     return <View style={appStyle.app_container}>
         <AdminHeader navigation={navigation} backButton={true} name={pageName ? pageName : "Create Content"} />
@@ -63,6 +64,7 @@ export default CreateContentComponent = ({
             attachment={attachment}
             attachmentExt={attachmentExt}
             pageName={pageName}
+            attachmentText={attachmentText}
         />
     </View>
 }
