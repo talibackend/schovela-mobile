@@ -14,6 +14,7 @@ import {
 import { fileToBase64 } from '../utils/general';
 import { showToast } from '../utils/toast';
 import { authRequest } from '../utils/network';
+import { uploadBase64 } from '../utils/storage';
 
 export default CreateContentScreen = ({navigation})=>{
     const [title, setTitle] = useState("");
@@ -34,6 +35,23 @@ export default CreateContentScreen = ({navigation})=>{
     const [deptOpen, setDeptOpen] = useState(false);
     const [dept, setDept] = useState(null);
     const [deptLabel, setDeptLabel] = useState("");
+
+    const [attachmentUrl, setAttachmentUrl] = useState("");
+
+    const [uploading, setUploading] = useState(false);
+    const [attachmentText, setAttachmentText] = useState("Click to Upload Attachment");
+    const [currentUploaded, setCurrentUploaded] = useState(0);
+
+    const handleUpload = async ()=>{
+        console.log(attachmentBase64);
+        console.log(attachmentExt);
+        console.log("Hello world, we will upload here.")
+        let uploadedPath = await uploadBase64(attachmentBase64, `test.${attachmentExt}`, setCurrentUploaded);
+        setAttachmentUrl(uploadedPath);
+        console.log(uploadedPath);
+    }
+
+    useEffect(()=>{ console.log(currentUploaded); }, [currentUploaded]);
 
     const handleSubmit = async ()=>{
         if(!title || !desc || !attachmentBase64){
@@ -96,7 +114,7 @@ export default CreateContentScreen = ({navigation})=>{
             }
             fileToBase64(attachment).then(data=>{ setAttachmentBase64(data); }).catch(err=>console.log(err));
             setAttachmentExt(ext);
-
+            handleUpload();
         }
     }, [attachment]);
 
