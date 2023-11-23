@@ -182,6 +182,8 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
             setPosts([]);
             setLoading(true);
             loadInfos(page);
+        }else{
+            setPosts([]);
         }
     }, [filterOpen])
 
