@@ -31,14 +31,21 @@ export default LoginScreen = ({navigation})=>{
                 setLoading(false);
                 return;
             }
-            await setItem(storageKeyNames.user, JSON.stringify({...request.user}));
             await setItem(storageKeyNames.accessToken, request.bearerTokens);
             showToast(toast_types.success, messages.LOGIN_SUCCESSFUL, 3);
-            if(request.user.role == user_roles.admin){
-                navigation.navigate(screenNames.admin_dashboard);
+
+            if(request.user){
+                await setItem(storageKeyNames.user, JSON.stringify({...request.user}));
+                if(request.user.role == user_roles.admin){
+                    navigation.navigate(screenNames.admin_dashboard);
+                }else{
+                    navigation.navigate(screenNames.user_home, { allowBack : false, title : "Home" });
+                }
             }else{
-                navigation.navigate(screenNames.user_home, { allowBack : false, title : "Home" });
+                showToast(toast_types.success, "Please verify your account.");
+                navigation.navigate(screenNames.set_password);
             }
+
         }catch(error){
             console.log(error);
             showToast(toast_types.error, error)
