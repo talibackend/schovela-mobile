@@ -12,7 +12,7 @@ export const fileToBase64 = async (file) => {
 }
 
 export const getRemoteFile = async (path)=>{
-    let fullPath = `${IMAGE_BASE_URL}${path}`;
+    let fullPath = path;
 
     try{
         const result = await RNFetchBlob.fetch('GET', fullPath);

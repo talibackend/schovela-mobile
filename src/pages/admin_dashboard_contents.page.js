@@ -121,7 +121,7 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
 
 
     const loadInfos = async (page2 = 0) => {
-        if (!allLoaded) {
+        if (!allLoaded || page2 === 0) {
             let url = `${api_routes.create_content}?offset=${page2}`;
             let filters = {
                 level,
@@ -155,7 +155,11 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
                     setLoading(false);
                     return;
                 }
-                setPosts([...posts, ...request.post]);
+                if(page2 == 0){
+                    setPosts([...request.post]);
+                }else{
+                    setPosts([...posts, ...request.post]);
+                }
                 if (request.post.length < 20) {
                     setAllLoaded(true);
                 }
@@ -191,15 +195,19 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
     }, [filterOpen])
 
     useEffect(() => {
-        loadInfos(page);
-    }, [allLoaded, page]);
+        if(page !== 0){
+            loadInfos(page);
+        }
+    }, [page]);
 
     useEffect(() => {
-        setPage(0);
-        setAllLoaded(false);
-        setPosts([]);
-        setLoading(true);
-        loadInfos(page);
+        if(search){
+            setPage(0);
+            setAllLoaded(false);
+            setPosts([]);
+            setLoading(true);
+            loadInfos(page);
+        }
     }, [search]);
     
     useEffect(() => {
@@ -208,14 +216,13 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
             setAllLoaded(false);
             setPosts([]);
             setLoading(true);
-            setAllLoaded(false);
-            loadInfos();
+            loadInfos(0);
         });
     
         return () => {
           unsubscribe();
         };
-      }, [navigation, isFocused]);
+      }, [isFocused]);
 
     return <AdminContentsComponent
         navigation={navigation}

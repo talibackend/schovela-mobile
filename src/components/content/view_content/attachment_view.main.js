@@ -1,21 +1,14 @@
 import { View, Text, Image, Pressable, Modal } from 'react-native';
 import contentStyle from '../../../styles/content.style';
 import { attachment_exts } from '../../../utils/consts';
-import { IMAGE_BASE_URL } from "@env";
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Icon from "react-native-vector-icons/Ionicons";
-import { useEffect } from 'react';
 import Video from 'react-native-video';
-import { WebView } from 'react-native-webview';
 import Pdf from 'react-native-pdf';
 
 export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) => {
 
     let url = path;
-
-    useEffect(() => {
-        // console.log(`https://docs.google.com/gview?embedded=true&url=${decodeURIComponent(url)}`);
-    })
 
     return <Pressable onPress={() => { return setOpenFull(true) }}>
         <View style={[contentStyle.create_content_upload_section, contentStyle.view_content_attachment_preview]}>

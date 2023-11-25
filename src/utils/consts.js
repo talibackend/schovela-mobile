@@ -197,8 +197,6 @@ export const attachment_exts = {
         "wmv"
     ],
     docs : [
-        "doc",
-        "docx",
         "pdf"
     ]
 }

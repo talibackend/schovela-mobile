@@ -1,5 +1,5 @@
 import storage from '@react-native-firebase/storage';
-import { messages } from './consts';
+import { attachment_exts, messages } from './consts';
 
 export const uploadBase64 = async (string, ext, uploadedCountUpdater) =>{
     try{

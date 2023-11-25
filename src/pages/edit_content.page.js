@@ -193,10 +193,13 @@ export default EditContentScreen = ({ navigation, route })=>{
     }, [attachment]);
 
     useEffect(()=>{
-        if(attachmentExt){
+        console.log(attachment);
+        console.log(attachmentExt);
+        console.log(attachmentBase64);
+        if(attachmentExt && !attachment.first && attachmentBase64 !== ""){
             handleUpload(); 
         }
-    }, [attachmentExt]);
+    }, [attachmentExt, attachment, attachmentBase64]);
 
     return <EditContentComponent 
         pageName="Edit Content"

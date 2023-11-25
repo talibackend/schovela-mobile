@@ -9,7 +9,8 @@ import {
     api_routes, 
     toast_types, 
     screenNames,
-    request_methods
+    request_methods,
+    attachment_exts
 } from '../utils/consts';
 import { fileToBase64 } from '../utils/general';
 import { showToast } from '../utils/toast';
@@ -122,6 +123,11 @@ export default CreateContentScreen = ({navigation})=>{
                     return;
                 }
             }
+
+            if(attachment_exts.docs.includes(ext)){
+                ext = 'pdf';
+            }
+
             fileToBase64(attachment).then(data=>{ 
                 setAttachmentBase64(data);
                 setAttachmentExt(ext);
