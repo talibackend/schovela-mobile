@@ -160,7 +160,7 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
                 }else{
                     setPosts([...posts, ...request.post]);
                 }
-                if (request.post.length < 20) {
+                if (request.post.length < 20 && !search) {
                     setAllLoaded(true);
                 }
             } catch (error) {
@@ -201,13 +201,11 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
     }, [page]);
 
     useEffect(() => {
-        if(search){
-            setPage(0);
-            setAllLoaded(false);
-            setPosts([]);
-            setLoading(true);
-            loadInfos(page);
-        }
+        setPage(0);
+        setAllLoaded(false);
+        setPosts([]);
+        setLoading(true);
+        loadInfos(page);
     }, [search]);
     
     useEffect(() => {
@@ -224,6 +222,14 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
         };
       }, [isFocused]);
 
+    const handleRefresh = ()=>{
+        setPage(0);
+        setAllLoaded(false);
+        setPosts([]);
+        setLoading(true);
+        loadInfos(0);
+    }
+
     return <AdminContentsComponent
         navigation={navigation}
         posts={posts}
@@ -236,6 +242,6 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
         search={search}
         setSearch={setSearch}
         allowBack={allowBack}
-        loadHandler={loadInfos}
+        loadHandler={handleRefresh}
     />
 }
