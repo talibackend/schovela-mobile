@@ -33,12 +33,12 @@ export default ViewContentMain = ({ loadHandler, views, hideLoading, handleHideU
                         <Text style={contentStyle.description}>{views}</Text>
                     </View>
                     <View style={contentStyle.stat_each_section}>
-                        <Icon style={contentStyle.stat_icons} size={20} name="share-outline" />
-                    </View>
-                    {/* <View style={contentStyle.stat_each_section}>
                         <Icon style={contentStyle.stat_icons} size={20} name="download-outline" />
                         <Text style={contentStyle.description}>20</Text>
-                    </View> */}
+                    </View>
+                    <View style={contentStyle.stat_each_section}>
+                        <Icon style={contentStyle.stat_icons} size={20} name="share-outline" />
+                    </View>
                 </View>
                 <View>
                     <AdminUserEachCard
