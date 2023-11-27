@@ -14,6 +14,7 @@ import CreateContentScreen from './pages/create_content.page';
 import ViewContentScreen from './pages/view_content.page';
 import EditContentScreen from './pages/edit_content.page';
 import UserProfileScreen from './pages/user_profile.page';
+import DownloadsScreen from './pages/downloads.page';
 // import ForgotPasswordSuccessScreen from './pages/forgot_password_success.page';
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -57,6 +58,7 @@ const Scafffold = ()=>{
                         <Stack.Screen name={screenNames.view_content} options={{ headerShown : false }} component={ViewContentScreen} />
                         <Stack.Screen name={screenNames.edit_content} options={{ headerShown : false }} component={EditContentScreen} />
                         <Stack.Screen name={screenNames.user_profile} options={{ headerShown : false }} component={UserProfileScreen} />
+                        <Stack.Screen name={screenNames.downloads} options={{ headerShown : false }} component={DownloadsScreen} />
                     </Stack.Navigator>
                 </NavigationContainer>
                 <Toast />
