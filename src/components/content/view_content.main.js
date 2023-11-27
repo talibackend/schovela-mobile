@@ -7,7 +7,6 @@ import AdminUserEachCard from '../admin/admin_users/admin_users.each_card';
 import ContentAdminActionButtons from './view_content/admin_actions.main';
 import AttachmentViewComponent from './view_content/attachment_view.main';
 import { RefreshControl } from "react-native";
-import { getFileUrl } from "../../utils/storage";
 
 export default ViewContentMain = ({ loadHandler, views, hideLoading, handleHideUnhide, navigation, post, loading, openFull, setOpenFull, hasPrivilege })=>{
 

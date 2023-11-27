@@ -1,8 +1,7 @@
 import { View, Text, Pressable } from 'react-native';
 import adminStyle from '../../styles/admin.style';
 import Icon from "react-native-vector-icons/Ionicons";
-import { deleteItem } from '../../utils/asyncStorage';
-import { screenNames, storageKeyNames } from '../../utils/consts';
+import { screenNames } from '../../utils/consts';
 
 export default AdminHeaderComponent = ({ navigation, backButton, name }) => {
     return <View style={[adminStyle.header_container]}>
@@ -12,13 +11,8 @@ export default AdminHeaderComponent = ({ navigation, backButton, name }) => {
         
         <View style={adminStyle.header_title}><Text style={adminStyle.header_title_text}>{name}</Text></View>
         <View>
-            <Pressable onPress={async ()=>{ 
-                await deleteItem(storageKeyNames.accessToken);
-                await deleteItem(storageKeyNames.refreshToken);
-                await deleteItem(storageKeyNames.user);
-                navigation.navigate(screenNames.login);
-             }}>
-                <Icon size={400} style={adminStyle.header_back_icon} name="log-out-outline" />
+            <Pressable onPress={()=>{ navigation.navigate(screenNames.user_profile); }}>
+                <Icon size={400} style={[adminStyle.header_back_icon, adminStyle.header_user_icon]} name="person-circle" />
             </Pressable>
         </View>
     </View>;

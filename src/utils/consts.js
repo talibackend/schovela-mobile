@@ -67,6 +67,8 @@ export const screenNames = {
     admin_dashboard_users : 'admin/users',
     admin_dashboard_user_info : 'admin/user_info',
     admin_dashboard_contents : 'admin/contents',
+    user_profile : 'user_profile',
+    downloads : 'downloads'
 }
 
 export const api_routes = {

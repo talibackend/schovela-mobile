@@ -17,6 +17,9 @@ export default StyleSheet.create({
         fontSize: 25,
         color : 'white'
     },
+    header_user_icon : {
+        fontSize : 35
+    },  
     header_title: {
         flex: 11,
         alignItems: 'center'
@@ -198,5 +201,10 @@ export default StyleSheet.create({
     },
     each_not_live_card : {
         backgroundColor : 'grey'
+    },
+    logout_button : {
+        backgroundColor : 'transparent',
+        color : 'white',
+        fontSize : 25
     }
 });
