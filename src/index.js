@@ -26,6 +26,8 @@ import { navigationRef } from "./utils/navigate";
 import Ionicons from 'react-native-vector-icons/Ionicons'
 Ionicons.loadFont()
 
+import './db/post';
+
 const Stack = createNativeStackNavigator();
 
 const MyTheme = {
