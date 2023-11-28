@@ -22,7 +22,7 @@ instance.transaction(async (trx) => {
     );
 });
 
-export const createPost = async (payload, callback) => {
+export const createPost = (payload, callback, errorCallback) => {
     instance.executeSql(
         `INSERT INTO ${tableName}(id, title, desc, attachment, attachment_ext)VALUES(?, ?, ?, ?, ?)`,
         [
@@ -33,6 +33,24 @@ export const createPost = async (payload, callback) => {
             payload.attachment_ext
         ],
         (result)=>{ callback(result); },
-        (err)=>{ callback(err); }
+        (err)=>{ errorCallback(err); }
     )
+}
+
+export const deletePost = (id, callback, errorCallback)=>{
+    instance.executeSql(
+        `DELETE FROM ${tableName} WHERE id=?`,
+        [id],
+        (result)=>{ callback(result) },
+        (err)=>{ errorCallback(err) }
+    );
+}
+
+export const getCount = (callback, errorCallback)=>{
+    instance.executeSql(
+        `SELECT COUNT(*) AS row_count FROM ${tableName}`,
+        [],
+        (result)=>{ callback(result.rows.item(0).row_count); },
+        (err)=>{ errorCallback(err); }
+    );
 }
