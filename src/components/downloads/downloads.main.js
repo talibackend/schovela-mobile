@@ -1,44 +1,48 @@
-import { Pressable, View, Text } from "react-native";
+import { View, ScrollView } from "react-native";
 import adminStyle from "../../styles/admin.style";
-import EachContentCard from "../admin/admin_contents/admin_contents.each_card";
+import AdminContentEachCard from "../admin/admin_contents/admin_contents.each_card";
+import { attachment_exts } from "../../utils/consts";
 
-export default DownloadsMainComponent = ({ navigation })=>{
+export default DownloadsMainComponent = ({ navigation, posts }) => {
+
+    const data = posts.map((each) => {
+        let image = '';
+        if (attachment_exts.image.includes(each.attachment_ext)) {
+            image = require('../../../assets/static/image.png');
+        } else {
+            if (attachment_exts.video.includes(each.attachment_ext)) {
+                image = require('../../../assets/static/play.png');
+            } else {
+                image = require('../../../assets/static/file.png');
+            }
+        }
+        return {
+            id: each.id,
+            title: each.title,
+            poster: `${each.faculty ? each.faculty + " | " : "All Faculties | "} ${each.dept ? each.dept + " |" : ""} ${each.level ? each.level + "L" : "All Levels"}`,
+            moment_posted: (new Date(`${each.createdAt}`)).toDateString(),
+            image,
+            live: true
+        }
+    });
+
     return <View style={adminStyle.main_container}>
-            <EachContentCard 
-                id={1}
-                title="Test"
-                poster="Femi Fatokun"
-                image={require('../../../assets/static/file.png')}
-                moment_posted="27 Nov, 2023"
-                navigation={navigation}
-                live={true}
-            />
-            <EachContentCard 
-                id={1}
-                title="Test"
-                poster="Femi Fatokun"
-                image={require('../../../assets/static/file.png')}
-                moment_posted="27 Nov, 2023"
-                navigation={navigation}
-                live={true}
-            />
-            <EachContentCard 
-                id={1}
-                title="Test"
-                poster="Femi Fatokun"
-                image={require('../../../assets/static/file.png')}
-                moment_posted="27 Nov, 2023"
-                navigation={navigation}
-                live={true}
-            />
-            <EachContentCard 
-                id={1}
-                title="Test"
-                poster="Femi Fatokun"
-                image={require('../../../assets/static/file.png')}
-                moment_posted="27 Nov, 2023"
-                navigation={navigation}
-                live={true}
-            />
+        <ScrollView>
+        {
+            data.map((datum, index) => {
+                return <AdminContentEachCard
+                    title={datum.title}
+                    poster={datum.poster}
+                    moment_posted={datum.moment_posted}
+                    navigation={navigation}
+                    image={datum.image}
+                    id={datum.id}
+                    key={`admin_each_content_${index}`}
+                    live={datum.live}
+                    local={true}
+                />
+            })
+        }
+        </ScrollView>
     </View>
 }

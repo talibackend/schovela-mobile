@@ -3,9 +3,9 @@ import AdminHeader from "./admin/admin.header"
 import { View } from "react-native"
 import DownloadsMain from "./downloads/downloads.main";
 
-export default DownloadComponent = ({ navigation })=>{
+export default DownloadComponent = ({ navigation, posts })=>{
     return <View style={appStyle.app_container}>
         <AdminHeader navigation={navigation} backButton={true} name="Downloads" />
-        <DownloadsMain navigation={navigation} />
+        <DownloadsMain navigation={navigation} posts={posts} />
     </View>
 }

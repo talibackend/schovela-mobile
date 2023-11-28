@@ -13,7 +13,8 @@ instance.transaction(async (trx) => {
         attachment_ext VARCHAR(50),
         level VARCHAR(20),
         faculty TEXT,
-        dept TEXT
+        dept TEXT,
+        createdAt DATETIME
     );`,
         [],
         (trx, results) => {
@@ -27,7 +28,7 @@ instance.transaction(async (trx) => {
 
 export const createPost = async (payload) => {
     return await instance.executeSql(
-        `INSERT INTO ${tableName}(id, title, desc, attachment, attachment_ext, level, faculty, dept)VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO ${tableName}(id, title, desc, attachment, attachment_ext, level, faculty, dept, createdAt)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
             payload.id,
             payload.title,
@@ -36,7 +37,8 @@ export const createPost = async (payload) => {
             payload.attachment_ext,
             payload.level,
             payload.faculty,
-            payload.dept
+            payload.dept,
+            `${(new Date()).toDateString()} ${(new Date()).toTimeString()}`
         ]
     )
 }
@@ -50,11 +52,11 @@ export const deletePost = async (id)=>{
 
 export const getAllPosts = async ()=>{
     let result = await instance.executeSql(
-        `SELECT * FROM ${tableName} ORDER BY id DESC`,
+        `SELECT * FROM ${tableName} ORDER BY createdAt DESC`,
         []
     );
 
-    let length = result.rows.length;
+    let length = result[0].rows.length;
     let data = [];
     for(let i = 0; i < length; i++){
         data.push(result[0].rows.item(i))
