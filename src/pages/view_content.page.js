@@ -43,6 +43,7 @@ export default ViewContentScreen = ({ navigation, route })=>{
                     }
                 }
             }else{
+                showToast(toast_types.error, "You are viewing the offline version of this content.")
                 try{
                     setPost(await getPostById(id));
                 }catch(error){

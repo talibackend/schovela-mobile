@@ -10,6 +10,13 @@ export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) 
 
     let url = path;
 
+    const onDocLoading = (percent)=>{
+        return <View style={{ justifyContent : "center", alignItems : "center" }}>
+            <Text style={{ color : 'black', fontSize : 20 }}>Loading attachment, {Math.ceil(percent * 100)}% completed</Text>
+            <Text style={{ color : 'black', fontSize : 15 }}>Don't worry, we only do this once.</Text>
+        </View>
+    }
+
     return <Pressable onPress={() => { return setOpenFull(true) }}>
         <View style={[contentStyle.create_content_upload_section, contentStyle.view_content_attachment_preview]}>
 
@@ -70,9 +77,15 @@ export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) 
             {
                 attachment_exts.docs.includes(ext) ?
                     <>
-                        <View style={{ justifyContent : "center", alignItems : "center" }}>
-                            <Text style={{ fontSize : 15, color : "black" }} >Preview Not Available</Text>
-                            <Text style={{ fontSize : 25, fontWeight : 'bold', color : "black" }} >Click to view</Text>
+                        <View style={{ flex : 1 }}>
+                            <Pdf 
+                                renderActivityIndicator={(percent)=>{ return onDocLoading(percent) }} 
+                                trustAllCerts={false} 
+                                singlePage={true} 
+                                source={{ cache : true, uri : url }} 
+                                onError={(error)=>{ console.log(error); }} 
+                                style={{ flex : 1 }} 
+                            />
                         </View>
                         <Modal visible={openFull}>
                             <Pressable style={contentStyle.modal_close_pressable} onPress={() => { return setOpenFull(false); }}>
@@ -81,9 +94,13 @@ export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) 
                                     <Icon style={contentStyle.modal_close_button} size={20} name="arrow-back" />
                                 </View>
                             </Pressable>
-                            <Pdf trustAllCerts={false} source={{ cache : true, uri : url }} onError={(error)=>{ console.log(error); }} style={{ flex : 1 }} />
-                            {/* <WebView source={{ uri: `https://docs.google.com/gview?embedded=true&url=${url}` }} style={{ flex: 1 }} /> */}
-                            {/* <WebView source={{ uri: `https://docs.google.com/gview?embedded=true&url=${url}` }} style={{ flex: 1 }} /> */}
+                            <Pdf 
+                                renderActivityIndicator={(percent)=>{ return onDocLoading(percent) }} 
+                                trustAllCerts={false} 
+                                source={{ cache : true, uri : url }} 
+                                onError={(error)=>{ console.log(error); }} 
+                                style={{ flex : 1 }} 
+                            />
                         </Modal>
                     </>
                 : null
