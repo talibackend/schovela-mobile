@@ -21,7 +21,7 @@ export default ViewContentMain = ({ local, downloading, handleDownload, loadHand
                     <ContentAdminActionButtons hideLoading={hideLoading} navigation={navigation} post={post} handleHideUnhide={handleHideUnhide} /> : null
                 }
                 <Text style={contentStyle.view_content_title}>{post.title}</Text>
-                <AttachmentViewComponent path={post.attachment} ext={post.attachment_ext} openFull={openFull} setOpenFull={setOpenFull} />
+                <AttachmentViewComponent local={local} path={post.attachment} ext={post.attachment_ext} openFull={openFull} setOpenFull={setOpenFull} />
                 <Text style={contentStyle.description}>{post.desc}</Text>
                 {
                     !local ? 

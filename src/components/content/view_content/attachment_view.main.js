@@ -5,10 +5,12 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import Icon from "react-native-vector-icons/Ionicons";
 import Video from 'react-native-video';
 import Pdf from 'react-native-pdf';
+import { fileToBase64 } from '../../../utils/general';
+import { useEffect } from 'react';
 
-export default AttachmentViewComponent = ({ path, ext, openFull, setOpenFull }) => {
+export default AttachmentViewComponent = ({ local, path, ext, openFull, setOpenFull }) => {
 
-    let url = path;
+    let url = local && attachment_exts.image.includes(ext) ? `file://${path}` : path;
 
     const onDocLoading = (percent)=>{
         return <View style={{ justifyContent : "center", alignItems : "center" }}>
