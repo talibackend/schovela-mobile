@@ -50,10 +50,19 @@ export const deletePost = async (id)=>{
     );
 }
 
-export const getAllPosts = async ()=>{
+export const getAllPosts = async (search)=>{
+
+    let query = `SELECT * FROM ${tableName} ORDER BY createdAt DESC`;
+    let params = [];
+
+    if(search){
+        query = `SELECT * FROM ${tableName} WHERE title LIKE ? ORDER BY createdAt DESC`;
+        params = [`%${search}%`];
+    }
+
     let result = await instance.executeSql(
-        `SELECT * FROM ${tableName} ORDER BY createdAt DESC`,
-        []
+        query,
+        params
     );
 
     let length = result[0].rows.length;

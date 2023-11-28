@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+    download_search_input : {
+        width : '98%'
+    },
     header_container: {
         backgroundColor : 'black',
         flex: 0.9,

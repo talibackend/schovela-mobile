@@ -1,9 +1,10 @@
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, TextInput } from "react-native";
 import adminStyle from "../../styles/admin.style";
+import loginStyle from "../../styles/login.style";
 import AdminContentEachCard from "../admin/admin_contents/admin_contents.each_card";
 import { attachment_exts } from "../../utils/consts";
 
-export default DownloadsMainComponent = ({ navigation, posts }) => {
+export default DownloadsMainComponent = ({ navigation, posts, search, setSearch }) => {
 
     const data = posts.map((each) => {
         let image = '';
@@ -27,22 +28,27 @@ export default DownloadsMainComponent = ({ navigation, posts }) => {
     });
 
     return <View style={adminStyle.main_container}>
-        <ScrollView>
-        {
-            data.map((datum, index) => {
-                return <AdminContentEachCard
-                    title={datum.title}
-                    poster={datum.poster}
-                    moment_posted={datum.moment_posted}
-                    navigation={navigation}
-                    image={datum.image}
-                    id={datum.id}
-                    key={`admin_each_content_${index}`}
-                    live={datum.live}
-                    local={true}
-                />
-            })
-        }
-        </ScrollView>
+        <View>
+            <View style={adminStyle.filter_container}>
+                <TextInput value={search} onChangeText={(e)=>{ setSearch(e); }} placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_input, adminStyle.download_search_input]} placeholder="Search" />
+            </View>
+            <ScrollView>
+            {
+                data.map((datum, index) => {
+                    return <AdminContentEachCard
+                        title={datum.title}
+                        poster={datum.poster}
+                        moment_posted={datum.moment_posted}
+                        navigation={navigation}
+                        image={datum.image}
+                        id={datum.id}
+                        key={`admin_each_content_${index}`}
+                        live={datum.live}
+                        local={true}
+                    />
+                })
+            }
+            </ScrollView>
+        </View>
     </View>
 }
