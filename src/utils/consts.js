@@ -81,6 +81,7 @@ export const api_routes = {
     reset_password : '/auth/change/password',
     create_content : '/post',
     hide_content : '/post/hide-unhide',
+    update_download_count : '/post/download/',
     admin : {
         dashboard_info : '/admin/total/users',
         users : '/admin/users',

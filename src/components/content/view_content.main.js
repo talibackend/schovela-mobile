@@ -35,7 +35,7 @@ export default ViewContentMain = ({ local, downloading, handleDownload, loadHand
                             <Pressable onPress={ ()=>{ handleDownload(); } }>
                                 <View style={contentStyle.stat_each_section}>
                                     <Icon style={contentStyle.stat_icons} size={20} name="download-outline" />
-                                    <Text style={contentStyle.description}>20</Text>
+                                    <Text style={contentStyle.description}>{post.downloaded}</Text>
                                 </View>
                             </Pressable>
                         }

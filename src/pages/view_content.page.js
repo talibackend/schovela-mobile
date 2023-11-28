@@ -100,6 +100,7 @@ export default ViewContentScreen = ({ navigation, route })=>{
                 faculty : post.faculty,
                 dept : post.dept
             });
+            authRequest(request_methods.POST, `${api_routes.update_download_count}${post.id}`);
         }catch(error){
             console.log(error);
             showToast(toast_types.error, "Failed to download content, please try again.");
@@ -111,10 +112,6 @@ export default ViewContentScreen = ({ navigation, route })=>{
 
         return navigation.navigate(screenNames.downloads);
     }
-
-    useEffect(()=>{
-        loadInfos();
-    }, []);
 
 
     useEffect(() => {
