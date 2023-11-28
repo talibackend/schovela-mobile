@@ -13,7 +13,7 @@ import {
 } from "../utils/consts";
 import { showToast } from "../utils/toast";
 import { isCloseToBottom } from '../utils/scroll';
-import { useNavigation, useIsFocused } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 
 export default AdminDashboardContentsScreen = ({ navigation, route }) => {
     const { title, allowBack } = route.params || {};

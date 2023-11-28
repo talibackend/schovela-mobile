@@ -2,7 +2,7 @@
 import RNFetchBlob from "rn-fetch-blob";
 import { generateFilename } from "./storage";
 
-const customDir = RNFetchBlob.fs.dirs.DocumentDir + '/schovela-docs';
+const customDir = RNFetchBlob.fs.dirs.DocumentDir + '/schovela-docs/';
 
 export const deleteLocalFile = async (path)=>{
     try{

@@ -6,6 +6,7 @@ import { showToast } from "../utils/toast";
 import { getItem } from '../utils/asyncStorage';
 import { createPost, deletePost, getPostById } from '../db/post';
 import { deleteLocalFile, downloadFile } from '../utils/general';
+import { useIsFocused } from '@react-navigation/native';
 
 export default ViewContentScreen = ({ navigation, route })=>{
     const [post, setPost] = useState(null);
@@ -14,28 +15,39 @@ export default ViewContentScreen = ({ navigation, route })=>{
     const [openFull, setOpenFull] = useState(false);
     const [hasPrivilege, setHasPrivilege] = useState(false);
     const [views, setViews] = useState(null);
-    const { id } = route.params;
+    const { id, local } = route.params;
     const [downloading, setDownloading] = useState(false);
+    
+    const isFocused = useIsFocused();
 
 
     const loadInfos = async ()=>{
         try{
             setLoading(true);
-            let request = await authRequest(request_methods.GET, `${api_routes.create_content}/${id}`);
-            if(typeof(request) == "string"){
-                showToast(toast_types.error, request);
-                setLoading(false);
-                return;
-            }
-            setPost({...request.post});
-            setViews(request.views);
-            let localUser = JSON.parse(await getItem(storageKeyNames.user));
-
-            if(localUser.role === user_roles.admin){
-                setHasPrivilege(true);
-            }else{
-                if(localUser.id === request.post.UserId){
+            if(!local){
+                let request = await authRequest(request_methods.GET, `${api_routes.create_content}/${id}`);
+                if(typeof(request) == "string"){
+                    showToast(toast_types.error, request);
+                    setLoading(false);
+                    return;
+                }
+                setPost({...request.post});
+                setViews(request.total_views);
+                let localUser = JSON.parse(await getItem(storageKeyNames.user));
+    
+                if(localUser.role === user_roles.admin){
                     setHasPrivilege(true);
+                }else{
+                    if(localUser.id === request.post.UserId){
+                        setHasPrivilege(true);
+                    }
+                }
+            }else{
+                try{
+                    setPost(await getPostById(id));
+                }catch(error){
+                    console.log(error);
+                    showToast(toast_types.error, "Failed to load content.");
                 }
             }
         }catch(error){
@@ -77,7 +89,7 @@ export default ViewContentScreen = ({ navigation, route })=>{
         }
 
         try{
-            let localPath = await downloadFile(post.attachment);
+            let localPath = await downloadFile(post.attachment, post.attachment_ext);
             await createPost({
                 id : post.id,
                 title : post.title,
@@ -104,6 +116,17 @@ export default ViewContentScreen = ({ navigation, route })=>{
         loadInfos();
     }, []);
 
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            loadInfos();
+        });
+    
+        return () => {
+          unsubscribe();
+        };
+      }, [isFocused]);
+
     return <ViewContentComponent 
         navigation={navigation} 
         post={post}
@@ -117,5 +140,6 @@ export default ViewContentScreen = ({ navigation, route })=>{
         loadHandler={loadInfos}
         downloading={downloading}
         handleDownload={downloadContentHandler}
+        local={local}
     />
 }
