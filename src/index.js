@@ -26,6 +26,18 @@ import { navigationRef } from "./utils/navigate";
 import Ionicons from 'react-native-vector-icons/Ionicons'
 Ionicons.loadFont()
 
+import { createPost } from './db/post';
+
+const callbackHandler = (message)=>{ console.log(message); };
+
+createPost({
+  id : 1,
+  title : "Test",
+  desc : "Hello world",
+  attachment : "Test",
+  attachment_ext : "jpg"
+}, callbackHandler)
+
 const Stack = createNativeStackNavigator();
 
 const MyTheme = {
