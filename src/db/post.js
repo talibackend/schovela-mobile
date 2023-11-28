@@ -46,6 +46,32 @@ export const deletePost = (id, callback, errorCallback)=>{
     );
 }
 
+export const getAllPosts = (callback, errorCallback)=>{
+    instance.executeSql(
+        `SELECT * FROM ${tableName} ORDER BY id DESC`,
+        [],
+        (result)=>{ 
+            let length = result.rows.length;
+            let data = [];
+            for(let i = 0; i < length; i++){
+                data.push(result.rows.item(i))
+            }
+
+            callback(data);
+         },
+        (err)=>{ errorCallback(err) }
+    );
+}
+
+export const getPostById = (id, callback, errorCallback)=>{
+    instance.executeSql(
+        `SELECT * FROM ${tableName} WHERE id=?`,
+        [id],
+        (result)=>{ callback(result.rows.item(0) || null); },
+        (err)=>{ errorCallback(err) }
+    );
+}
+
 export const getCount = (callback, errorCallback)=>{
     instance.executeSql(
         `SELECT COUNT(*) AS row_count FROM ${tableName}`,
