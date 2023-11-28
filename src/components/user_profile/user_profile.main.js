@@ -5,9 +5,9 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { deleteItem } from '../../utils/asyncStorage';
 import { screenNames, storageKeyNames } from "../../utils/consts";
 
-export default UserProfileMainComponent = ({ navigation }) =>{
+export default UserProfileMainComponent = ({ navigation, downloadCount }) =>{
     return <View style={adminStyle.main_container}>
-        <AdminEachMenuCardComponent name="Downloads" link={screenNames.downloads} counts={0} navigation={navigation} />
+        <AdminEachMenuCardComponent name="Downloads" link={screenNames.downloads} counts={downloadCount} navigation={navigation} />
         <Pressable onPress={async ()=>{
             await deleteItem(storageKeyNames.accessToken);
             await deleteItem(storageKeyNames.refreshToken);
