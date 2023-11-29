@@ -27,7 +27,7 @@ export default DownloadsMainComponent = ({ navigation, posts, search, setSearch 
         }
     });
 
-    return <View style={adminStyle.main_container}>
+    return <View style={[adminStyle.main_container, { marginBottom : 70 }]}>
         <View>
             <View style={adminStyle.filter_container}>
                 <TextInput value={search} onChangeText={(e)=>{ setSearch(e); }} placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.search_input, adminStyle.download_search_input]} placeholder="Search" />
