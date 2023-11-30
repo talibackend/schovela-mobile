@@ -9,7 +9,9 @@
     "start": "react-native start --reset-cache",
     "test": "jest",
     "setup_ios": "cd ios && pod install",
-    "generate_debug_apk": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug"
+    "generate_debug_apk": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug",
+    "generate_release_apk" : "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-* && ./gradlew assembleRelease --no-daemon",
+    "generate_key" : "keytool -genkey -v -keystore release.keystore -alias your_key_alias -keyalg RSA -keysize 2048 -validity 10000 && mv release.keystore android/app"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
