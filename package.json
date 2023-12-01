@@ -10,8 +10,8 @@
     "test": "jest",
     "setup_ios": "cd ios && pod install",
     "generate_debug_apk": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug",
-    "generate_release_apk" : "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-* && ./gradlew assembleRelease --no-daemon",
-    "generate_key" : "keytool -genkey -v -keystore release.keystore -alias your_key_alias -keyalg RSA -keysize 2048 -validity 10000 && mv release.keystore android/app"
+    "generate_release_apk": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-* && ./gradlew assembleRelease && ./gradlew bundleRelease",
+    "generate_key": "keytool -genkey -v -keystore release.keystore -alias your_key_alias -keyalg RSA -keysize 2048 -validity 10000 && mv release.keystore android/app"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
@@ -41,6 +41,7 @@
     "react-native-modal-selector": "^2.1.2",
     "react-native-pdf": "^6.7.3",
     "react-native-reanimated": "~2.14.4",
+    "react-native-rename": "^3.2.13",
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "^3.20.0",
     "react-native-shadow": "^1.2.2",
