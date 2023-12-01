@@ -1,6 +1,6 @@
 {
   "name": "schovela",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -10,8 +10,9 @@
     "test": "jest",
     "setup_ios": "cd ios && pod install",
     "generate_debug_apk": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug",
-    "generate_release_apk": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-* && ./gradlew assembleRelease && ./gradlew bundleRelease",
-    "generate_key": "keytool -genkey -v -keystore release.keystore -alias your_key_alias -keyalg RSA -keysize 2048 -validity 10000 && mv release.keystore android/app"
+    "generate_release_apk": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-* && ./gradlew assembleRelease",
+    "generate_release_bd": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew clean && rm -rf app/src/main/res/drawable-* && ./gradlew bundleRelease",
+    "generate_key": "keytool -genkey -v -keystore release.keystore -alias releasekey -keyalg RSA -keysize 2048 -validity 10000 && mv release.keystore android/app"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
@@ -50,6 +51,7 @@
     "react-native-toast-message": "^2.1.6",
     "react-native-toast-notifications": "^3.3.1",
     "react-native-vector-icons": "^10.0.0",
+    "react-native-version": "^4.0.0",
     "react-native-video": "^5.2.1",
     "react-native-webview": "^13.6.2",
     "rn-fetch-blob": "^0.12.0",

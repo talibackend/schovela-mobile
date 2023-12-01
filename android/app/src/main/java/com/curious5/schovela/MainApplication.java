@@ -1,4 +1,4 @@
-package com.awesomeproject;
+package com.curious5.schovela;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

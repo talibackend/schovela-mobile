@@ -93,13 +93,13 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.awesomeproject"
+    namespace "com.curious5.schovela"
     defaultConfig {
-        applicationId "com.awesomeproject"
+        applicationId "com.curious5.schovela"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.0"
     }
 
     splits {
@@ -120,7 +120,7 @@ android {
         release {
             storeFile file('release.keystore')
             storePassword '12345678'
-            keyAlias '12345678'
+            keyAlias 'releasekey'
             keyPassword '12345678'
         }
     }

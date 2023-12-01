@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:55091586231:android:45f5de21747d741764d932",
+        "mobilesdk_app_id": "1:55091586231:android:c2c3e9ababa6a85864d932",
         "android_client_info": {
-          "package_name": "com.awesomeproject"
+          "package_name": "com.curious5.schovela"
         }
       },
       "oauth_client": [],

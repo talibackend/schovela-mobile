@@ -12,7 +12,7 @@ if(!firebase.apps.length){
         apiKey: 'AIzaSyBYQLSvBvWkeuS4FPw2Riql2G5W7TCYb1c',
         projectId: 'schovela-62d60',
         storageBucket: 'schovela-62d60.appspot.com',
-        appId: '1:55091586231:android:45f5de21747d741764d932',
+        appId: '1:55091586231:android:c2c3e9ababa6a85864d932',
         databaseURL : '',
         messagingSenderId : ''
     })
