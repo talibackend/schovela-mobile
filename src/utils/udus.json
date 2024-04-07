@@ -70,5 +70,49 @@
       "Plant Science",
       "Pure and Environmental Chemistry",
       "Zoology"
-    ]
+    ],
+    "FACULTY OF PHARMACEUTICAL SCIENCES": [
+      "Clinical Pharmacy and Pharmacy Practice",
+      "Pharmaceutical and Medicinal Chemistry",
+      "Pharmaceutics and Pharmaceutical Microbiology",
+      "Pharmacognosy and Ethno Pharmacy",
+      "Pharmacology and Toxicology"
+      ],
+      "FACULTY OF CLINICAL SCIENCES": [
+      "Community Health",
+      "Medicine",
+      "Nursing Sciences",
+      "Obstetrics and Gynaecology",
+      "Paediatrics",
+      "Psychiatry",
+      "Radiology",
+      "Radiography",
+      "Surgery"
+      ],
+      "FACULTY OF ALLIED HEALTH SCIENCES": [
+      "Human Nutrition and Dietetics",
+      "Nursing Science",
+      "Optometry",
+      "Physiotherapy",
+      "Radiography"
+      ],
+      "SCHOOL OF MEDICAL LABORATORY SCIENCE": [
+      "Chemical Pathology",
+      "Haematology",
+      "Histopathology",
+      "Medical Microbiology",
+      "Immunology"
+      ],
+      "FACULTY OF DENTAL SCIENCE": [
+      "Department of Oral and Maxillofacial Surgery",
+      "Department of Oral and Maxillofacial Pathology/ Surgery",
+      "Department of Child Dental Health",
+      "Department of Preventive Dentistry",
+      "Department of Restorative Dentistry"
+      ],
+      "FACULTY OF BASIC MEDICAL SCIENCES": [
+      "Anatomy",
+      "Medical Biochemistry",
+      "Physiology"
+      ]
   }
