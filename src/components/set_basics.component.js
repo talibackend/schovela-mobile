@@ -15,6 +15,9 @@ export default SetBasicComponent = ({
     facultyOpen, setFacultyOpen,
     facultyValue, setFacultyValue,
     facultyLabel,
+    schoolOpen, setSchoolOpen,
+    schoolValue, setSchoolValue,
+    schoolLabel,
     levelOpen, setLevelOpen,
     levelValue, setLevelValue,
     levelLabel,
@@ -22,6 +25,7 @@ export default SetBasicComponent = ({
     date, setDate,
     maxDate,
     faculties,
+    schools,
     depts,
     levels,
     btnHandler,
@@ -41,6 +45,11 @@ export default SetBasicComponent = ({
                 facultyValue={facultyValue}
                 setFacultyValue={setFacultyValue}
                 facultyLabel={facultyLabel}
+                schoolOpen={schoolOpen}
+                setSchoolOpen={setSchoolOpen}
+                schoolValue={schoolValue}
+                setSchoolValue={setSchoolValue}
+                schoolLabel={schoolLabel}
                 levelOpen={levelOpen}
                 setLevelOpen={setLevelOpen}
                 levelValue={levelValue}
@@ -52,6 +61,7 @@ export default SetBasicComponent = ({
                 setDate={setDate}
                 maxDate={maxDate}
                 faculties={faculties}
+                schools={schools}
                 btnHandler={btnHandler}
                 loading={loading}
                 levels={levels}

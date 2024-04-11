@@ -1,4 +1,5 @@
-import udus from './udus.json';
+import udus from './schemas/udus.json';
+import futminna from './schemas/futminna.json';
 
 export const messages = {
     APP_ERROR : "Sorry an unknown error occured in your app, please contact support.",
@@ -39,6 +40,7 @@ export const messages = {
     TITLE_PLACEHOLDER : "Title",
     DESC_PLACEHOLDER : "Description",
     SELECT_DEPT : "Select Department",
+    SELECT_INSTITUTION : "Select Institution Of Study",
     CONTENT_CREATED : "Content has been successfully uploaded."
 }
 
@@ -112,12 +114,29 @@ export const user_categories = [
     {label : 'Others', value : 'others'}
 ]
 
-let udusFaculties = udus;
+const schoolMap = {
+    udus,
+    futminna
+}
 
-const extractFaculties = (facultyKeys)=>{
+export const user_schools = [
+    { label : "", value : null },
+    {label : "Usmanu Danfodiyo University, Sokoto", value : "udus"},
+    {label : "Federal University Of Technology, Minna", value : "futminna"},
+]
+
+export const user_faculties = (schoolKey)=>{
     let resObj = [
         { label : "", value : null }
     ];
+
+    let school = schoolMap[schoolKey]
+
+    if(!school){
+        return resObj;
+    }
+
+    let facultyKeys = Object.keys(school);
 
     for(let i = 0; i < facultyKeys.length; i++){
         resObj.push({
@@ -125,19 +144,35 @@ const extractFaculties = (facultyKeys)=>{
             value : facultyKeys[i]
         });
     }
-
     return resObj;
 }
 
-export const user_faculties = extractFaculties(Object.keys(udusFaculties));
-
-export const user_depts = (faculty)=>{
-    if(!faculty){
-        return [{ label : "", value : null }];
-    }
-    let depts = udusFaculties[faculty];
+export const user_depts = (school, faculty)=>{
+    let resObj = [
+        { label : "", value : null }
+    ];
     
-    return extractFaculties(depts);
+    school = schoolMap[school]
+
+    if(!school){
+        return resObj;
+    }
+
+    if(!school[faculty]){
+        return resObj;
+    }
+
+    let depts = school[faculty];
+    
+    for(let i = 0; i < depts.length; i++){
+        let dept = depts[i];
+        resObj.push({
+            label : dept,
+            value : dept
+        });
+    }
+    
+    return resObj;
 }
 
 export const user_levels = [

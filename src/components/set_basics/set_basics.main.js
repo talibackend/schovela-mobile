@@ -13,6 +13,9 @@ export default SetBasicsMainComponent = ({
         facultyOpen, setFacultyOpen,
         facultyValue, setFacultyValue,
         facultyLabel,
+        schoolOpen, setSchoolOpen,
+        schoolValue, setSchoolValue,
+        schoolLabel,
         levelOpen, setLevelOpen,
         levelValue, setLevelValue,
         levelLabel,
@@ -20,6 +23,7 @@ export default SetBasicsMainComponent = ({
         date, setDate,
         maxDate,
         faculties,
+        schools,
         depts,
         levels,
         btnHandler,
@@ -29,8 +33,8 @@ export default SetBasicsMainComponent = ({
     return <View style={loginStyle.input_wrapper}>
         <TextInput  placeholderTextColor="grey" style={loginStyle.input_field} value={phoneNumber} placeholder={messages.PHONE_NUMBER} onChangeText={(value) => { return setPhoneNumber(value); }} autoComplete='name' autoCorrect={true} />
         <TextInput placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={date} onPressIn={() => { return setDateModalOpened(true); }} placeholder={messages.DOB} readonly={true} />
-        <TextInput  placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={"Usmanu Danfodiyo University, Sokoto"} autoComplete='name' autoCorrect={true} readonly={true} />
         <TextInput placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
+        <TextInput  placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={schoolLabel ? schoolLabel : ""} placeholder={messages.SELECT_INSTITUTION} onPressIn={() => { return setSchoolOpen(true); }} readonly={true} />
         <TextInput placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
         <TextInput placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={deptLabel ? deptLabel : ""} placeholder={messages.SELECT_DEPT} onPressIn={() => { return setDeptOpen(true); }} readonly={true} />
         {
@@ -43,6 +47,14 @@ export default SetBasicsMainComponent = ({
             selected={facultyValue}
             selectHandler={setFacultyValue}
             closeHandler={()=>{ setFacultyOpen(false); }}
+        />
+
+        <DropDownComponent 
+            opened={schoolOpen} 
+            data={schools} 
+            selected={schoolValue}
+            selectHandler={setSchoolValue}
+            closeHandler={()=>{ setSchoolOpen(false); }}
         />
         
         <DropDownComponent 

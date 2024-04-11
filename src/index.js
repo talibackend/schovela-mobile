@@ -43,13 +43,13 @@ const Scafffold = ()=>{
     return  <>
                 <NavigationContainer ref={navigationRef} theme={MyTheme}>
                     <Stack.Navigator>
-                        <Stack.Screen name={screenNames.splashscreen} options={{ headerShown : false }} component={SplashScreen} />
+                        {/* <Stack.Screen name={screenNames.splashscreen} options={{ headerShown : false }} component={SplashScreen} />
                         <Stack.Screen name={screenNames.login} options={{ headerShown : false }} component={LoginScreen} />
                         <Stack.Screen name={screenNames.forgot_password} options={{ headerShown : false }} component={ForgotPasswordScreen} />
                         <Stack.Screen name={screenNames.sign_up} options={{ headerShown : false }} component={SignupScreen} />
                         <Stack.Screen name={screenNames.forgot_password_otp} options={{ headerShown : false }} component={ForgotPasswordOtpScreen} />
                         <Stack.Screen name={screenNames.home} options={{ headerShown : false }} component={HomeScreen} />
-                        <Stack.Screen name={screenNames.set_password} options={{ headerShown : false }} component={SetPasswordScreen} />
+                        <Stack.Screen name={screenNames.set_password} options={{ headerShown : false }} component={SetPasswordScreen} /> */}
                         <Stack.Screen name={screenNames.set_basics} options={{ headerShown : false }} component={SetBasicsScreen} />
                         <Stack.Screen name={screenNames.admin_dashboard} options={{ headerShown : false }} component={AdminDashboardScreen} />
                         <Stack.Screen name={screenNames.admin_dashboard_users} options={{ headerShown : false }} component={AdminDashboardUsersScreen} />

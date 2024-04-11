@@ -10,7 +10,8 @@ import {
     user_faculties, 
     user_levels,
     user_depts,
-    user_roles
+    user_roles,
+    user_schools
 } from "../utils/consts";
 import { showToast } from '../utils/toast';
 import { authRequest } from '../utils/network';
@@ -20,15 +21,21 @@ export default SetBasicsScreen = ({navigation})=>{
     const [phoneNumber, setPhoneNumber] = useState("");
     
     //Faculty States
+    const [schoolOpen, setSchoolOpen] = useState(false);
+    const [schoolValue, setSchoolValue] = useState(null);
+    const [schoolLabel, setSchoolLabel] = useState(null);
+    const schools = user_schools;
+
+    //Faculty States
     const [facultyOpen, setFacultyOpen] = useState(false);
     const [facultyValue, setFacultyValue] = useState(null);
     const [facultyLabel, setFacultyLabel] = useState(null);
-    const faculties = user_faculties;
+    const faculties = user_faculties(schoolValue);
     //Dept States
     const [deptOpen, setDeptOpen] = useState(false);
     const [dept, setDept] = useState(null);
     const [deptLabel, setDeptLabel] = useState("");
-    const depts = user_depts(facultyValue)
+    const depts = user_depts(schoolValue, facultyValue)
     //Level States
     const [levelOpen, setLevelOpen] = useState(false);
     const [levelValue, setLevelValue] = useState(null);
@@ -122,18 +129,30 @@ export default SetBasicsScreen = ({navigation})=>{
             let faculty = faculties[i];
             if(faculty.value == facultyValue){
                 setFacultyLabel(faculty.label);
-                setDeptLabel(user_depts(facultyValue)[0].label);
+                setDept(null);
             }
         }
     }, [facultyValue]);
 
     useEffect(() => {
-        for (let i = 0; i < user_depts(facultyValue).length; i++) {
-            if (user_depts(facultyValue)[i].value == dept) {
-                setDeptLabel(user_depts(facultyValue)[i].label);
+        let depts_fetched = user_depts(schoolValue, facultyValue)
+        for (let i = 0; i < depts_fetched.length; i++) {
+            if (depts_fetched[i].value == dept) {
+                setDeptLabel(depts_fetched[i].label);
             }
         }
     }, [dept])
+
+    useEffect(() => {
+        for (let i = 0; i < schools.length; i++) {
+            let school = schools[i]
+            if (school.value == schoolValue) {
+                setSchoolLabel(school.label);
+                setFacultyValue(null);
+                setDept(null);
+            }
+        }
+    }, [schoolValue])
     
     useEffect(() => {
         for(let i = 0; i < levels.length; i++){
@@ -159,6 +178,11 @@ export default SetBasicsScreen = ({navigation})=>{
         facultyValue={facultyValue}
         setFacultyValue={setFacultyValue}
         facultyLabel={facultyLabel}
+        schoolOpen={schoolOpen}
+        setSchoolOpen={setSchoolOpen}
+        schoolValue={schoolValue}
+        setSchoolValue={setSchoolValue}
+        schoolLabel={schoolLabel}
         levelOpen={levelOpen}
         setLevelOpen={setLevelOpen}
         levelValue={levelValue}
@@ -170,6 +194,7 @@ export default SetBasicsScreen = ({navigation})=>{
         setDate={setDate}
         maxDate={maxDate}
         faculties={faculties}
+        schools={schools}
         btnHandler={btnHandler}
         loading={loading}
         levels={levels}
