@@ -11,33 +11,35 @@ export default CreateContentMain = ({
     navigation,
     edit,
     data,
+    schools,
     title,
     setTitle,
     desc,
     setDesc,
     level,
     setLevel,
-    faculty,
-    setFaculty,
     setAttachment,
     attachmentBase64,
     loading,
     dept,
     setDept,
     deptLabel,
-    facultyLabel,
     levelLabel,
     setLevelOpen,
-    setFacultyOpen,
     setDeptOpen,
     levelOpen,
     deptOpen,
-    facultyOpen,
     handleSubmit,
     attachment,
     attachmentExt,
     pageName,
-    attachmentText
+    attachmentText,
+    schoolOpen, setSchoolOpen,
+    schoolValue, setSchoolValue,
+    schoolLabel,
+    facultyOpen, setFacultyOpen,
+    facultyValue, setFacultyValue,
+    facultyLabel
 }) => {
     
     const selectAttachment = async () => {
@@ -69,21 +71,28 @@ export default CreateContentMain = ({
                 closeHandler={() => { setLevelOpen(false); }}
             />
             <DropDownComponent
-                data={user_faculties}
+                data={user_faculties(schoolValue)}
                 opened={facultyOpen}
-                selected={faculty}
-                selectHandler={setFaculty}
+                selected={facultyValue}
+                selectHandler={setFacultyValue}
                 closeHandler={() => { setFacultyOpen(false); }}
             />
             <DropDownComponent
-                data={user_depts(faculty)}
+                data={user_depts(schoolValue, facultyValue)}
                 opened={deptOpen}
                 selected={dept}
                 selectHandler={setDept}
                 closeHandler={() => { setDeptOpen(false); }}
             />
-            <TextInput  placeholderTextColor="grey" style={loginStyle.input_field} onFocus={() => { return Keyboard.dismiss(); }} value={"Usmanu Danfodiyo University, Sokoto"} autoComplete='name' autoCorrect={true} readonly={true} />
+            <DropDownComponent 
+                opened={schoolOpen} 
+                data={schools} 
+                selected={schoolValue}
+                selectHandler={setSchoolValue}
+                closeHandler={()=>{ setSchoolOpen(false); }}
+            />
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={levelLabel ? levelLabel : ""} placeholder={messages.SELECT_LEVEL} onPressIn={() => { return setLevelOpen(true); }} readonly={true} />
+            <TextInput  placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={schoolLabel ? schoolLabel : ""} placeholder={messages.SELECT_INSTITUTION} onPressIn={() => { return setSchoolOpen(true); }} readonly={true} />
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={facultyLabel ? facultyLabel : ""} placeholder={messages.SELECT_FACULTY} onPressIn={() => { return setFacultyOpen(true); }} readonly={true} />
             <TextInput placeholderTextColor="grey" style={[loginStyle.input_field, adminStyle.filter_input]} onFocus={() => { return Keyboard.dismiss(); }} value={deptLabel ? deptLabel : ""} placeholder={messages.SELECT_DEPT} onPressIn={() => { return setDeptOpen(true); }} readonly={true} />
             {

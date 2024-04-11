@@ -49,13 +49,13 @@ const Scafffold = ()=>{
                         <Stack.Screen name={screenNames.sign_up} options={{ headerShown : false }} component={SignupScreen} />
                         <Stack.Screen name={screenNames.forgot_password_otp} options={{ headerShown : false }} component={ForgotPasswordOtpScreen} />
                         <Stack.Screen name={screenNames.home} options={{ headerShown : false }} component={HomeScreen} />
-                        <Stack.Screen name={screenNames.set_password} options={{ headerShown : false }} component={SetPasswordScreen} /> */}
+                        <Stack.Screen name={screenNames.set_password} options={{ headerShown : false }} component={SetPasswordScreen} />
                         <Stack.Screen name={screenNames.set_basics} options={{ headerShown : false }} component={SetBasicsScreen} />
                         <Stack.Screen name={screenNames.admin_dashboard} options={{ headerShown : false }} component={AdminDashboardScreen} />
                         <Stack.Screen name={screenNames.admin_dashboard_users} options={{ headerShown : false }} component={AdminDashboardUsersScreen} />
                         <Stack.Screen name={screenNames.admin_dashboard_user_info} options={{ headerShown : false }} component={AdminDashboardUserInfoScreen} />
                         <Stack.Screen name={screenNames.admin_dashboard_contents} options={{ headerShown : false }} component={AdminDashboardContentsScreen} />
-                        <Stack.Screen name={screenNames.user_home} options={{ headerShown : false }} component={AdminDashboardContentsScreen} />
+                        <Stack.Screen name={screenNames.user_home} options={{ headerShown : false }} component={AdminDashboardContentsScreen} /> */}
                         <Stack.Screen name={screenNames.create_content} options={{ headerShown : false }} component={CreateContentScreen} />
                         <Stack.Screen name={screenNames.view_content} options={{ headerShown : false }} component={ViewContentScreen} />
                         <Stack.Screen name={screenNames.edit_content} options={{ headerShown : false }} component={EditContentScreen} />

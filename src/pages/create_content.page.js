@@ -3,14 +3,15 @@ import { useEffect, useState } from 'react';
 import { 
     user_levels, 
     messages, 
-    user_depts, 
-    user_faculties, 
     getAllExtensions, 
     api_routes, 
     toast_types, 
     screenNames,
     request_methods,
-    attachment_exts
+    attachment_exts,
+    user_schools,
+    user_faculties,
+    user_depts
 } from '../utils/consts';
 import { fileToBase64 } from '../utils/general';
 import { showToast } from '../utils/toast';
@@ -28,14 +29,22 @@ export default CreateContentScreen = ({navigation})=>{
     const [levelOpen, setLevelOpen] = useState(false);
     const [level, setLevel] = useState(null);
     const [levelLabel, setLevelLabel] = useState("");
-
+    
+    //School States
+    const [schoolOpen, setSchoolOpen] = useState(false);
+    const [schoolValue, setSchoolValue] = useState(null);
+    const [schoolLabel, setSchoolLabel] = useState(null);
+    const schools = user_schools;
+    //Faculty States
     const [facultyOpen, setFacultyOpen] = useState(false);
-    const [faculty, setFaculty] = useState(null);
-    const [facultyLabel, setFacultyLabel] = useState("");
-
+    const [facultyValue, setFacultyValue] = useState(null);
+    const [facultyLabel, setFacultyLabel] = useState(null);
+    const faculties = user_faculties(schoolValue);
+    //Dept States
     const [deptOpen, setDeptOpen] = useState(false);
     const [dept, setDept] = useState(null);
     const [deptLabel, setDeptLabel] = useState("");
+    const depts = user_depts(schoolValue, facultyValue)
 
     const [attachmentUrl, setAttachmentUrl] = useState("");
 
@@ -81,6 +90,9 @@ export default CreateContentScreen = ({navigation})=>{
 
         if(dept){
             payload.dept = dept;
+        }
+        if(schoolValue){
+            payload.school = schoolValue;
         }
 
         try{
@@ -148,23 +160,36 @@ export default CreateContentScreen = ({navigation})=>{
             }
         }
     }, [level])
-
+    
     useEffect(() => {
-        for (let i = 0; i < user_faculties.length; i++) {
-            if (user_faculties[i].value == faculty) {
-                setFacultyLabel(user_faculties[i].label);
-                setDeptLabel(user_depts(faculty)[0].label);
+        for(let i = 0; i < faculties.length; i++){
+            let faculty = faculties[i];
+            if(faculty.value == facultyValue){
+                setFacultyLabel(faculty.label);
+                setDept(null);
             }
         }
-    }, [faculty])
+    }, [facultyValue]);
 
     useEffect(() => {
-        for (let i = 0; i < user_depts(faculty).length; i++) {
-            if (user_depts(faculty)[i].value == dept) {
-                setDeptLabel(user_depts(faculty)[i].label);
+        let depts_fetched = user_depts(schoolValue, facultyValue)
+        for (let i = 0; i < depts_fetched.length; i++) {
+            if (depts_fetched[i].value == dept) {
+                setDeptLabel(depts_fetched[i].label);
             }
         }
     }, [dept])
+
+    useEffect(() => {
+        for (let i = 0; i < schools.length; i++) {
+            let school = schools[i]
+            if (school.value == schoolValue) {
+                setSchoolLabel(school.label);
+                setFacultyValue(null);
+                setDept(null);
+            }
+        }
+    }, [schoolValue])
 
     return <CreateContentComponent 
         navigation={navigation}
@@ -174,25 +199,31 @@ export default CreateContentScreen = ({navigation})=>{
         setDesc={setDesc}
         level={level}
         setLevel={setLevel}
-        faculty={faculty}
-        setFaculty={setFaculty}
+        facultyOpen={facultyOpen}
+        setFacultyOpen={setFacultyOpen}
+        facultyValue={facultyValue}
+        setFacultyValue={setFacultyValue}
+        facultyLabel={facultyLabel}
+        schoolOpen={schoolOpen}
+        setSchoolOpen={setSchoolOpen}
+        schoolValue={schoolValue}
+        setSchoolValue={setSchoolValue}
+        schoolLabel={schoolLabel}
         setAttachment={setAttachment}
         attachmentBase64={attachmentBase64}
         loading={loading}
         dept={dept}
         setDept={setDept}
         deptLabel={deptLabel}
-        facultyLabel={facultyLabel}
         levelLabel={levelLabel}
         setLevelOpen={setLevelOpen}
-        setFacultyOpen={setFacultyOpen}
         setDeptOpen={setDeptOpen}
         levelOpen={levelOpen}
-        facultyOpen={facultyOpen}
         deptOpen={deptOpen}
         handleSubmit={handleSubmit}
         attachment={attachment}
         attachmentExt={attachmentExt}
         attachmentText={attachmentText}
+        schools={schools}
     />
 }

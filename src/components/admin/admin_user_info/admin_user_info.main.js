@@ -11,6 +11,7 @@ export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, us
         phone : user?.phone,
         level : user?.level,
         faculty : user?.faculty,
+        school : user?.school,
         dept : user?.department,
         image : require('../../../../assets/static/user.png'),
         joined:  (new Date(`${user?.createdAt}`)).toDateString(),
@@ -54,6 +55,10 @@ export default AdminUserInfoMainComponent = ({updatingRole, handleRoleChange, us
             <View style={adminStyle.user_info_columns}>
                 <Text style={adminStyle.user_info_title}>Level</Text>
                 <Text style={adminStyle.user_info_value}>{data.level}</Text>
+            </View>
+            <View style={adminStyle.user_info_columns}>
+                <Text style={adminStyle.user_info_title}>Institution</Text>
+                <Text style={adminStyle.user_info_value}>{data.school}</Text>
             </View>
             <View style={adminStyle.user_info_columns}>
                 <Text style={adminStyle.user_info_title}>Faculty</Text>

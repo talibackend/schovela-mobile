@@ -20,12 +20,11 @@ import { setItem } from '../utils/asyncStorage';
 export default SetBasicsScreen = ({navigation})=>{
     const [phoneNumber, setPhoneNumber] = useState("");
     
-    //Faculty States
+    //School States
     const [schoolOpen, setSchoolOpen] = useState(false);
     const [schoolValue, setSchoolValue] = useState(null);
     const [schoolLabel, setSchoolLabel] = useState(null);
     const schools = user_schools;
-
     //Faculty States
     const [facultyOpen, setFacultyOpen] = useState(false);
     const [facultyValue, setFacultyValue] = useState(null);
@@ -41,6 +40,7 @@ export default SetBasicsScreen = ({navigation})=>{
     const [levelValue, setLevelValue] = useState(null);
     const [levelLabel, setLevelLabel] = useState(null);
     const levels = user_levels;
+
     //Date of Birth State
     const [dateModalOpened, setDateModalOpened] = useState(false);
     const [date, setDate] = useState(null);
@@ -86,6 +86,9 @@ export default SetBasicsScreen = ({navigation})=>{
                 return;
             }
             body.faculty = facultyValue;
+        }
+        if(schoolValue){
+            body.school = schoolValue;
         }
         try{
             setLoading(true);

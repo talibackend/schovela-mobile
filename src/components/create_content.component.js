@@ -5,14 +5,13 @@ import { View } from "react-native"
 
 export default CreateContentComponent = ({
     navigation,
+    schools,
     title,
     setTitle,
     desc,
     setDesc,
     level,
     setLevel,
-    faculty,
-    setFaculty,
     setAttachment,
     attachmentBase64,
     loading,
@@ -31,7 +30,11 @@ export default CreateContentComponent = ({
     attachment,
     attachmentExt,
     pageName,
-    attachmentText
+    attachmentText,
+    schoolOpen, setSchoolOpen,
+    schoolValue, setSchoolValue,
+    schoolLabel,
+    facultyValue, setFacultyValue
 }) => {
     return <View style={appStyle.app_container}>
         <AdminHeader navigation={navigation} backButton={true} name={pageName ? pageName : "Create Content"} />
@@ -43,8 +46,6 @@ export default CreateContentComponent = ({
             setDesc={setDesc}
             level={level}
             setLevel={setLevel}
-            faculty={faculty}
-            setFaculty={setFaculty}
             setAttachment={setAttachment}
             attachmentBase64={attachmentBase64} 
             edit={false}
@@ -65,6 +66,14 @@ export default CreateContentComponent = ({
             attachmentExt={attachmentExt}
             pageName={pageName}
             attachmentText={attachmentText}
+            schoolOpen={schoolOpen}
+            setSchoolOpen={setSchoolOpen}
+            schoolValue={schoolValue}
+            setSchoolValue={setSchoolValue}
+            schoolLabel={schoolLabel}
+            schools={schools}
+            facultyValue={facultyValue}
+            setFacultyValue={setFacultyValue}
         />
     </View>
 }
