@@ -12,7 +12,8 @@ import {
     request_methods,
     attachment_exts,
     storageKeyNames,
-    user_roles
+    user_roles,
+    user_schools
 } from '../utils/consts';
 import { fileToBase64, getRemoteFile } from '../utils/general';
 import { showToast } from '../utils/toast';
@@ -33,10 +34,16 @@ export default EditContentScreen = ({ navigation, route })=>{
     const [levelOpen, setLevelOpen] = useState(false);
     const [level, setLevel] = useState(null);
     const [levelLabel, setLevelLabel] = useState("");
-
+    //School States
+    const [schoolOpen, setSchoolOpen] = useState(false);
+    const [schoolValue, setSchoolValue] = useState(null);
+    const [schoolLabel, setSchoolLabel] = useState(null);
+    const schools = user_schools;
+    //Faculty States
     const [facultyOpen, setFacultyOpen] = useState(false);
-    const [faculty, setFaculty] = useState(null);
-    const [facultyLabel, setFacultyLabel] = useState("");
+    const [facultyValue, setFacultyValue] = useState(null);
+    const [facultyLabel, setFacultyLabel] = useState(null);
+    const faculties = user_faculties(schoolValue);
 
     const [deptOpen, setDeptOpen] = useState(false);
     const [dept, setDept] = useState(null);
@@ -76,7 +83,7 @@ export default EditContentScreen = ({ navigation, route })=>{
     const handleSubmit = async ()=>{
         const id = post.id;
 
-        const payload = { id, desc, level, faculty, dept };
+        const payload = { id, desc, level, faculty : facultyValue, dept, school : schoolValue };
 
         if(!attachment.first){
             payload.attachment = attachmentUrl;
@@ -111,23 +118,36 @@ export default EditContentScreen = ({ navigation, route })=>{
             }
         }
     }, [level])
-
+    
     useEffect(() => {
-        for (let i = 0; i < user_faculties.length; i++) {
-            if (user_faculties[i].value == faculty) {
-                setFacultyLabel(user_faculties[i].label);
-                setDeptLabel(user_depts(faculty)[0].label);
+        for(let i = 0; i < faculties.length; i++){
+            let faculty = faculties[i];
+            if(faculty.value == facultyValue){
+                setFacultyLabel(faculty.label);
+                setDept(null);
             }
         }
-    }, [faculty])
+    }, [facultyValue]);
 
     useEffect(() => {
-        for (let i = 0; i < user_depts(faculty).length; i++) {
-            if (user_depts(faculty)[i].value == dept) {
-                setDeptLabel(user_depts(faculty)[i].label);
+        let depts_fetched = user_depts(schoolValue, facultyValue)
+        for (let i = 0; i < depts_fetched.length; i++) {
+            if (depts_fetched[i].value == dept) {
+                setDeptLabel(depts_fetched[i].label);
             }
         }
     }, [dept])
+
+    useEffect(() => {
+        for (let i = 0; i < schools.length; i++) {
+            let school = schools[i]
+            if (school.value == schoolValue) {
+                setSchoolLabel(school.label);
+                setFacultyValue(null);
+                setDept(null);
+            }
+        }
+    }, [schoolValue])
 
     const loadInfos = async ()=>{
         if(!post){
@@ -145,6 +165,7 @@ export default EditContentScreen = ({ navigation, route })=>{
         setLevel(post.level);
         setFaculty(post.faculty);
         setDept(post.dept);
+        setSchoolValue(post.school);
         getRemoteFile(post.attachment).then((data)=>{
             let type = "application/shit";
 
@@ -193,9 +214,6 @@ export default EditContentScreen = ({ navigation, route })=>{
     }, [attachment]);
 
     useEffect(()=>{
-        console.log(attachment);
-        console.log(attachmentExt);
-        console.log(attachmentBase64);
         if(attachmentExt && !attachment.first && attachmentBase64 !== ""){
             handleUpload(); 
         }
@@ -210,8 +228,8 @@ export default EditContentScreen = ({ navigation, route })=>{
         setDesc={setDesc}
         level={level}
         setLevel={setLevel}
-        faculty={faculty}
-        setFaculty={setFaculty}
+        facultyValue={facultyValue}
+        setFacultyValue={setFacultyValue}
         setAttachment={setAttachment}
         attachmentBase64={attachmentBase64}
         loading={loading}
@@ -223,6 +241,11 @@ export default EditContentScreen = ({ navigation, route })=>{
         setLevelOpen={setLevelOpen}
         setFacultyOpen={setFacultyOpen}
         setDeptOpen={setDeptOpen}
+        schoolOpen={schoolOpen}
+        setSchoolOpen={setSchoolOpen}
+        schoolValue={schoolValue}
+        setSchoolValue={setSchoolValue}
+        schoolLabel={schoolLabel}
         levelOpen={levelOpen}
         facultyOpen={facultyOpen}
         deptOpen={deptOpen}
@@ -230,5 +253,6 @@ export default EditContentScreen = ({ navigation, route })=>{
         attachment={attachment}
         attachmentExt={attachmentExt}
         attachmentText={attachmentText}
+        schools={schools}
     />
 }

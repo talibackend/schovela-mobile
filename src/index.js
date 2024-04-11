@@ -54,8 +54,8 @@ const Scafffold = ()=>{
                         <Stack.Screen name={screenNames.admin_dashboard} options={{ headerShown : false }} component={AdminDashboardScreen} />
                         <Stack.Screen name={screenNames.admin_dashboard_users} options={{ headerShown : false }} component={AdminDashboardUsersScreen} />
                         <Stack.Screen name={screenNames.admin_dashboard_user_info} options={{ headerShown : false }} component={AdminDashboardUserInfoScreen} />
-                        <Stack.Screen name={screenNames.admin_dashboard_contents} options={{ headerShown : false }} component={AdminDashboardContentsScreen} />
-                        <Stack.Screen name={screenNames.user_home} options={{ headerShown : false }} component={AdminDashboardContentsScreen} /> */}
+                        <Stack.Screen name={screenNames.admin_dashboard_contents} options={{ headerShown : false }} component={AdminDashboardContentsScreen} /> */}
+                        <Stack.Screen name={screenNames.user_home} options={{ headerShown : false }} component={AdminDashboardContentsScreen} />
                         <Stack.Screen name={screenNames.create_content} options={{ headerShown : false }} component={CreateContentScreen} />
                         <Stack.Screen name={screenNames.view_content} options={{ headerShown : false }} component={ViewContentScreen} />
                         <Stack.Screen name={screenNames.edit_content} options={{ headerShown : false }} component={EditContentScreen} />

@@ -9,7 +9,8 @@ import {
     user_faculties,
     user_depts,
     content_filters,
-    messages
+    messages,
+    user_schools
 } from "../utils/consts";
 import { showToast } from "../utils/toast";
 import { isCloseToBottom } from '../utils/scroll';
@@ -31,11 +32,17 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
     const [level, setLevel] = useState(null);
     const [levelLabel, setLevelLabel] = useState("");
 
+    const [schoolValue, setSchoolValue] = useState(null);
+    const [schoolLabel, setSchoolLabel] = useState(null);
+    const schools = user_schools;
+    
     const [faculty, setFaculty] = useState(null);
     const [facultyLabel, setFacultyLabel] = useState("");
+    const faculties = user_faculties(schoolValue);
 
     const [dept, setDept] = useState(null);
     const [deptLabel, setDeptLabel] = useState("");
+    const depts = user_depts(schoolValue, faculty)
 
     const [search, setSearch] = useState(null);
     
@@ -56,10 +63,17 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
             selectedLabel: levelLabel,
             selectHandler: setLevel
         },
+        school: {
+            label: "Select Institution",
+            selected: schoolValue,
+            selectedLabel: schoolLabel,
+            data: user_schools,
+            selectHandler: setSchoolValue
+        },
         faculty: {
             label: "Select Faculty",
             selected: faculty,
-            data: user_faculties,
+            data: faculties,
             selectedLabel: facultyLabel,
             selectHandler: setFaculty
         },
@@ -67,7 +81,7 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
             label: "Select Department",
             selected: dept,
             selectedLabel: deptLabel,
-            data: user_depts(faculty),
+            data: depts,
             selectHandler: setDept
         }
     }
@@ -97,27 +111,37 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
             }
         }
     }, [level])
-
+    
     useEffect(() => {
-        for (let i = 0; i < user_faculties.length; i++) {
-            if (user_faculties[i].value == faculty) {
-                setFacultyLabel(user_faculties[i].label);
-                setDeptLabel(user_depts(faculty)[0].label);
+        console.log(faculties)
+        for(let i = 0; i < faculties.length; i++){
+            let thisFaculty = faculties[i];
+            if(thisFaculty.value == faculty){
+                setFacultyLabel(thisFaculty.label);
+                setDept(null);
             }
         }
-        if(!faculty){
-            setDept(null);
-        }
-    }, [faculty])
+    }, [faculty]);
 
     useEffect(() => {
-        for (let i = 0; i < user_depts(faculty).length; i++) {
-            if (user_depts(faculty)[i].value == dept) {
-                setDeptLabel(user_depts(faculty)[i].label);
+        let depts_fetched = user_depts(schoolValue, faculty)
+        for (let i = 0; i < depts_fetched.length; i++) {
+            if (depts_fetched[i].value == dept) {
+                setDeptLabel(depts_fetched[i].label);
             }
         }
     }, [dept])
 
+    useEffect(() => {
+        for (let i = 0; i < schools.length; i++) {
+            let school = schools[i]
+            if (school.value == schoolValue) {
+                setSchoolLabel(school.label);
+                setFaculty(null);
+                setDept(null);
+            }
+        }
+    }, [schoolValue])
 
 
     const loadInfos = async (page2 = 0) => {
@@ -128,6 +152,7 @@ export default AdminDashboardContentsScreen = ({ navigation, route }) => {
                 faculty,
                 dept,
                 search,
+                school : schoolValue
             };
 
             if (live == false || live == true) {

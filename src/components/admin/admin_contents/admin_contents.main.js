@@ -65,6 +65,11 @@ export default AdminContentsMainComponent = ({
                             : null
                         }
                         {
+                            filterObject.school.selectedLabel ? 
+                                <Text style={adminStyle.filter_value_text}>{filterObject.school.selectedLabel}</Text>
+                            : null
+                        }
+                        {
                             filterObject.faculty.selectedLabel ? 
                                 <Text style={adminStyle.filter_value_text}>{filterObject.faculty.selectedLabel}</Text>
                             : null
